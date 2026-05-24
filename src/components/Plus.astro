@@ -1,0 +1,5 @@
+---
+export interface Props { letter?: string }
+const { letter = '' } = Astro.props;
+---
+<span style="color: var(--ctf-blue); font-weight: 500;">+{letter ? ` ${letter}` : ' '}</span>

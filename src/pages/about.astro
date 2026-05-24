@@ -1,0 +1,188 @@
+---
+import Base from '@/layouts/Base.astro';
+import Button from '@/components/Button.astro';
+import Mark from '@/components/Mark.astro';
+import Plus from '@/components/Plus.astro';
+import FlowLines from '@/components/FlowLines.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+
+const beliefs = [
+  'Excellentie en betekenis horen samen',
+  'Wat we bouwen vormt mensen en cultuur',
+  'Verantwoordelijkheid hoort bij macht',
+  'De juiste mensen op één plek versnellen elkaar',
+];
+const selectie = [
+  'Mensen die al iets gebouwd hebben en dat blijven doen',
+  'Mensen die snel denken en diep denken tegelijk',
+  'Mensen die niet bang zijn om het niet te weten',
+  'Mensen die elkaar willen versterken, niet alleen zichzelf',
+];
+---
+<Base title="Over CTF — Christian Tech Founders" current="about">
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card hero-about">
+      <FlowLines intensity={0.4} />
+      <div class="hero-about-inner">
+        <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:28px;">Over CTF</span>
+        <h1 class="hero-about-title fx-rise-lg">
+          Een gecureerde groep <Mark>bouwers</Mark>, niet een netwerk.
+        </h1>
+        <p class="hero-about-lede fx-rise">
+          CTF werd in 2025 opgericht door Marrallisa Kreijkes om christelijke bouwers in Nederland samen te brengen op een manier die de kerk en de tech-sector niet doen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="genesis-grid" data-reveal>
+        <div>
+          <span class="ctf-eyebrow-row" style="margin-bottom:24px;">Genesis</span>
+          <h2 class="t-display-md">Hoe het begon.</h2>
+        </div>
+        <div class="ctf-prose">
+          <p><Plus letter="H"/>et idee voor CTF ontstond uit een eenvoudige observatie. In de kerk werden de ondernemende en technische kanten van mensen niet begrepen. In de tech-wereld werd diepere zingeving niet gewaardeerd.</p>
+          <p><Plus letter="D"/>e eerste gathering in 2025 trok zo'n veertig mensen. Te veel, te divers in niveau, en te oppervlakkig om diep te kunnen gaan. Dat was de lesson learned.</p>
+          <p style="color: var(--ink-1);"><Plus letter="S"/>inds april 2026 werken we anders. Kleinere groepen, projectgedreven, op naam uitgenodigd per vraagstuk. Dat is wat CTF nu is.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Wie er achter zit" title="Wie er achter zit." />
+        <div class="founder-card ctf-paper" data-reveal>
+          <div class="founder-photo">
+            <img src="/assets/marrallisa.png" alt="Marrallisa Kreijkes" />
+          </div>
+          <div>
+            <h3 class="founder-name">Marrallisa Kreijkes</h3>
+            <div class="founder-role">Founder en curator</div>
+            <p class="founder-bio">
+              Marrallisa runt Viralistic Digital Agency Amsterdam en bouwt aan de zijkant CTF op. Ze brengt mensen samen die ze gelooft dat elkaar verder helpen, en houdt het klein zodat het kan blijven werken.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap narrow">
+        <SectionHeader eyebrow="Beliefs (kort)" title="Wat ons drijft." />
+        <div class="beliefs">
+          {beliefs.map((t) => <div class="belief-row" data-reveal>{t}</div>)}
+          <hr class="ctf-hr" />
+        </div>
+        <div style="margin-top:40px;">
+          <Button variant="outline" href="/vision">Lees onze visie</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="De shift" title="Wat er in april 2026 veranderde." />
+        <div class="shift-grid">
+          <div class="shift-box" data-reveal>
+            <span class="ctf-eyebrow-row" style="margin-bottom:20px;">Daarvoor</span>
+            <p class="t-body-serif-mute">Open community-gatherings. Te veel hoofden, te weinig richting, gemengd niveau.</p>
+          </div>
+          <div class="ctf-paper shift-box" data-reveal data-reveal-delay="120">
+            <span class="ctf-eyebrow-row" style="margin-bottom:20px; color: var(--ctf-blue);">Nu</span>
+            <p class="t-body-serif-strong">Eén project per dag. Klein. Op naam uitgenodigd op basis van fit met het vraagstuk.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap narrow">
+        <SectionHeader eyebrow="Selectie" title="Wat we zoeken in mensen." />
+        <div class="selectie">
+          {selectie.map((t, i) => (
+            <div class="selectie-row" data-reveal>
+              <div class="selectie-num">{`0${i + 1}`}</div>
+              <div class="selectie-text">{t}</div>
+            </div>
+          ))}
+          <hr class="ctf-hr" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell closing-band">
+    <div class="closing-inner" data-reveal>
+      <h2 class="t-display-lg">Klinkt dit als jouw mensen?</h2>
+      <div class="closing-cta">
+        <Button variant="primary" href="/apply" magnet>Aanmelden</Button>
+        <Button variant="ghost" href="/events">Bekijk events</Button>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-about { padding: 144px 80px 96px; position: relative; overflow: hidden; }
+  .hero-about-inner { position: relative; max-width: 1100px; margin: 0 auto; }
+  .hero-about-title { font: var(--t-display-lg); letter-spacing: -0.025em; line-height: 1.04; color: var(--ink-1); max-width: 980px; }
+  .hero-about-lede { margin-top: 32px; font: var(--t-serif-body-lg); color: var(--ink-3); max-width: 640px; }
+
+  .sec-pad { padding: 96px 80px; }
+  .ctf-wrap.narrow { max-width: 1100px; margin: 0 auto; }
+
+  .genesis-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+  .t-display-md { font: var(--t-display-md); letter-spacing: -0.025em; }
+
+  .founder-card {
+    margin-top: 56px; padding: 40px;
+    display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: start;
+  }
+  .founder-photo { width: 160px; height: 160px; border-radius: var(--r-lg); overflow: hidden; background: var(--ink-5); }
+  .founder-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+  .founder-name { font: var(--t-h2); color: var(--ink-1); letter-spacing: -0.025em; margin-bottom: 8px; }
+  .founder-role { font: var(--t-label); color: var(--ctf-blue); margin-bottom: 20px; }
+  .founder-bio  { font: var(--t-serif-body-lg); color: var(--ink-2); max-width: 640px; }
+
+  .beliefs { margin-top: 56px; }
+  .belief-row { padding: 28px 0; border-top: 1px solid var(--line-1); font: var(--t-display-sm); color: var(--ink-1); letter-spacing: -0.025em; }
+
+  .shift-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+  .shift-box { padding: 36px; border-radius: var(--r-lg); }
+  .shift-grid > .shift-box:first-child { border: 1px solid var(--line-1); }
+  .t-body-serif-mute   { font: var(--t-serif-body-lg); color: var(--ink-3); }
+  .t-body-serif-strong { font: var(--t-serif-body-lg); color: var(--ink-1); }
+
+  .selectie { margin-top: 56px; }
+  .selectie-row {
+    padding: 28px 0; border-top: 1px solid var(--line-1);
+    display: grid; grid-template-columns: 60px 1fr; gap: 24px; align-items: baseline;
+  }
+  .selectie-num  { font: var(--t-h4); color: var(--ctf-blue); }
+  .selectie-text { font: var(--t-h3); color: var(--ink-1); letter-spacing: -0.02em; }
+
+  .closing-band { margin-top: 64px; margin-bottom: 64px; }
+  .closing-inner {
+    max-width: 1200px; margin: 0 auto; text-align: center; padding: 32px 80px;
+  }
+  .t-display-lg { font: var(--t-display-lg); color: var(--ink-1); letter-spacing: -0.025em; line-height: 1.05; }
+  .closing-cta { margin-top: 36px; display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+  @media (max-width: 1000px) {
+    .hero-about { padding: 96px 32px 64px; }
+    .sec-pad { padding: 72px 32px; }
+    .genesis-grid, .shift-grid { grid-template-columns: 1fr; gap: 40px; }
+    .founder-card { grid-template-columns: 1fr; gap: 32px; }
+    .closing-inner { padding: 32px; }
+  }
+</style>

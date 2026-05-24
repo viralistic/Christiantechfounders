@@ -1,0 +1,255 @@
+---
+const colA = [
+  { label: 'Home',     href: '/' },
+  { label: 'Over',     href: '/about' },
+  { label: 'Vision',   href: '/vision' },
+  { label: 'Projecten',href: '/projects' },
+];
+const colB = [
+  { label: 'Tech Founders', href: '/founders' },
+  { label: 'Bedrijven',     href: '/businesses' },
+  { label: 'Partners',      href: '/support' },
+  { label: 'Events',        href: '/events' },
+];
+const colC = [
+  { label: 'Onze founders', href: '/founders-index' },
+  { label: 'Contact',       href: '/contact' },
+  { label: 'Join CTF',      href: '/apply' },
+];
+---
+<footer class="ftr" id="ctf-footer">
+  <div class="ftr-bg" id="ftr-bg"></div>
+  <div class="ftr-vignette"></div>
+
+  <div class="ftr-top" data-reveal>
+    <img src="/assets/icon-white.svg" alt="" width="32" height="32" />
+  </div>
+
+  <div class="ftr-card-wrap">
+    <div class="ftr-card" data-reveal>
+      <span class="ftr-eyebrow">Menu</span>
+
+      <nav class="ftr-menu-cols" aria-label="Footer">
+        <div class="ftr-col">
+          {colA.map((m) => (
+            <a href={m.href} class="ftr-col-link fx-underline">{m.label}</a>
+          ))}
+        </div>
+        <div class="ftr-col">
+          {colB.map((m) => (
+            <a href={m.href} class="ftr-col-link fx-underline">{m.label}</a>
+          ))}
+        </div>
+        <div class="ftr-col">
+          {colC.map((m) => (
+            <a href={m.href} class="ftr-col-link fx-underline">{m.label}</a>
+          ))}
+        </div>
+      </nav>
+
+      <div class="ftr-meta">
+        <span class="ftr-meta-k">News</span>
+        <a href="/blog" class="ftr-meta-v">Schrijven en updates</a>
+        <span class="ftr-meta-k">Email</span>
+        <a href="mailto:hello@christiantechfounders.com" class="ftr-meta-v">
+          hello@christiantechfounders.com
+        </a>
+        <span class="ftr-meta-k">Locatie</span>
+        <span class="ftr-meta-v">Amsterdam, NL</span>
+      </div>
+
+      <a href="/apply" class="ftr-cta fx-magnet" data-magnet="14">
+        <span class="ftr-cta-dot"></span>
+        Word lid van CTF
+      </a>
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="ftr-top-btn"
+    aria-label="Terug naar boven"
+    id="ftr-top-btn"
+  >
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path
+        d="M7 12V2M7 2L2 7M7 2L12 7"
+        stroke="rgba(255,255,255,0.85)"
+        stroke-width="1.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </button>
+
+  <div class="ftr-legal">
+    <div class="ftr-legal-l">
+      <span>© 2026, ChristianTechFounders</span>
+      <a href="#" class="fx-underline">Instagram</a>
+      <a href="#" class="fx-underline">LinkedIn</a>
+      <a href="#" class="fx-underline">X</a>
+    </div>
+    <div class="ftr-legal-r">
+      <a href="/terms" class="fx-underline">Privacy</a>
+      <a href="/terms" class="fx-underline">Voorwaarden</a>
+      <span>Amsterdam, NL</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Parallax + scroll-to-top, re-bound on every page-load (View Transitions)
+  function wireFooter() {
+    const footer = document.getElementById('ctf-footer');
+    const bg = document.getElementById('ftr-bg');
+    const topBtn = document.getElementById('ftr-top-btn');
+    if (!footer || !bg) return;
+
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const rect = footer.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const progress = Math.max(
+          0,
+          Math.min(1, (vh - rect.top) / (vh + rect.height)),
+        );
+        const shift = (progress - 0.5) * 120;
+        (bg as HTMLElement).style.transform =
+          `translate3d(0, ${shift}px, 0) scale(1.1)`;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    topBtn?.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  wireFooter();
+  document.addEventListener('astro:page-load', wireFooter);
+</script>
+
+<style>
+  .ftr {
+    position: relative;
+    min-height: min(820px, 100vh);
+    /* Dark = never a card — flush to viewport, no rounded chrome. */
+    margin: 0;
+    border-radius: 0;
+    overflow: hidden;
+    background: #1E1E1E;
+    isolation: isolate;
+  }
+  .ftr-bg {
+    position: absolute; inset: -80px;
+    background-image: url('/assets/group-photo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(1) contrast(1.05) brightness(0.55);
+    will-change: transform;
+    transform: translate3d(0,0,0) scale(1.1);
+  }
+  .ftr-vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(
+      ellipse 100% 80% at 50% 60%,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.35) 60%,
+      rgba(0,0,0,0.7) 100%
+    );
+    pointer-events: none;
+  }
+  .ftr-top {
+    position: absolute; top: 32px; left: 50%; transform: translateX(-50%);
+    z-index: 4;
+  }
+  .ftr-card-wrap {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    padding: 120px 24px 80px;
+    z-index: 3;
+  }
+  .ftr-card {
+    width: 100%; max-width: 720px;
+    padding: 44px 44px 36px;
+    background: rgba(15,15,17,0.62);
+    backdrop-filter: blur(28px) saturate(140%);
+    -webkit-backdrop-filter: blur(28px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--r-lg);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+  }
+  .ftr-eyebrow {
+    font: var(--t-eyebrow); color: rgba(255,255,255,0.5);
+    text-transform: uppercase; letter-spacing: 0.14em;
+  }
+  .ftr-menu-cols {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .ftr-col { display: flex; flex-direction: column; gap: 12px; }
+  .ftr-col-link {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: 22px; line-height: 1.2; letter-spacing: -0.01em;
+    color: var(--ink-on-dark-1);
+    transition: color 220ms var(--easing);
+    width: max-content;
+    text-decoration: none;
+  }
+  .ftr-col-link:hover { color: var(--ctf-blue-hover); }
+  .ftr-meta {
+    margin-top: 36px; padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.10);
+    display: grid; grid-template-columns: auto 1fr; gap: 14px 32px;
+    font: var(--t-body-sm);
+  }
+  .ftr-meta-k { color: rgba(255,255,255,0.5); }
+  .ftr-meta-v { color: var(--ink-on-dark-1); }
+  .ftr-cta {
+    margin-top: 32px;
+    width: 100%;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--ink-on-dark-1); color: var(--ink-1);
+    border: 0; cursor: pointer;
+    padding: 16px 22px;
+    border-radius: var(--r-pill);
+    font: var(--t-button);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    transition: background 220ms var(--easing);
+  }
+  .ftr-cta:hover { background: #fff; }
+  .ftr-cta-dot {
+    width: 8px; height: 8px; border-radius: 999px; background: var(--ctf-blue);
+  }
+  .ftr-top-btn {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    width: 36px; height: 36px; border-radius: 999px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.18);
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 4;
+    transition: background 200ms;
+  }
+  .ftr-top-btn:hover { background: rgba(255,255,255,0.20); }
+
+  .ftr-legal {
+    position: absolute; left: 32px; right: 32px; bottom: 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    font: var(--t-caption); color: rgba(255,255,255,0.6);
+    z-index: 4; gap: 16px; flex-wrap: wrap;
+  }
+  .ftr-legal a { color: rgba(255,255,255,0.75); }
+  .ftr-legal-l, .ftr-legal-r { display: inline-flex; gap: 16px; align-items: center; }
+
+  @media (max-width: 700px) {
+    .ftr-card { padding: 28px 28px 24px; }
+    .ftr-menu-cols { grid-template-columns: 1fr; gap: 20px; }
+    .ftr-col-link { font-size: 22px; }
+    .ftr-legal { position: static; padding: 24px 24px 28px; }
+  }
+</style>

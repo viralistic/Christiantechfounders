@@ -1,0 +1,228 @@
+---
+import Base from '@/layouts/Base.astro';
+import Button from '@/components/Button.astro';
+import Plus from '@/components/Plus.astro';
+import FlowLines from '@/components/FlowLines.astro';
+import DatePill from '@/components/DatePill.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+
+const beliefs = [
+  { t: 'Excellentie en betekenis horen samen.',           b: 'Het is geen kwestie van technisch goed zijn en daarnaast iets goeds doen. Het is hetzelfde.' },
+  { t: 'Wat we bouwen vormt mensen en cultuur.',          b: 'Productontwerp is moreel ontwerp. Architectuur is ethische architectuur.' },
+  { t: 'Verantwoordelijkheid hoort bij macht.',           b: 'Wie het kan, draagt verantwoordelijkheid voor wat het doet.' },
+  { t: 'De juiste mensen op één plek versnellen elkaar.', b: 'Niet door netwerken. Door samen bouwen.' },
+];
+
+const meedoen = [
+  { t: 'Als bouwer',       b: 'Aanmelden voor de community.', cta: 'Aanmelden',         href: '/founders' },
+  { t: 'Als opdrachtgever',b: 'Dien je project in.',          cta: 'Dien je project in', href: '/businesses' },
+  { t: 'Als partner',      b: 'Maak dit werk mogelijk.',      cta: 'Word partner',       href: '/support' },
+];
+---
+<Base title="Vision — Christian Tech Founders" current="vision">
+  <section class="vision-hero">
+    <h1 class="vision-hero-title fx-rise-lg">
+      Wij geloven dat technologie de wereld vormt, en dat het uitmaakt
+      <em>wie haar bouwt</em>.
+    </h1>
+  </section>
+
+  <section class="ctf-shell">
+    <div class="ctf-card sec-pad">
+      <div class="two-col" data-reveal>
+        <div>
+          <span class="ctf-eyebrow-row" style="margin-bottom:24px;">Onze missie</span>
+          <h2 class="t-display-md">Onze missie.</h2>
+        </div>
+        <div class="ctf-prose">
+          <p><Plus letter="C"/>TF bestaat omdat technologie nooit neutraal is. Wat we bouwen vormt mensen, vormt cultuur, vormt wat morgen normaal wordt.</p>
+          <p><Plus letter="W"/>ij geloven dat het uitmaakt wie de bouwers zijn. En wij brengen een gecureerde groep christelijke bouwers samen die niet alleen willen weten hoe iets werkt, maar ook waarom het ertoe doet.</p>
+          <p style="color: var(--ink-1);"><Plus letter="O"/>nze missie is het koninkrijk van God op aarde brengen door de juiste mensen samen te brengen om dingen te bouwen die ertoe doen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="two-col" data-reveal>
+        <div>
+          <span class="ctf-eyebrow-row" style="margin-bottom:24px;">Context</span>
+          <h2 class="t-display-md">Waarom nu.</h2>
+        </div>
+        <div class="ctf-prose">
+          <p><Plus letter="D"/>e tech-sector beweegt op snelheid en schaal. Wijsheid en verantwoordelijkheid bewegen niet mee. Het resultaat is polarisatie, vervreemding, en producten die mensen vormgeven op manieren die niemand had bedoeld.</p>
+          <p><Plus letter="E"/>en kleine groep bouwers met diepte verandert dat niet in z'n eentje. Maar we kunnen wel laten zien dat het anders kan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Beliefs" title="Wat we geloven." />
+        <div class="beliefs">
+          {beliefs.map((c, i) => (
+            <div class="ctf-belief" data-reveal>
+              <div class="ctf-belief-num">{`0${i + 1}`}</div>
+              <div>
+                <h3 class="belief-t">{c.t}</h3>
+                <p class="belief-b">{c.b}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card ctf-dots dream-card">
+      <FlowLines intensity={0.35} />
+      <div class="dream-inner">
+        <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:32px;">De Future Dream</span>
+        <h2 class="dream-title fx-rise-lg">
+          Waar dit naartoe gaat. <em>Een stuk land waar diep werk gewoon kan plaatsvinden.</em>
+        </h2>
+        <div class="dream-grid">
+          <div class="dream-prose" data-reveal>
+            <p class="dream-lead">
+              Op een dag heeft CTF een eigen plek. Een stuk land, in Portugal of Italië, met huisjes tussen het bos, een werkruimte voor diep werk, een houten kerkje, en paden die naar stille plekken leiden waar je kunt bidden.
+            </p>
+            <p><Plus letter="O"/>p die plek komen kleine groepen bouwers samen om aan vraagstukken te werken. Een week, soms twee. Geen kosten voor de bouwers. Eten dat ter plekke groeit. Een dagritme dat opent met gebed en sluit met samen aan tafel.</p>
+            <p><Plus letter="E"/>r is een longevity-vleugel met sauna en ijsbad. Een gym met buitenoppervlak. Drie werkruimtes: één voor hyperfocus, één voor samenwerken, één voor groepen achter glazen muren.</p>
+            <p><Plus letter="H"/>et is geen retreat-centrum. Het is een werkplek waar mensen aan iets bouwen dat ertoe doet, in een omgeving die hen ondersteunt om hun beste werk te leveren.</p>
+            <div class="dream-quote">
+              <p>Dit is geen plan voor volgend jaar. <em>Het is de richting waarop we wandelen.</em></p>
+            </div>
+          </div>
+
+          <aside class="dream-card-side" data-reveal data-reveal-delay="120">
+            <div class="dream-photo-card" data-tilt="3">
+              <DatePill>Toekomst</DatePill>
+              <div class="dream-photo-frame">
+                <img src="/assets/vision-card.png" alt="Een werkplek tussen het bos" />
+              </div>
+              <p class="dream-photo-caption">
+                Portugal of Italië. Bos, werkruimte, houten kerkje, paden naar stille plekken.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="two-col" data-reveal>
+        <div>
+          <span class="ctf-eyebrow-row" style="margin-bottom:24px;">Vandaag</span>
+          <h2 class="t-display-md">Waar we nu staan.</h2>
+        </div>
+        <div class="ctf-prose">
+          <p style="color: var(--ink-1);">
+            <Plus letter="I"/>n mei 2026 is CTF een gecureerde groep van rond de 30 bouwers en founders. We hebben net onze nieuwe opzet ingericht: projectgedreven dagen, kleine groepen, invite-by-project. We doen ongeveer één gathering per maand.
+          </p>
+          <p>We zijn klein. <em class="hl">Dat is bewust.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Meedoen" title="Hoe je deel kunt zijn." />
+        <div class="meedoen-grid">
+          {meedoen.map((c) => (
+            <div class="ctf-paper meedoen-box fx-card-hover" data-tilt="4" data-reveal>
+              <h3 class="meedoen-t">{c.t}</h3>
+              <p class="meedoen-b">{c.b}</p>
+              <div>
+                <Button variant="primary" small href={c.href}>{c.cta}</Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .vision-hero { padding: 200px 64px 160px; max-width: 1280px; margin: 0 auto; }
+  .vision-hero-title {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(56px, 8vw, 104px);
+    line-height: 1.04; letter-spacing: -0.028em;
+    color: var(--ink-1); max-width: 1100px;
+  }
+  .vision-hero-title em, .hl, em.hl {
+    font-family: var(--font-headline); color: var(--ctf-blue); font-style: italic;
+  }
+
+  .sec-pad { padding: 96px 80px; }
+  .two-col {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start;
+  }
+  .t-display-md { font: var(--t-display-md); color: var(--ink-1); letter-spacing: -0.025em; }
+
+  .beliefs { margin-top: 56px; }
+  .belief-t { font: var(--t-h2); color: var(--ink-1); letter-spacing: -0.025em; margin-bottom: 16px; max-width: 760px; }
+  .belief-b { font: var(--t-serif-body-lg); color: var(--ink-2); max-width: 640px; }
+
+  .dream-card { padding: 144px 80px; position: relative; overflow: hidden; }
+  .dream-inner { position: relative; max-width: 1200px; margin: 0 auto; }
+  .dream-title {
+    font: var(--t-display-lg); color: var(--ink-1);
+    letter-spacing: -0.025em; line-height: 1.05;
+    max-width: 980px; margin-bottom: 80px;
+  }
+  .dream-title em { font-family: var(--font-headline); color: var(--ctf-blue); font-style: italic; }
+  .dream-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 64px; align-items: start; }
+  .dream-prose { display: grid; gap: 32px; max-width: 720px; }
+  .dream-prose p { font: var(--t-serif-body-lg); color: var(--ink-2); }
+  .dream-lead {
+    font-family: var(--font-display) !important;
+    font-size: 28px !important; line-height: 1.4 !important;
+    letter-spacing: -0.01em !important; color: var(--ink-1) !important;
+  }
+  .dream-quote {
+    margin-top: 8px; padding: 32px;
+    background: var(--bg-paper); border-radius: var(--r-lg);
+    border-left: 3px solid var(--ctf-blue);
+  }
+  .dream-quote p {
+    font: var(--t-display-sm); color: var(--ink-1);
+    letter-spacing: -0.02em; line-height: 1.3;
+  }
+  .dream-quote em { font-family: var(--font-headline); color: var(--ctf-blue); font-style: italic; }
+  .dream-card-side { position: sticky; top: 100px; }
+  .dream-photo-card {
+    padding: 16px; background: var(--bg-paper);
+    border-radius: var(--r-lg); box-shadow: var(--shadow-card);
+    border: 1px solid var(--line-1); position: relative;
+  }
+  .dream-photo-frame {
+    border-radius: calc(var(--r-lg) - 6px); overflow: hidden;
+    aspect-ratio: 4 / 5; background: var(--ink-5);
+  }
+  .dream-photo-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+  .dream-photo-caption { margin: 16px 4px 0; font: var(--t-serif-body-sm); color: var(--ink-2); line-height: 1.5; }
+
+  .meedoen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .meedoen-box { padding: 36px; display: flex; flex-direction: column; gap: 24px; }
+  .meedoen-t { font: var(--t-h2); color: var(--ink-1); letter-spacing: -0.025em; }
+  .meedoen-b { font: var(--t-serif-body); color: var(--ink-2); flex: 1; }
+
+  @media (max-width: 1000px) {
+    .vision-hero { padding: 120px 28px 80px; }
+    .sec-pad { padding: 72px 32px; }
+    .two-col, .dream-grid, .meedoen-grid { grid-template-columns: 1fr; gap: 40px; }
+    .dream-card { padding: 96px 32px; }
+    .dream-card-side { position: static; }
+  }
+</style>

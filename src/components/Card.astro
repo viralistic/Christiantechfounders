@@ -1,0 +1,19 @@
+---
+export interface Props {
+  dots?: boolean;
+  dark?: boolean;
+  tilt?: boolean;
+  class?: string;
+  style?: string;
+}
+const { dots = false, dark = false, tilt = false, class: className = '', style = '' } = Astro.props;
+const cls = [
+  dark ? 'ctf-card-dark' : 'ctf-card',
+  dots ? 'ctf-dots' : '',
+  tilt ? 'fx-card-hover' : '',
+  className,
+].filter(Boolean).join(' ');
+---
+<div class={cls} style={style} data-tilt={tilt ? '4' : undefined}>
+  <slot />
+</div>

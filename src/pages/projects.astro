@@ -1,0 +1,103 @@
+---
+import Base from '@/layouts/Base.astro';
+import Mark from '@/components/Mark.astro';
+import FlowLines from '@/components/FlowLines.astro';
+
+const PROJECT_SAMPLES = [
+  { id: 'p01', num: '01', title: 'Een platform voor jongerenwerk in kleine kerken', tag: 'Stichting', year: '2026', desc: 'Hoe vrijwilligers hun jeugdwerk kunnen organiseren zonder dure software.' },
+  { id: 'p02', num: '02', title: 'Ethisch raamwerk voor intern LLM-gebruik', tag: 'Commercieel', year: '2026', desc: 'Een mid-size organisatie die een policy nodig had in plaats van een tool.' },
+  { id: 'p03', num: '03', title: 'Researchtool voor academici, MVP', tag: 'Community', year: '2026', desc: 'Idee in iemands hoofd, één dag later draaiend in de browser.' },
+  { id: 'p04', num: '04', title: 'Open-source signing-tool voor stichtingen', tag: 'Open source', year: '2026', desc: 'Documenten ondertekenen zonder een SaaS-abonnement.' },
+  { id: 'p05', num: '05', title: 'Diaconaal platform voor lokale kerken', tag: 'Stichting', year: '2025', desc: 'Een gemeenschappelijk overzicht van geven en ontvangen.' },
+  { id: 'p06', num: '06', title: 'Architectuur-review voor scale-up', tag: 'Commercieel', year: '2025', desc: 'Een knoop die intern niet doorgehakt werd, in één dag opengesneden.' },
+  { id: 'p07', num: '07', title: 'Documentatie-systeem voor zending', tag: 'Stichting', year: '2025', desc: 'Verspreide kennis bundelen in een eenvoudig systeem.' },
+  { id: 'p08', num: '08', title: 'Schaal-analyse voor B2B-product', tag: 'Commercieel', year: '2025', desc: 'Wanneer wordt een PostgreSQL-schaal een probleem? Geen consultancy, gewoon kijken.' },
+  { id: 'p09', num: '09', title: 'Onboarding-flow voor early-stage SaaS', tag: 'Community', year: '2025', desc: 'Eerste indruk van een product, vanuit zes paar ogen.' },
+];
+
+const TAGS = ['Alles', 'Stichting', 'Commercieel', 'Community', 'Open source'];
+---
+<Base title="Projecten — Christian Tech Founders" current="projects">
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card hero-projects">
+      <FlowLines intensity={0.4} />
+      <div class="hero-inner">
+        <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:28px;">Projecten</span>
+        <h1 class="hero-title fx-rise-lg">Wat we samen <Mark>bouwen</Mark>.</h1>
+        <p class="hero-lede fx-rise">
+          Elk project is een vraagstuk waar een kleine groep bouwers op één dag iets concreets aan toevoegt. Sommige zijn van commerciële opdrachtgevers, sommige van stichtingen, sommige uit de community zelf.
+        </p>
+        <div class="filter-pills fx-rise">
+          {TAGS.map((t, i) => (
+            <button class={`pill ${i === 0 ? 'active' : ''}`} data-filter={t}>{t}</button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card grid-card">
+      <div class="ctf-wrap">
+        <div class="proj-grid" data-tilt="3">
+          {PROJECT_SAMPLES.map((p) => (
+            <a class="proj-card" data-tag={p.tag} href="/projects/example" data-reveal>
+              <div class="proj-art">
+                <span class="ctf-eyebrow-row on-dark">Project {p.num}</span>
+                <h3 class="proj-title">{p.title}</h3>
+              </div>
+              <div class="proj-meta">
+                <span class="ctf-eyebrow-row" style="color:var(--ctf-blue);">{p.tag}</span>
+                <span class="proj-year">{p.year}</span>
+              </div>
+              <p class="proj-desc">{p.desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-projects { padding: 144px 80px 64px; position: relative; overflow: hidden; }
+  .hero-inner { position: relative; max-width: 1200px; margin: 0 auto; }
+  .hero-title { font: var(--t-display-lg); letter-spacing: -0.025em; line-height: 1.04; color: var(--ink-1); max-width: 980px; }
+  .hero-lede { margin-top: 32px; font: var(--t-serif-body-lg); color: var(--ink-3); max-width: 700px; }
+  .filter-pills { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill { padding: 10px 18px; border-radius: var(--r-pill); background: transparent; color: var(--ink-2); border: 1px solid var(--line-1); font: var(--t-button); cursor: pointer; transition: all 180ms ease; }
+  .pill.active { background: var(--ink-1); color: var(--ink-on-dark-1); border-color: var(--ink-1); }
+
+  .grid-card { padding: 64px 80px 96px; }
+  .ctf-wrap { max-width: 1200px; margin: 0 auto; }
+  .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .proj-card { display: flex; flex-direction: column; gap: 16px; text-decoration: none; color: inherit; }
+  .proj-art { aspect-ratio: 4/5; border-radius: var(--r-lg); background: linear-gradient(180deg, #1a1a1c 0%, #0e0e10 100%); border: 1px solid rgba(255,255,255,0.04); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 280ms ease; overflow: hidden; position: relative; }
+  .ctf-eyebrow-row.on-dark { color: var(--ink-on-dark-3); }
+  .proj-title { font: var(--t-h3); color: var(--ink-on-dark-1); letter-spacing: -0.02em; }
+  .proj-meta { display: flex; justify-content: space-between; align-items: baseline; padding: 0 4px; }
+  .proj-year { font: var(--t-caption); color: var(--ink-4); }
+  .proj-desc { font: var(--t-serif-body); color: var(--ink-2); padding: 0 4px; }
+  .proj-card:hover .proj-art { transform: translateY(-4px); }
+
+  @media (max-width: 1000px) {
+    .hero-projects { padding: 96px 32px 48px; }
+    .grid-card { padding: 48px 32px 72px; }
+    .proj-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const pills = document.querySelectorAll<HTMLButtonElement>('.pill');
+  const cards = document.querySelectorAll<HTMLElement>('.proj-card');
+  pills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      pills.forEach((p) => p.classList.remove('active'));
+      pill.classList.add('active');
+      const filter = pill.dataset.filter;
+      cards.forEach((c) => {
+        c.style.display = !filter || filter === 'Alles' || c.dataset.tag === filter ? '' : 'none';
+      });
+    });
+  });
+</script>

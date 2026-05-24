@@ -1,0 +1,26 @@
+---
+export interface Props { intensity?: number }
+const { intensity = 0.5 } = Astro.props;
+const paths = Array.from({ length: 16 }).map((_, i) => {
+  const o = i * 6;
+  return `M -100 ${60 + o} C 250 ${20 + o}, 700 ${380 + o * 0.6}, 1320 ${360 + o * 0.8}`;
+});
+---
+<svg
+  viewBox="0 0 1200 700"
+  preserveAspectRatio="xMaxYMin meet"
+  aria-hidden="true"
+  class="flow-lines"
+  style={`opacity:${intensity};`}
+>
+  <g fill="none" stroke="#7A7BFF" stroke-width="0.8">
+    {paths.map((d) => <path d={d} />)}
+  </g>
+</svg>
+
+<style>
+  .flow-lines {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; mix-blend-mode: multiply;
+  }
+</style>

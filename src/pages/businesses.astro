@@ -1,0 +1,271 @@
+---
+import Base from '@/layouts/Base.astro';
+import Button from '@/components/Button.astro';
+import Mark from '@/components/Mark.astro';
+import Plus from '@/components/Plus.astro';
+import FlowLines from '@/components/FlowLines.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+
+const fits = [
+  { t: 'Een kerk of stichting met een digitaal vraagstuk',         b: 'Beperkt budget, een echte behoefte, mensen die mee willen denken.' },
+  { t: 'Een mid-size bedrijf met een complex technisch probleem',  b: 'Een knoop die intern niet opgelost krijgt. Externe ogen, één dag.' },
+  { t: 'Een founder die snel tot een prototype wil komen',          b: 'Idee in je hoofd, behoefte aan handen die meebouwen om het te testen.' },
+];
+
+const compare = [
+  { label: 'Tijdspad',     a: 'Discovery, scoping, offerte, kickoff, traject', c: 'Vraagstuk indienen, team samenstellen, één dag' },
+  { label: 'Mensen',       a: 'Junior consultants die je vraagstuk leren',     c: 'Senior bouwers die het al snappen' },
+  { label: 'Doorlooptijd', a: 'Maanden',                                       c: 'Eén dag' },
+  { label: 'Prijs',        a: 'Vaste prijzen voor vaste scopes',                c: 'Per vraagstuk, transparant' },
+];
+
+const steps = [
+  { n: '01', t: 'Dien je vraagstuk in.',           b: 'Een formulier of een gesprek. We willen begrijpen wat je probleem echt is, niet alleen de symptomen.' },
+  { n: '02', t: 'Wij stellen het team samen.',      b: 'Uit de community, op naam, op fit. Geen pool van consultants, een handgekozen groep.' },
+  { n: '03', t: 'Eén projectdag, één concrete uitkomst.', b: 'Aan het einde van de dag heb je iets in handen. Werkend, of helder.' },
+];
+
+const outcomes = [
+  { t: 'Werkend prototype',            b: 'Iets dat draait, in handen van wie het mag testen.' },
+  { t: 'Architectuurplan',             b: 'Een onderbouwd plan waarop je verder kunt bouwen.' },
+  { t: 'Beslisdocument',               b: 'Een document dat een knoop doorhakt, niet uitstelt.' },
+  { t: 'Onderbouwde aanbeveling',      b: 'Een advies met argumenten dat een leiding meekan.' },
+  { t: 'Validatie of je idee technisch kan', b: 'Een eerlijk antwoord op de vraag of het haalbaar is.' },
+  { t: 'Code, ontwerp of een combinatie', b: 'Wat het vraagstuk vraagt, geen vast format.' },
+];
+
+const cases = [
+  { label: 'Stichting / digitaal',   desc: 'Diaconaal platform voor lokale kerken: hoe geven met overzicht.', team: '5 bouwers, 1 dag', out: 'Werkend prototype + roadmap' },
+  { label: 'Mid-size / AI',           desc: 'Ethisch raamwerk voor intern LLM-gebruik.',                       team: '4 bouwers, 1 dag', out: 'Beslisdocument + policy draft' },
+  { label: 'Founder / prototype',     desc: 'Eerste versie van een researchtool voor academici.',              team: '6 bouwers, 1 dag', out: 'Werkend MVP' },
+];
+---
+<Base title="Voor opdrachtgevers — Christian Tech Founders" current="businesses">
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card biz-hero">
+      <FlowLines intensity={0.4} />
+      <div class="biz-hero-inner">
+        <span class="ctf-eyebrow-row fx-rise" style="justify-content:center; margin-bottom:32px;">Voor opdrachtgevers</span>
+        <h1 class="biz-hero-title fx-rise-lg">
+          Eén dag, één team,<br/>
+          <Mark>één concrete uitkomst</Mark>.
+        </h1>
+        <p class="biz-hero-lede fx-rise">
+          Voor organisaties met een vraagstuk dat ze met de juiste mensen willen oplossen, zonder agency-traject.
+        </p>
+        <div class="biz-hero-cta fx-rise">
+          <Button variant="primary" href="/submit-project" magnet>Dien je project in</Button>
+          <Button variant="outline" href="/projects">Bekijk eerdere projecten</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Voor wie dit werkt" title="Drie soorten vraagstukken waar dit past." />
+        <div class="three-grid">
+          {fits.map((c, i) => (
+            <div class="ctf-paper fit-card fx-card-hover" data-tilt="4" data-reveal>
+              <span class="fit-num">{`0${i + 1}`}</span>
+              <h3 class="fit-t">{c.t}</h3>
+              <p class="fit-b">{c.b}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Het verschil" title="Hoe dit zich verhoudt tot een klassiek agency." />
+        <div class="ctf-paper compare">
+          <div class="compare-head">
+            <div></div>
+            <span class="ctf-eyebrow-row">Bij een agency</span>
+            <span class="ctf-eyebrow-row" style="color: var(--ctf-blue);">Bij CTF</span>
+          </div>
+          {compare.map((r) => (
+            <div class="compare-row" data-reveal>
+              <div class="compare-label">{r.label}</div>
+              <div class="compare-a">{r.a}</div>
+              <div class="compare-c"><Plus />{r.c}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap narrow">
+        <SectionHeader eyebrow="Het proces" title="Hoe het werkt." />
+        <div class="proc">
+          {steps.map((s) => (
+            <div class="ctf-step" data-reveal>
+              <div class="ctf-step-num">{s.n}</div>
+              <div>
+                <h4 class="proc-t">{s.t}</h4>
+                <p class="proc-b">{s.b}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Uitkomsten" title="Wat een uitkomst kan zijn." />
+        <div class="out-grid">
+          {outcomes.map((c) => (
+            <div class="out-card" data-reveal>
+              <h4 class="out-t"><Plus />{c.t}</h4>
+              <p class="out-b">{c.b}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Voorwaarden" title="Wanneer dit werkt, en wanneer niet." />
+        <div class="cond-grid">
+          <div class="ctf-paper cond" data-reveal>
+            <span class="ctf-eyebrow-row" style="color: var(--ctf-blue); margin-bottom:16px;">Werkt voor</span>
+            <p class="cond-p strong">Vraagstukken die met de juiste mensen op één dag betekenisvol verder kunnen.</p>
+          </div>
+          <div class="cond-out" data-reveal data-reveal-delay="120">
+            <span class="ctf-eyebrow-row" style="margin-bottom:16px;">Werkt niet voor</span>
+            <p class="cond-p mute">Jaarlange trajecten, support contracten, klassiek programmeerwerk.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap two">
+        <div data-reveal>
+          <span class="ctf-eyebrow-row" style="margin-bottom:24px;">Prijslogica</span>
+          <h2 class="t-display-md">Hoe we prijzen.</h2>
+        </div>
+        <div class="ctf-paper price-box" data-reveal data-reveal-delay="120">
+          <p><Plus letter="K"/>osten reflecteren teamgrootte en voorbereiding. Altijd transparant gecommuniceerd voor je toezegt.</p>
+          <p class="price-foot">Indicatief vanaf een bedrag dat past bij een dag werk van vier tot zes senior bouwers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Eerdere projecten" title="Eerdere projecten." />
+        <div class="cases-grid">
+          {cases.map((p) => (
+            <a href="/projects" class="ctf-paper case-card fx-card-hover" data-tilt="4" data-reveal>
+              <span class="ctf-eyebrow-row">{p.label}</span>
+              <p class="case-desc">{p.desc}</p>
+              <div class="case-kv">
+                <div><span>Team</span><b>{p.team}</b></div>
+                <div><span>Uitkomst</span><b>{p.out}</b></div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing-dark-wrap">
+    <div class="ctf-card-dark closing-dark">
+      <h2 class="closing-dark-t" data-reveal>Heb je een vraagstuk?</h2>
+      <p class="closing-dark-p" data-reveal data-reveal-delay="100">
+        Dien het in. We laten binnen een week weten of het past.
+      </p>
+      <div data-reveal data-reveal-delay="200">
+        <Button variant="onDark" href="/submit-project" magnet>Dien je project in</Button>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .biz-hero { padding: 160px 80px 96px; position: relative; overflow: hidden; }
+  .biz-hero-inner { position: relative; max-width: 1100px; margin: 0 auto; text-align: center; }
+  .biz-hero-title { font: var(--t-display-xl); letter-spacing: -0.025em; line-height: 1.02; color: var(--ink-1); }
+  .biz-hero-lede { margin: 36px auto 0; max-width: 580px; font: var(--t-serif-body-lg); color: var(--ink-3); }
+  .biz-hero-cta { margin-top: 40px; display: inline-flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+  .sec-pad { padding: 96px 80px; }
+  .ctf-wrap.narrow { max-width: 1100px; margin: 0 auto; }
+  .ctf-wrap.two { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .t-display-md { font: var(--t-display-md); color: var(--ink-1); letter-spacing: -0.025em; }
+
+  .three-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .fit-card { padding: 36px; display: flex; flex-direction: column; gap: 16px; }
+  .fit-num { font-family: var(--font-display); color: var(--ctf-blue); font-size: 28px; letter-spacing: -0.02em; }
+  .fit-t { font: var(--t-h3); color: var(--ink-1); letter-spacing: -0.02em; }
+  .fit-b { font: var(--t-serif-body); color: var(--ink-2); }
+
+  .compare { padding: 8px 36px; margin-top: 56px; }
+  .compare-head { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 20px 0; gap: 32px; }
+  .compare-row { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 24px 0; border-top: 1px solid var(--line-1); gap: 32px; align-items: baseline; }
+  .compare-label { font: var(--t-label); color: var(--ink-1); }
+  .compare-a { font: var(--t-serif-body); color: var(--ink-3); }
+  .compare-c { font: var(--t-serif-body); color: var(--ink-1); }
+
+  .proc { margin-top: 48px; }
+  .proc-t { font: var(--t-h3); color: var(--ink-1); letter-spacing: -0.02em; margin-bottom: 12px; }
+  .proc-b { font: var(--t-serif-body); color: var(--ink-2); max-width: 640px; }
+
+  .out-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .out-card { padding: 28px; border: 1px solid var(--line-1); border-radius: var(--r-lg); background: transparent; }
+  .out-t { font: var(--t-h4); color: var(--ink-1); letter-spacing: -0.02em; margin-bottom: 10px; }
+  .out-b { font: var(--t-serif-body-sm); color: var(--ink-3); }
+
+  .cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+  .cond { padding: 36px; }
+  .cond-out { padding: 36px; border: 1px solid var(--line-1); border-radius: var(--r-lg); }
+  .cond-p { font: var(--t-serif-body-lg); }
+  .cond-p.strong { color: var(--ink-1); }
+  .cond-p.mute   { color: var(--ink-3); }
+
+  .price-box { padding: 36px; }
+  .price-box p { font: var(--t-serif-body-lg); color: var(--ink-2); }
+  .price-foot { margin-top: 20px !important; font: var(--t-serif-body) !important; color: var(--ink-3) !important; }
+
+  .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .case-card { padding: 28px; display: flex; flex-direction: column; gap: 20px; text-decoration: none; }
+  .case-desc { font: var(--t-h4); color: var(--ink-1); letter-spacing: -0.02em; line-height: 1.25; }
+  .case-kv { margin-top: auto; display: grid; gap: 10px; padding-top: 16px; border-top: 1px solid var(--line-1); }
+  .case-kv div { display: flex; gap: 16px; font: var(--t-body-sm); }
+  .case-kv span { color: var(--ink-4); min-width: 80px; }
+  .case-kv b { color: var(--ink-1); font-weight: 400; }
+
+  .closing-dark-wrap { margin: 24px; }
+  .closing-dark { padding: 120px 64px; text-align: center; }
+  .closing-dark-t { font: var(--t-display-lg); color: var(--ink-on-dark-1); letter-spacing: -0.025em; line-height: 1.05; max-width: 720px; margin: 0 auto; }
+  .closing-dark-p { margin-top: 24px; font: var(--t-serif-body-lg); color: var(--ink-on-dark-2); max-width: 480px; margin-left: auto; margin-right: auto; margin-bottom: 36px; }
+
+  @media (max-width: 1000px) {
+    .biz-hero { padding: 120px 28px 64px; }
+    .sec-pad { padding: 72px 32px; }
+    .three-grid, .out-grid, .cond-grid, .cases-grid { grid-template-columns: 1fr; }
+    .ctf-wrap.two { grid-template-columns: 1fr; gap: 40px; }
+    .compare-head, .compare-row { grid-template-columns: 1fr; gap: 12px; }
+    .closing-dark { padding: 80px 28px; }
+    .closing-dark-wrap { margin: 24px 12px; }
+  }
+</style>

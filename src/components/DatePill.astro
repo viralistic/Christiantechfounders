@@ -1,0 +1,17 @@
+---
+---
+<div class="date-pill"><slot /></div>
+
+<style>
+  .date-pill {
+    position: absolute;
+    top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--bg-paper);
+    border-radius: var(--r-pill);
+    padding: 8px 18px;
+    font: var(--t-button); color: var(--ink-1);
+    border: 1px solid var(--line-1);
+    box-shadow: var(--shadow-sm);
+    z-index: 2;
+  }
+</style>

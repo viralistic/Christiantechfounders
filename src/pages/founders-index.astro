@@ -1,0 +1,97 @@
+---
+import Base from '@/layouts/Base.astro';
+import Button from '@/components/Button.astro';
+import Mark from '@/components/Mark.astro';
+import FlowLines from '@/components/FlowLines.astro';
+
+const FOUNDER_SAMPLES = [
+  { id: 'f01', name: 'Mark Visser', builds: 'Infrastructuur voor mid-size SaaS', domain: 'Tooling', init: 'MV' },
+  { id: 'f02', name: 'Sanne de Wit', builds: 'ML-tool voor academisch onderzoek', domain: 'AI', init: 'SW' },
+  { id: 'f03', name: 'Daan Pieters', builds: 'Ethische AI-evaluatie raamwerken', domain: 'AI', init: 'DP' },
+  { id: 'f04', name: 'Esther Vos', builds: 'Platform voor lokale stichtingen', domain: 'Web', init: 'EV' },
+  { id: 'f05', name: 'Bram de Jong', builds: 'Schaalbare backend-systemen', domain: 'Tooling', init: 'BJ' },
+  { id: 'f06', name: 'Lotte Hendriks', builds: 'Productontwerp voor vroege fase', domain: 'Web', init: 'LH' },
+  { id: 'f07', name: 'Joris Maas', builds: 'Embedded systems voor IoT', domain: 'Hardware', init: 'JM' },
+  { id: 'f08', name: 'Marrallisa Kreijkes', builds: 'Digital agency en CTF', domain: 'Web', init: 'MK' },
+  { id: 'f09', name: 'Tijmen Bakker', builds: 'Betalingsplatform voor MKB', domain: 'Fintech', init: 'TB' },
+  { id: 'f10', name: 'Anouk de Vries', builds: 'Data-infrastructuur voor onderzoek', domain: 'Tooling', init: 'AV' },
+  { id: 'f11', name: 'Jasper Smits', builds: 'Privacy-vriendelijke analytics', domain: 'Tooling', init: 'JS' },
+  { id: 'f12', name: 'Femke Janssen', builds: 'Open-source signing voor stichtingen', domain: 'Web', init: 'FJ' },
+];
+---
+<Base title="Founders — Christian Tech Founders" current="founders">
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card hero-founders">
+      <FlowLines intensity={0.4} />
+      <div class="hero-inner">
+        <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:28px;">Founders</span>
+        <h1 class="hero-title fx-rise-lg">Wie er <Mark>bouwt</Mark>.</h1>
+        <p class="hero-lede fx-rise">
+          Niet iedereen in CTF heeft een publiek profiel. Hier zie je de mensen die ervoor gekozen hebben zichtbaar te zijn.
+        </p>
+        <div class="count-pill fx-rise">
+          <span class="dot"></span>
+          <span>{FOUNDER_SAMPLES.length} founders zichtbaar</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card" style="padding:64px 80px 96px;">
+      <div class="ctf-wrap">
+        <div class="founders-grid" data-tilt="4">
+          {FOUNDER_SAMPLES.map((f) => (
+            <a class="founder-card fx-card-hover" href="/founders/example" data-reveal>
+              <div class="founder-avatar">{f.init}</div>
+              <div>
+                <h3 class="founder-name">{f.name}</h3>
+                <p class="founder-builds">{f.builds}</p>
+              </div>
+              <span class="founder-domain">{f.domain}</span>
+            </a>
+          ))}
+        </div>
+        <p class="footnote">Sommige founders kiezen ervoor om niet zichtbaar op de site te staan. Dat is hun recht.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px; margin-bottom:24px;">
+    <div class="ctf-card" style="padding:96px 80px;">
+      <div class="cta-grid" data-reveal>
+        <p class="cta-text">Zelf zichtbaar worden? Meld je aan en kies of je profiel publiek mag.</p>
+        <Button variant="primary" href="/apply" magnet>Aanmelden</Button>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-founders { padding: 144px 80px 64px; position: relative; overflow: hidden; }
+  .hero-inner { position: relative; max-width: 1200px; margin: 0 auto; }
+  .hero-title { font: var(--t-display-lg); letter-spacing: -0.025em; line-height: 1.04; color: var(--ink-1); }
+  .hero-lede { margin-top: 32px; font: var(--t-serif-body-lg); color: var(--ink-3); max-width: 640px; }
+  .count-pill { margin-top: 32px; display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; border: 1px solid var(--line-1); border-radius: var(--r-pill); background: var(--bg-paper); }
+  .count-pill .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--ctf-blue); }
+  .count-pill span:last-child { font: var(--t-body-sm); color: var(--ink-1); }
+
+  .ctf-wrap { max-width: 1200px; margin: 0 auto; }
+  .founders-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .founder-card { background: var(--bg-paper); border: 1px solid var(--line-1); border-radius: var(--r-lg); padding: 24px; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 20px; transition: box-shadow 240ms ease, transform 240ms ease; }
+  .founder-avatar { aspect-ratio: 1/1; border-radius: var(--r-md); background: var(--ink-5); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 48px; letter-spacing: -0.02em; color: var(--ink-1); }
+  .founder-name { font: var(--t-h4); color: var(--ink-1); letter-spacing: -0.02em; margin-bottom: 8px; }
+  .founder-builds { font: var(--t-serif-body-sm); color: var(--ink-3); }
+  .founder-domain { align-self: flex-start; padding: 4px 10px; border: 1px solid var(--line-1); border-radius: var(--r-pill); font: var(--t-caption); color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .footnote { margin: 56px auto 0; font: var(--t-serif-body); color: var(--ink-3); max-width: 640px; text-align: center; }
+
+  .cta-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+  .cta-text { font: var(--t-display-sm); color: var(--ink-1); letter-spacing: -0.025em; line-height: 1.3; }
+
+  @media (max-width: 1000px) {
+    .hero-founders { padding: 96px 32px 48px; }
+    .founders-grid { grid-template-columns: 1fr 1fr; }
+    .cta-grid { grid-template-columns: 1fr; }
+  }
+</style>

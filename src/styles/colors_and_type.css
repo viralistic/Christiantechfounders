@@ -1,0 +1,205 @@
+/* =========================================================
+   CTF — ChristianTechFounders
+   Colors & Type foundations
+   ========================================================= */
+
+@font-face {
+  font-family: "Argesta Display";
+  src: url("/fonts/argestadisplay-regular-webfont.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Argesta Display";
+  src: url("/fonts/argestadisplay-regularitalic-webfont.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Argesta Headline";
+  src: url("/fonts/argestaheadline-regularitalic-webfont.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Argesta Hairline";
+  src: url("/fonts/argestahairline-regular-webfont.woff2") format("woff2");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Argesta Hairline";
+  src: url("/fonts/argestahairline-regularitalic-webfont.woff2") format("woff2");
+  font-weight: 300; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Argesta Text";
+  src: url("/fonts/argestatext-regular-webfont.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Argesta Text";
+  src: url("/fonts/argestatext-regularitalic-webfont.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Argesta Text";
+  src: url("/fonts/argestatext-bold-webfont.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+@font-face {
+  font-family: "Safiro";
+  src: url("/fonts/safiro-regular-webfont.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Safiro";
+  src: url("/fonts/safiro-regularitalic-webfont.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Safiro";
+  src: url("/fonts/safiro-medium-webfont.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Safiro";
+  src: url("/fonts/safiro-mediumitalic-webfont.woff2") format("woff2");
+  font-weight: 500; font-style: italic; font-display: swap;
+}
+
+:root {
+  --ctf-blue: #0000FF;
+  --ctf-blue-hover: #2424ff;
+  --ctf-blue-press: #0000d6;
+  --ctf-blue-ink: #ffffff;
+
+  --ink-1: #1E1E1E;
+  --ink-2: #2A2B2E;
+  --ink-3: #5B5D63;
+  --ink-4: #8B8E95;
+  --ink-5: #B7BAC0;
+
+  --ink-on-dark-1: #F4F4F4;
+  --ink-on-dark-2: #C8C9CC;
+  --ink-on-dark-3: #8C8E92;
+
+  --bg-paper:   #FFFFFF;
+  --bg-card:    #D3D3D3;
+  --bg-canvas:  #ECECEC;
+  --bg-ink:     #1E1E1E;
+  --bg-ink-2:   #161618;
+
+  --card-glow: radial-gradient(
+    120% 80% at 50% 40%,
+    rgba(255,255,255,0.85) 0%,
+    rgba(255,255,255,0.35) 35%,
+    rgba(255,255,255,0)    70%
+  );
+  --card-bg: var(--bg-card);
+
+  --line-1: rgba(10,10,11,0.10);
+  --line-2: rgba(10,10,11,0.18);
+  --line-on-dark: rgba(255,255,255,0.08);
+
+  --shadow-xs: 0 1px 2px rgba(10,10,11,0.06);
+  --shadow-sm: 0 2px 8px rgba(10,10,11,0.08);
+  --shadow-md: 0 8px 24px rgba(10,10,11,0.10);
+  --shadow-lg: 0 24px 60px rgba(10,10,11,0.16);
+  --shadow-card: 0 30px 60px -20px rgba(10,10,11,0.25),
+                 0 2px 6px rgba(10,10,11,0.04);
+
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+  --r-pill: 999px;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+
+  --font-display: "Argesta Display", "Argesta Text", "Cormorant Garamond", Georgia, serif;
+  --font-headline: "Argesta Headline", "Argesta Display", Georgia, serif;
+  --font-text:    "Argesta Text", "Cormorant Garamond", Georgia, serif;
+  --font-ui:      "Safiro", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --t-display-xl: 400 clamp(56px, 8vw, 112px)/1.02 var(--font-display);
+  --t-display-lg: 400 clamp(44px, 5.5vw, 80px)/1.05 var(--font-display);
+  --t-display-md: 400 clamp(34px, 3.8vw, 56px)/1.08 var(--font-display);
+  --t-display-sm: 400 clamp(26px, 2.6vw, 36px)/1.12 var(--font-display);
+
+  --t-h1: 400 56px/1.05 var(--font-display);
+  --t-h2: 400 40px/1.10 var(--font-display);
+  --t-h3: 400 28px/1.20 var(--font-display);
+  --t-h4: 400 22px/1.30 var(--font-display);
+
+  /* Body copy uses Safiro (sans). Argesta serif is reserved for headings and
+     intentional editorial flourishes (blockquotes, pull quotes, italic accents
+     via .ctf-headline). The token name "serif-body" is kept for API stability
+     across pages — only the underlying font has changed. */
+  --t-serif-body-lg: 400 18px/1.6 var(--font-ui);
+  --t-serif-body:    400 16px/1.6 var(--font-ui);
+  --t-serif-body-sm: 400 14px/1.55 var(--font-ui);
+
+  --t-body:     400 16px/1.55 var(--font-ui);
+  --t-body-sm:  400 14px/1.50 var(--font-ui);
+  --t-caption:  400 12px/1.40 var(--font-ui);
+  --t-label:    500 13px/1.20 var(--font-ui);
+  --t-button:   500 15px/1   var(--font-ui);
+  --t-eyebrow:  500 12px/1.30 var(--font-ui);
+
+  --tracking-tight:  -0.02em;
+  --tracking-snug:   -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+
+  --easing: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 140ms;
+  --dur: 240ms;
+  --dur-slow: 420ms;
+}
+
+.ctf-h1 { font: var(--t-h1); color: var(--ink-1); letter-spacing: var(--tracking-snug); }
+.ctf-h2 { font: var(--t-h2); color: var(--ink-1); letter-spacing: var(--tracking-snug); }
+.ctf-h3 { font: var(--t-h3); color: var(--ink-1); letter-spacing: var(--tracking-snug); }
+.ctf-h4 { font: var(--t-h4); color: var(--ink-1); letter-spacing: var(--tracking-snug); }
+
+.ctf-display-xl { font: var(--t-display-xl); color: var(--ink-1); letter-spacing: var(--tracking-snug); }
+.ctf-display-lg { font: var(--t-display-lg); color: var(--ink-1); letter-spacing: var(--tracking-snug); }
+.ctf-display-md { font: var(--t-display-md); color: var(--ink-1); letter-spacing: var(--tracking-snug); }
+
+.ctf-serif-body-lg { font: var(--t-serif-body-lg); color: var(--ink-2); }
+.ctf-serif-body    { font: var(--t-serif-body);    color: var(--ink-2); }
+.ctf-serif-body-sm { font: var(--t-serif-body-sm); color: var(--ink-3); }
+
+/* Editorial italic headline accent — use sparingly inside a heading.
+   This is the one place serif still appears in body-position. */
+.ctf-headline { font-family: var(--font-headline); color: var(--ctf-blue); font-style: italic; }
+
+.ctf-body    { font: var(--t-body); color: var(--ink-2); }
+.ctf-body-sm { font: var(--t-body-sm); color: var(--ink-3); }
+.ctf-caption { font: var(--t-caption); color: var(--ink-4); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+.ctf-label   { font: var(--t-label); color: var(--ink-2); }
+.ctf-eyebrow { font: var(--t-eyebrow); color: var(--ink-3); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+
+.ctf-mark {
+  background: rgba(0, 0, 255, 0.08);
+  box-shadow:
+    inset 2px 0 0 var(--ctf-blue),
+    inset -2px 0 0 var(--ctf-blue);
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+.ctf-bullet::before {
+  content: "+ ";
+  color: var(--ctf-blue);
+  font-weight: 500;
+}

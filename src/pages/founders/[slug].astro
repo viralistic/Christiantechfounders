@@ -1,0 +1,193 @@
+---
+import Base from '@/layouts/Base.astro';
+import Plus from '@/components/Plus.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+
+export function getStaticPaths() {
+  return [{ params: { slug: 'example' } }];
+}
+
+const tags = ['Tooling', 'Solo founder', 'B2B', 'Rotterdam'];
+const ctfProjects = [
+  { num: '01', title: 'Schaal-analyse voor B2B-product', tag: 'Commercieel', year: '2025' },
+  { num: '08', title: 'Architectuur-review voor scale-up', tag: 'Commercieel', year: '2025' },
+];
+const interests = [
+  { h: 'Verantwoorde AI in MKB.', b: "De meeste MKB's hebben geen AI-ethicus in dienst, maar wel klanten die het niet vertrouwen. Dat zou een oplosbaar probleem moeten zijn." },
+  { h: 'Snelheid versus diepte in vroege product-keuzes.', b: 'Snel beslissen is de retoriek. In werkelijkheid kost het terugdraaien van een verkeerde keuze maanden. Ik denk vaak na over wat je daadwerkelijk kunt versnellen.' },
+  { h: 'Hoe je een ethisch product bouwt zonder daar het verkoopargument van te maken.', b: "Zodra je 'ethisch' in je marketing zet, voelt het al gekocht. De vraag is hoe je het in het ontwerp zelf bouwt." },
+];
+const others = [
+  { id: 'f02', name: 'Sanne de Wit', builds: 'ML-tool voor academisch onderzoek', init: 'SW' },
+  { id: 'f03', name: 'Daan Pieters', builds: 'Ethische AI-evaluatie raamwerken', init: 'DP' },
+  { id: 'f04', name: 'Esther Vos', builds: 'Platform voor lokale stichtingen', init: 'EV' },
+];
+---
+<Base title="Founder — Christian Tech Founders" current="founders">
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card" style="padding:120px 80px 80px;">
+      <div class="hero-inner">
+        <div class="crumb fx-rise">
+          <a href="/founders-index">Founders</a>
+          <span style="margin:0 8px; color: var(--ink-5);">/</span>
+          <span>Mark Visser</span>
+        </div>
+        <div class="header-grid">
+          <div class="big-avatar fx-scale-in">MV</div>
+          <div>
+            <h1 class="hero-name fx-rise-lg">Mark Visser</h1>
+            <p class="hero-role fx-rise">Founder, Stratos Infra</p>
+            <div class="tag-row fx-rise">
+              {tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
+            <p class="hero-bio fx-rise">
+              Mark bouwt infrastructuur-tooling voor mid-size SaaS. Tien jaar ervaring, twee bedrijven verkocht, één lopende. Schrijft soms.
+            </p>
+            <div class="links fx-rise">
+              <a href="#">LinkedIn</a>
+              <a href="#">Website</a>
+              <a href="#">Email</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="split-grid" data-reveal>
+        <div>
+          <span class="ctf-eyebrow-row" style="margin-bottom:24px;">Wat ik bouw</span>
+          <h2 class="t-display-md">Wat ik bouw.</h2>
+        </div>
+        <div class="ctf-prose">
+          <p>Stratos Infra maakt het makkelijk voor mid-size SaaS om hun database-laag betrouwbaar te beheren zonder een dedicated DBA. Backups, migraties, schema-versiebeheer, point-in-time recovery, allemaal opgezet als een dienst.</p>
+          <p>Het is een nichemarkt, maar de mensen die ons nodig hebben, hebben ons echt nodig. Acht klanten, acht keer hetzelfde probleem, acht keer dezelfde oplossing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="CTF" title="Mijn CTF-projecten." />
+        <div class="ctf-proj-grid">
+          {ctfProjects.map((p) => (
+            <a class="ctf-proj-card" href="/projects/example" data-reveal>
+              <div class="ctf-proj-art">
+                <span class="ctf-eyebrow-row on-dark" style="font-size:10px;">{p.num}</span>
+              </div>
+              <div>
+                <span class="ctf-eyebrow-row" style="color:var(--ctf-blue); margin-bottom:8px;">{p.tag} · {p.year}</span>
+                <h4 class="ctf-proj-title">{p.title}</h4>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="narrow-wrap">
+        <SectionHeader eyebrow="Bezigheden" title="Wat me bezighoudt." />
+        <div style="margin-top:56px;">
+          {interests.map((c) => (
+            <div class="interest-row" data-reveal>
+              <h3 class="interest-h">{c.h}</h3>
+              <p class="interest-b">{c.b}</p>
+            </div>
+          ))}
+          <div style="border-top:1px solid var(--line-1);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="split-grid" data-reveal>
+        <div>
+          <span class="ctf-eyebrow-row" style="margin-bottom:24px;">Contact</span>
+          <h2 class="t-display-md">Hoe je me kunt bereiken.</h2>
+        </div>
+        <div>
+          <p style="font: var(--t-serif-body-lg); color: var(--ink-2); max-width:560px;">
+            Ik ben op LinkedIn het makkelijkst te bereiken. Voor projecten via CTF gaat alles via de community.
+          </p>
+          <div class="links" style="margin-top:32px;">
+            <a href="#">LinkedIn</a>
+            <a href="#">Website</a>
+            <a href="#">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px; margin-bottom:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Andere founders" title="Andere founders." />
+        <div class="others-grid">
+          {others.map((f) => (
+            <a class="other-card" href="/founders/example" data-reveal>
+              <div class="other-avatar">{f.init}</div>
+              <div>
+                <h3 class="other-name">{f.name}</h3>
+                <p class="other-builds">{f.builds}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+  .crumb { font: var(--t-body-sm); color: var(--ink-3); margin-bottom: 32px; }
+  .crumb a { color: var(--ink-3); text-decoration: none; }
+  .header-grid { display: grid; grid-template-columns: 320px 1fr; gap: 64px; align-items: start; }
+  .big-avatar { aspect-ratio: 1/1; border-radius: var(--r-lg); background: var(--ink-5); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 96px; color: var(--ink-1); letter-spacing: -0.02em; }
+  .hero-name { font: var(--t-display-md); letter-spacing: -0.025em; color: var(--ink-1); }
+  .hero-role { margin-top: 12px; font: var(--t-serif-body-lg); color: var(--ctf-blue); font-style: italic; }
+  .tag-row { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { padding: 6px 12px; border: 1px solid var(--line-1); border-radius: var(--r-pill); font: var(--t-caption); color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.08em; }
+  .hero-bio { margin-top: 28px; font: var(--t-serif-body-lg); color: var(--ink-2); max-width: 460px; }
+  .links { display: flex; gap: 24px; margin-top: 28px; }
+  .links a { font: var(--t-label); color: var(--ink-1); border-bottom: 1px solid var(--ink-1); padding-bottom: 2px; text-decoration: none; }
+
+  .sec-pad { padding: 96px 80px; }
+  .split-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+  .t-display-md { font: var(--t-display-md); letter-spacing: -0.025em; color: var(--ink-1); }
+  .ctf-wrap { max-width: 1200px; margin: 0 auto; }
+  .narrow-wrap { max-width: 1100px; margin: 0 auto; }
+
+  .ctf-proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 56px; }
+  .ctf-proj-card { display: flex; gap: 24px; align-items: center; text-decoration: none; color: inherit; }
+  .ctf-proj-art { width: 96px; height: 120px; border-radius: var(--r-md); background: linear-gradient(180deg, #1a1a1c 0%, #0e0e10 100%); padding: 12px; display: flex; align-items: flex-end; }
+  .ctf-eyebrow-row.on-dark { color: var(--ink-on-dark-3); }
+  .ctf-proj-title { font: var(--t-h3); color: var(--ink-1); letter-spacing: -0.02em; }
+
+  .interest-row { padding: 32px 0; border-top: 1px solid var(--line-1); }
+  .interest-h { font: var(--t-h2); letter-spacing: -0.02em; color: var(--ink-1); margin-bottom: 16px; }
+  .interest-b { font: var(--t-serif-body-lg); color: var(--ink-2); max-width: 760px; }
+
+  .others-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .other-card { background: var(--bg-paper); border: 1px solid var(--line-1); border-radius: var(--r-lg); padding: 24px; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 20px; }
+  .other-avatar { aspect-ratio: 1/1; border-radius: var(--r-md); background: var(--ink-5); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 48px; color: var(--ink-1); }
+  .other-name { font: var(--t-h4); color: var(--ink-1); margin-bottom: 8px; }
+  .other-builds { font: var(--t-serif-body-sm); color: var(--ink-3); }
+
+  @media (max-width: 1000px) {
+    .header-grid { grid-template-columns: 1fr; gap: 32px; }
+    .big-avatar { max-width: 240px; }
+    .sec-pad { padding: 72px 32px; }
+    .split-grid, .ctf-proj-grid, .others-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>

@@ -1,0 +1,184 @@
+---
+import Base from '@/layouts/Base.astro';
+import Mark from '@/components/Mark.astro';
+import FlowLines from '@/components/FlowLines.astro';
+
+const BLOG_SAMPLES = [
+  { id: 'b01', slug: 'waarom-we-stopten-met-open-gatherings', date: '12 Mei 2026', title: 'Waarom we gestopt zijn met grote open gatherings', excerpt: 'Een lesson learned na de eerste anderhalf jaar. Waarom kleine, gerichte groepen meer brengen dan veertig mensen met een drankje.', author: 'Marrallisa Kreijkes', read: '6 min', category: 'Reflecties' },
+  { id: 'b02', slug: 'ethiek-zonder-marketing',               date: '28 Apr 2026', title: 'Wat ethiek is wanneer je het niet als marketing gebruikt', excerpt: 'Een poging om te beschrijven hoe we naar productontwerp kijken zonder daar het verkoopargument van te maken.', author: 'Mark Visser', read: '9 min', category: 'Essays' },
+  { id: 'b03', slug: 'launch-platform-jongerenwerk',          date: '10 Apr 2026', title: 'Launch: platform voor jongerenwerk in kleine kerken',     excerpt: 'We gingen live met een platform dat een stichting in Friesland zelf kan onderhouden, in één dag gebouwd.', author: 'Esther Vos', read: '4 min', category: 'Launch' },
+  { id: 'b04', slug: 'tweede-ontwikkelaar',                   date: '22 Mrt 2026', title: 'De stille rol van de tweede ontwikkelaar', excerpt: 'De technisch sterke tweede persoon in een team. Hoe je hun werk waardeert zonder ze in de spotlight te duwen.', author: 'Bram de Jong', read: '7 min', category: 'Reflecties' },
+  { id: 'b05', slug: 'launch-ethisch-llm-raamwerk',           date: '05 Mrt 2026', title: 'Launch: ethisch raamwerk voor intern LLM-gebruik', excerpt: 'Een policy in plaats van een tool. Hoe een mid-size organisatie in één dag tot een werkbaar kader kwam.', author: 'Daan Pieters', read: '5 min', category: 'Launch' },
+  { id: 'b06', slug: 'seizoensdiner-2026',                    date: '14 Feb 2026', title: 'Wat we hebben geleerd van het seizoensdiner', excerpt: 'Drie keer per jaar eten we samen. Wat daar gebeurt, en waarom het niet als evenement voelt.', author: 'Sanne de Wit', read: '5 min', category: 'Community' },
+  { id: 'b07', slug: 'pers-tweakers-feature',                 date: '02 Feb 2026', title: 'News: CTF in Tweakers — over diepe netwerken in tech',   excerpt: 'Een interview met Marrallisa over waarom een kleine gecureerde groep meer doet dan een open community.', author: 'Redactie', read: '3 min', category: 'News' },
+];
+const cats = ['Alles', 'Launch', 'Community', 'News', 'Essays', 'Reflecties'];
+
+const featured = BLOG_SAMPLES[0];
+const rest = BLOG_SAMPLES.slice(1);
+---
+<Base title="Schrijven — Christian Tech Founders" current="blog">
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card hero-blog">
+      <FlowLines intensity={0.4} />
+      <div class="hero-inner">
+        <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:28px;">Schrijven</span>
+        <h1 class="hero-title fx-rise-lg">Wat we denken, <Mark>hardop</Mark>.</h1>
+        <p class="hero-lede fx-rise">
+          Essays, project-writeups, en reflecties uit de community. Niet veel, maar wat er staat is met aandacht geschreven.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card" style="padding:48px 80px;">
+      <div class="cat-row">
+        <span class="ctf-eyebrow-row">Filter</span>
+        {cats.map((c, i) => (
+          <button class={`cat-btn ${i === 0 ? 'active' : ''}`} data-cat={c}>{c}</button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <a class="featured-link" href={`/blog/${featured.slug}`}>
+      <div class="ctf-card sec-pad">
+        <div class="featured-grid" data-reveal>
+          <div class="featured-art">
+            <span class="ctf-eyebrow-row on-dark">Featured</span>
+            <p class="featured-cat">{featured.category}</p>
+          </div>
+          <div>
+            <span class="cat-chip">{featured.category}</span>
+            <span class="ctf-eyebrow-row" style="margin: 16px 0;">{featured.date}</span>
+            <h2 class="featured-title">{featured.title}</h2>
+            <p class="featured-excerpt">{featured.excerpt}</p>
+            <div class="featured-foot">
+              <span class="ft-author">{featured.author}</span>
+              <span class="ft-dot"></span>
+              <span class="ft-read">{featured.read}</span>
+              <span class="ft-read-more">Lees verder</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px; margin-bottom:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <div class="post-grid">
+          {rest.map((p) => (
+            <a class="post-card" href={`/blog/${p.slug}`} data-cat={p.category} data-reveal>
+              <span class={`cat-chip cat-${p.category.toLowerCase()}`}>{p.category}</span>
+              <span class="ctf-eyebrow-row" style="margin: 12px 0;">{p.date}</span>
+              <h3 class="post-title">{p.title}</h3>
+              <p class="post-excerpt">{p.excerpt}</p>
+              <div class="post-foot">{p.author} · {p.read}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-blog { padding: 144px 80px 96px; position: relative; overflow: hidden; }
+  .hero-inner { position: relative; max-width: 1100px; margin: 0 auto; }
+  .hero-title { font: var(--t-display-lg); letter-spacing: -0.025em; line-height: 1.04; color: var(--ink-1); }
+  .hero-lede { margin-top: 32px; font: var(--t-serif-body-lg); color: var(--ink-3); max-width: 640px; }
+
+  .cat-row { max-width: 1200px; margin: 0 auto; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+  .cat-btn { background: transparent; border: 0; padding: 6px 0; cursor: pointer; font: var(--t-button); color: var(--ink-2); border-bottom: 1px solid transparent; }
+  .cat-btn.active { color: var(--ctf-blue); border-bottom-color: var(--ctf-blue); }
+
+  .sec-pad { padding: 96px 80px; }
+  .featured-link { text-decoration: none; color: inherit; display: block; }
+  .featured-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .featured-art { aspect-ratio: 5/4; border-radius: var(--r-lg); background: linear-gradient(180deg, #1a1a1c 0%, #0e0e10 100%); padding: 32px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .ctf-eyebrow-row.on-dark { color: var(--ink-on-dark-3); }
+  .featured-cat { margin-top: 8px; font: var(--t-h4); color: var(--ink-on-dark-1); }
+  .featured-title { font: var(--t-display-md); letter-spacing: -0.025em; line-height: 1.1; color: var(--ink-1); }
+  .featured-excerpt { margin-top: 24px; font: var(--t-serif-body-lg); color: var(--ink-2); }
+  .featured-foot { margin-top: 32px; display: flex; gap: 24px; align-items: center; }
+  .ft-author { font: var(--t-label); color: var(--ink-1); }
+  .ft-dot { width: 4px; height: 4px; border-radius: 999px; background: var(--ink-5); }
+  .ft-read { font: var(--t-body-sm); color: var(--ink-3); }
+  .ft-read-more { margin-left: auto; font: var(--t-button); color: var(--ctf-blue); border-bottom: 1px solid var(--ctf-blue); padding-bottom: 2px; }
+
+  .ctf-wrap { max-width: 1200px; margin: 0 auto; }
+  .post-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 64px;        /* row-gap × column-gap — more breathing room */
+  }
+  .post-card {
+    padding: 40px 36px;
+    background: var(--bg-paper);
+    border: 1px solid var(--line-1);
+    border-radius: var(--r-lg);
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+    gap: 14px;
+    min-height: 360px;
+    transition: transform 360ms var(--easing-out),
+                box-shadow 360ms var(--easing-out),
+                border-color 360ms var(--easing-out);
+  }
+  .post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 60px -28px rgba(30,30,30,0.28),
+                0 2px 6px rgba(30,30,30,0.04);
+    border-color: rgba(30,30,30,0.18);
+  }
+  .cat-chip {
+    display: inline-flex; align-items: center;
+    padding: 5px 12px;
+    background: rgba(0,0,255,0.08);
+    color: var(--ctf-blue);
+    font: var(--t-eyebrow);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    border-radius: var(--r-pill);
+  }
+  .cat-launch    { background: rgba(0,0,255,0.10); color: var(--ctf-blue); }
+  .cat-community { background: rgba(30,30,30,0.08); color: var(--ink-1); }
+  .cat-news      { background: rgba(218, 88, 0, 0.10); color: #c25216; }
+  .cat-essays    { background: rgba(0,80,0,0.08); color: #1f5a2f; }
+  .cat-reflecties{ background: rgba(122, 123, 255, 0.18); color: #4243c7; }
+  .post-title { font: var(--t-h3); letter-spacing: -0.02em; color: var(--ink-1); margin: 4px 0 0; line-height: 1.18; }
+  .post-excerpt { font: var(--t-serif-body); color: var(--ink-2); flex: 1; }
+  .post-foot {
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid var(--line-1);
+    font: var(--t-body-sm); color: var(--ink-3);
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  @media (max-width: 1000px) {
+    .hero-blog { padding: 96px 32px 64px; }
+    .sec-pad { padding: 72px 32px; }
+    .featured-grid { grid-template-columns: 1fr; gap: 40px; }
+    .post-grid { grid-template-columns: 1fr; gap: 24px; }
+    .post-card { padding: 32px 28px; min-height: 0; }
+  }
+</style>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>('.cat-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.post-card');
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      btns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      cards.forEach((c) => {
+        c.style.display = !cat || cat === 'Alles' || c.dataset.cat === cat ? '' : 'none';
+      });
+    });
+  });
+</script>

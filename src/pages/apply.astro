@@ -1,0 +1,87 @@
+---
+import Base from '@/layouts/Base.astro';
+import Button from '@/components/Button.astro';
+---
+<Base title="Meld je aan als bouwer — CTF" current="apply" hideFooter={true}>
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card form-card">
+      <div class="form-wrap">
+        <div class="form-back fx-rise">
+          <a href="/"><span>←</span>Terug</a>
+        </div>
+        <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:20px;">Aanmelden</span>
+        <h1 class="form-title fx-rise-lg">Meld je aan als bouwer.</h1>
+        <p class="form-sub fx-rise">Vier vragen. Schrijf in je eigen woorden, niet in CV-stijl.</p>
+
+        <form id="apply-form" action="#" class="form" data-reveal>
+          <label class="field">
+            <span class="label">Naam</span>
+            <input type="text" required />
+          </label>
+          <label class="field">
+            <span class="label">E-mail</span>
+            <input type="email" required />
+          </label>
+          <label class="field">
+            <span class="label">Wat bouw je, of heb je gebouwd?</span>
+            <span class="hint">Een paar regels is genoeg.</span>
+            <textarea required></textarea>
+          </label>
+          <label class="field">
+            <span class="label">Waarom denk je dat CTF bij je past?</span>
+            <textarea required></textarea>
+          </label>
+          <label class="field">
+            <span class="label">Link naar werk of LinkedIn</span>
+            <span class="hint">Optioneel</span>
+            <input type="url" placeholder="https://" />
+          </label>
+          <div class="form-actions">
+            <Button variant="primary" magnet>Verstuur aanmelding</Button>
+            <span class="footnote">We laten binnen een week weten of er fit is.</span>
+          </div>
+        </form>
+
+        <div id="apply-thanks" class="thanks" hidden>
+          <span class="ctf-eyebrow-row" style="justify-content:center; color:var(--ctf-blue); margin-bottom:12px;">Verstuurd</span>
+          <h2>Dankjewel.</h2>
+          <p>We laten binnen een week weten of er fit is.</p>
+          <div style="margin-top:32px;"><Button variant="outline" href="/">Naar de homepage</Button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .form-card { padding: 96px 80px; }
+  .form-wrap { max-width: 560px; margin: 0 auto; }
+  .form-back { margin-bottom: 40px; }
+  .form-back a { background: transparent; border: 0; padding: 0; color: var(--ink-3); font: var(--t-body-sm); display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+  .form-title { font: var(--t-display-sm); letter-spacing: -0.025em; color: var(--ink-1); line-height: 1.1; }
+  .form-sub { margin-top: 20px; font: var(--t-serif-body-lg); color: var(--ink-2); }
+  .form { margin-top: 48px; display: grid; gap: 28px; }
+  .field { display: grid; gap: 8px; }
+  .label { font: var(--t-label); color: var(--ink-1); }
+  .hint { font: var(--t-body-sm); color: var(--ink-3); }
+  .field input, .field textarea { width: 100%; padding: 14px 18px; background: var(--bg-paper); border: 1px solid var(--line-1); border-radius: var(--r-md); font: var(--t-body); color: var(--ink-1); outline: none; font-family: var(--font-ui); }
+  .field textarea { min-height: 120px; resize: vertical; }
+  .form-actions { display: grid; gap: 12px; margin-top: 8px; }
+  .footnote { font: var(--t-body-sm); color: var(--ink-3); }
+  .thanks { margin-top: 48px; padding: 40px; background: var(--bg-paper); border-radius: var(--r-lg); border: 1px solid var(--line-1); text-align: center; }
+  .thanks h2 { font: var(--t-h2); color: var(--ink-1); letter-spacing: -0.02em; margin-bottom: 16px; }
+  .thanks p { font: var(--t-serif-body); color: var(--ink-2); }
+
+  @media (max-width: 1000px) { .form-card { padding: 72px 24px; } }
+</style>
+
+<script>
+  const form = document.getElementById('apply-form') as HTMLFormElement | null;
+  const thanks = document.getElementById('apply-thanks');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    form.hidden = true;
+    if (thanks) thanks.hidden = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>

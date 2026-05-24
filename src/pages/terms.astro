@@ -1,0 +1,112 @@
+---
+import Base from '@/layouts/Base.astro';
+---
+<Base title="Voorwaarden en privacy — Christian Tech Founders" current="terms">
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card" style="padding:120px 80px;">
+      <div class="wrap">
+        <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:24px;">Juridisch</span>
+        <h1 class="hero-title fx-rise-lg">Voorwaarden en privacy.</h1>
+        <p class="hero-lede fx-rise">Wat we doen met je data, en hoe deze site werkt.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="wrap">
+        <h2 class="sec-title">Privacy.</h2>
+
+        <div class="sub" data-reveal>
+          <h3>Welke gegevens we verzamelen</h3>
+          <p>Alleen de gegevens die je ons zelf geeft via een formulier, een e-mail, of een aanmelding voor een event. We verzamelen geen profielen, geen tracking, geen advertentie-IDs.</p>
+          <p>Server logs van onze hosting provider bevatten technische informatie (IP, useragent) voor 30 dagen. Die worden niet gekoppeld aan je gegevens.</p>
+        </div>
+
+        <div class="sub" data-reveal>
+          <h3>Waarom we ze verzamelen</h3>
+          <p>Om aanmeldingen te beoordelen, projecten te kunnen samenstellen, en je te kunnen bereiken over events waar je je voor aanmeldt.</p>
+          <p>Niet voor marketing, niet voor profilering, niet voor doorverkoop.</p>
+        </div>
+
+        <div class="sub" data-reveal>
+          <h3>Hoe lang we ze bewaren</h3>
+          <p>Aanmeldingen die niet leiden tot deelname worden binnen drie maanden verwijderd. Profielgegevens van actieve community-leden bewaren we zolang je lid bent.</p>
+        </div>
+
+        <div class="sub" data-reveal>
+          <h3>Met wie we ze delen (niemand)</h3>
+          <p>We delen je gegevens met niemand buiten het kernteam van CTF. Geen advertentienetwerken, geen analytics-vendors die het naar derden doorvoeren, geen partners.</p>
+        </div>
+
+        <div class="sub" data-reveal>
+          <h3>Hoe je ze kunt inzien of laten verwijderen</h3>
+          <p>Stuur een mail naar hello@christiantechfounders.com met je verzoek. We reageren binnen twee weken.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="wrap">
+        <h2 class="sec-title">Algemene voorwaarden.</h2>
+
+        <div class="sub" data-reveal>
+          <h3>Lidmaatschap van de community</h3>
+          <p>Lidmaatschap is gratis en op uitnodiging. Toetreding gebeurt op basis van fit met de community, niet op basis van financiële bijdrage.</p>
+          <p>CTF behoudt het recht om het lidmaatschap te beëindigen wanneer gedrag niet meer past bij de community-waarden. We doen dat altijd in gesprek.</p>
+        </div>
+
+        <div class="sub" data-reveal>
+          <h3>Project-intake van bedrijven</h3>
+          <p>Vraagstukken worden ingediend via het formulier of een gesprek. CTF beoordeelt of het past bij het werkmodel.</p>
+          <p>Pas na een formele bevestiging en opdrachtbevestiging zijn er wederzijdse verplichtingen. Tot dat moment is het verkennend.</p>
+        </div>
+
+        <div class="sub" data-reveal>
+          <h3>Partnerschap</h3>
+          <p>Partnerschap is een jaarlijkse overeenkomst. Wat een partner ontvangt en wat van een partner verwacht wordt staat in de partner-overeenkomst.</p>
+          <p>Patrons krijgen een persoonlijke afspraak voorafgaand aan het aangaan van het partnerschap.</p>
+        </div>
+
+        <div class="sub" data-reveal>
+          <h3>Aansprakelijkheid</h3>
+          <p>CTF is aansprakelijk voor wat ze zelf levert op projectdagen. Niet voor wat community-leden los daarvan voor opdrachtgevers doen.</p>
+          <p>Voor opdrachten geldt de Nederlandse wetgeving en de algemene voorwaarden van de opdrachtbevestiging.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px; margin-bottom:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="wrap" data-reveal>
+        <h2 class="sec-title">Cookies.</h2>
+        <p style="font: var(--t-body); color: var(--ink-2); margin-bottom:12px;">
+          We gebruiken alleen technisch noodzakelijke cookies. Geen tracking-cookies, geen advertentie-cookies, geen third-party cookies.
+        </p>
+        <p style="font: var(--t-body); color: var(--ink-2);">
+          Voor anonieme bezoekersstatistieken gebruiken we een privacy-vriendelijke tool zonder persoonlijke gegevens.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .hero-title { font: var(--t-display-md); letter-spacing: -0.025em; color: var(--ink-1); }
+  .hero-lede { margin-top: 24px; font: var(--t-serif-body-lg); color: var(--ink-3); }
+
+  .sec-pad { padding: 96px 80px; }
+  .sec-title { font: var(--t-display-sm); letter-spacing: -0.025em; color: var(--ink-1); margin-bottom: 32px; }
+  .sub { margin-top: 32px; }
+  .sub h3 { font: var(--t-h3); letter-spacing: -0.02em; color: var(--ink-1); margin-bottom: 16px; }
+  .sub p { font: var(--t-body); color: var(--ink-2); margin-bottom: 12px; font-family: var(--font-ui); }
+
+  @media (max-width: 1000px) {
+    .ctf-card { padding: 72px 32px !important; }
+    .sec-pad { padding: 72px 32px; }
+  }
+</style>

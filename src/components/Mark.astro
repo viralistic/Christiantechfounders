@@ -1,0 +1,24 @@
+---
+export interface Props { caret?: boolean }
+const { caret = false } = Astro.props;
+---
+<span class="mark-inline">
+  <slot />
+  {caret && <span class="mark-caret" />}
+</span>
+
+<style>
+  .mark-inline {
+    position: relative;
+    background: rgba(0,0,255,0.08);
+    box-shadow: inset 2px 0 0 var(--ctf-blue), inset -2px 0 0 var(--ctf-blue);
+    padding: 0 6px;
+    border-radius: 2px;
+  }
+  .mark-caret {
+    position: absolute; right: -2px; top: -2px; bottom: -2px;
+    width: 2px; background: var(--ctf-blue);
+    animation: ctfCaret 1.1s steps(1) infinite;
+  }
+  @keyframes ctfCaret { 50% { opacity: 0; } }
+</style>

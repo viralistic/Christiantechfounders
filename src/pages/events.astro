@@ -1,0 +1,134 @@
+---
+import Base from '@/layouts/Base.astro';
+import Button from '@/components/Button.astro';
+import Mark from '@/components/Mark.astro';
+import FlowLines from '@/components/FlowLines.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+
+const upcoming = [
+  { day: '12', month: 'Juni', year: '2026', name: 'Open thema-avond: Bouwen in een AI-tijd', loc: 'Amsterdam', type: 'Open', desc: 'Een avond over wat het betekent om mens te zijn in het werk dat we doen. Vier korte talks, één lange discussie.' },
+  { day: '08', month: 'Juli', year: '2026', name: 'Projectdag: Stichtingenronde', loc: 'Utrecht', type: 'Invite-only', desc: 'Drie vraagstukken van stichtingen, één team per vraagstuk, één dag.' },
+  { day: '21', month: 'Sept', year: '2026', name: 'Seizoensdiner najaar 2026', loc: 'Amsterdam', type: 'Open', desc: 'Drie keer per jaar eten we samen. Geen agenda, geen programma, wel een tafel.' },
+];
+const past = [
+  { d: '25 Feb 2026', name: 'Projectdag: Jongerenwerk', line: 'Een platform voor kleine kerken in Friesland.' },
+  { d: '12 Feb 2026', name: 'Koffietje Rotterdam', line: 'Een ochtend, twaalf bouwers, geen agenda.' },
+  { d: '30 Jan 2026', name: 'Projectdag: Researchtool', line: 'Eerste werkende versie binnen één dag.' },
+  { d: '15 Jan 2026', name: 'Open thema-avond: Verantwoordelijkheid', line: 'Wat we bouwen vormt cultuur. Hoe gaan we daarmee om?' },
+  { d: '10 Dec 2025', name: 'Seizoensdiner winter', line: 'Met negentien mensen aan tafel.' },
+  { d: '20 Nov 2025', name: 'Projectdag: Diaconaal platform', line: 'Voor lokale kerken in Utrecht.' },
+];
+---
+<Base title="Events — Christian Tech Founders" current="events">
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card hero-events">
+      <FlowLines intensity={0.4} />
+      <div class="hero-inner">
+        <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:28px;">Events</span>
+        <h1 class="hero-title fx-rise-lg">Wanneer we <Mark>samenkomen</Mark>.</h1>
+        <p class="hero-lede fx-rise">
+          De meeste gatherings zijn invite-only per project. Sommige events, zoals het seizoensdiner of een open thema-avond, zijn open voor aanmelding.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Aankomend" title="Aankomend." />
+        <div class="upcoming">
+          {upcoming.map((e) => (
+            <div class="ctf-paper event-row" data-reveal>
+              <div class="date-block">
+                <span class="date-day">{e.day}</span>
+                <span class="date-month">{e.month} {e.year}</span>
+              </div>
+              <div>
+                <div class="event-meta">
+                  <span class={`event-type ${e.type === 'Open' ? 'open' : ''}`}>{e.type}</span>
+                  <span class="meta-dot"></span>
+                  <span class="event-loc">{e.loc}</span>
+                </div>
+                <h3 class="event-name">{e.name}</h3>
+                <p class="event-desc">{e.desc}</p>
+              </div>
+              <Button variant={e.type === 'Open' ? 'primary' : 'outline'} href={e.type === 'Open' ? '/event-signup' : '#'} magnet={e.type === 'Open'}>
+                {e.type === 'Open' ? 'Meld je aan' : 'Bekijk details'}
+              </Button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Eerder dit jaar" title="Eerder dit jaar." />
+        <div class="past-grid">
+          {past.map((p) => (
+            <div class="past-row" data-reveal>
+              <span class="ctf-eyebrow-row" style="margin-bottom:12px;">{p.d}</span>
+              <h4 class="past-name">{p.name}</h4>
+              <p class="past-line">{p.line}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px; margin-bottom:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="subscribe-wrap" data-reveal>
+        <h2 class="t-display-md">Wil je updates ontvangen?</h2>
+        <form action="#" class="subscribe-form">
+          <input type="email" placeholder="Je e-mailadres" required />
+          <Button variant="primary" magnet>Aanmelden voor updates</Button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-events { padding: 144px 80px 96px; position: relative; overflow: hidden; }
+  .hero-inner { position: relative; max-width: 1100px; margin: 0 auto; }
+  .hero-title { font: var(--t-display-lg); letter-spacing: -0.025em; line-height: 1.04; color: var(--ink-1); }
+  .hero-lede { margin-top: 32px; font: var(--t-serif-body-lg); color: var(--ink-3); max-width: 640px; }
+
+  .sec-pad { padding: 96px 80px; }
+  .ctf-wrap { max-width: 1200px; margin: 0 auto; }
+  .t-display-md { font: var(--t-display-md); letter-spacing: -0.025em; color: var(--ink-1); }
+
+  .upcoming { margin-top: 56px; display: grid; gap: 16px; }
+  .event-row { padding: 32px; display: grid; grid-template-columns: 120px 1fr auto; gap: 40px; align-items: center; }
+  .date-block { display: flex; flex-direction: column; align-items: flex-start; }
+  .date-day { font-family: var(--font-display); font-size: 64px; line-height: 1; color: var(--ink-1); letter-spacing: -0.03em; }
+  .date-month { font: var(--t-label); color: var(--ink-2); margin-top: 4px; }
+  .event-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+  .event-type { font: var(--t-caption); color: var(--ink-4); text-transform: uppercase; letter-spacing: 0.12em; }
+  .event-type.open { color: var(--ctf-blue); }
+  .meta-dot { width: 4px; height: 4px; border-radius: 999px; background: var(--ink-5); }
+  .event-loc { font: var(--t-caption); color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em; }
+  .event-name { font: var(--t-h2); letter-spacing: -0.025em; color: var(--ink-1); margin-bottom: 8px; }
+  .event-desc { font: var(--t-serif-body); color: var(--ink-2); max-width: 640px; }
+
+  .past-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .past-row { padding: 28px 0; border-top: 1px solid var(--line-1); }
+  .past-name { font: var(--t-h3); color: var(--ink-1); letter-spacing: -0.02em; margin-bottom: 8px; }
+  .past-line { font: var(--t-serif-body-sm); color: var(--ink-3); }
+
+  .subscribe-wrap { max-width: 760px; margin: 0 auto; text-align: center; }
+  .subscribe-form { margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .subscribe-form input { flex: 1 1 320px; padding: 14px 20px; background: var(--bg-paper); border: 1px solid var(--line-1); border-radius: var(--r-pill); font: var(--t-body); color: var(--ink-1); outline: none; }
+
+  @media (max-width: 1000px) {
+    .hero-events { padding: 96px 32px 64px; }
+    .sec-pad { padding: 72px 32px; }
+    .event-row { grid-template-columns: 1fr; gap: 20px; }
+    .past-grid { grid-template-columns: 1fr; }
+  }
+</style>

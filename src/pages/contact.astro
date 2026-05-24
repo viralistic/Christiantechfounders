@@ -1,0 +1,77 @@
+---
+import Base from '@/layouts/Base.astro';
+import Button from '@/components/Button.astro';
+
+const routes = [
+  { label: 'Voor bouwers', body: 'Ik wil me aanmelden als bouwer.', cta: 'Aanmelden', href: '/apply' },
+  { label: 'Voor opdrachtgevers', body: 'Ik heb een vraagstuk voor de community.', cta: 'Dien je project in', href: '/submit-project' },
+  { label: 'Voor partners', body: 'Ik wil partner worden.', cta: 'Word partner', href: '/partner' },
+];
+---
+<Base title="Contact — Christian Tech Founders" current="contact">
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card" style="padding:120px 80px;">
+      <div class="hero-wrap">
+        <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:24px;">Contact</span>
+        <h1 class="hero-title fx-rise-lg">Wat is je vraag?</h1>
+        <p class="hero-lede fx-rise">We zijn klein en lezen alles zelf. Voor de meeste dingen helpt het als je de juiste route kiest.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px; margin-bottom:24px;">
+    <div class="ctf-card" style="padding:96px 80px;">
+      <div class="ctf-wrap">
+        <div class="routes-grid" data-tilt="4">
+          {routes.map((c) => (
+            <div class="ctf-paper route-card" data-reveal>
+              <span class="ctf-eyebrow-row" style="color:var(--ctf-blue);">{c.label}</span>
+              <p class="route-body">{c.body}</p>
+              <div>
+                <Button variant="primary" href={c.href} small magnet>{c.cta}</Button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="general-grid" data-reveal>
+          <div>
+            <span class="ctf-eyebrow-row" style="margin-bottom:20px;">Algemene vraag</span>
+            <h2 class="g-h">Algemene vraag of pers-aanvraag.</h2>
+            <p class="g-p">
+              Voor alles wat niet onder de drie bovenstaande valt: mail ons direct op <a href="mailto:hello@christiantechfounders.com">hello@christiantechfounders.com</a>.
+            </p>
+          </div>
+          <div>
+            <span class="ctf-eyebrow-row" style="margin-bottom:20px;">Locatie</span>
+            <h3 class="g-h3">Waar we zijn.</h3>
+            <p class="g-p">
+              We zijn niet gebonden aan één locatie. Gatherings vinden plaats waar het past bij het vraagstuk. Voor administratie: Amsterdam, NL.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-wrap { max-width: 1100px; margin: 0 auto; }
+  .hero-title { font: var(--t-display-md); letter-spacing: -0.025em; color: var(--ink-1); }
+  .hero-lede { margin-top: 24px; font: var(--t-serif-body-lg); color: var(--ink-2); max-width: 580px; }
+  .ctf-wrap { max-width: 1200px; margin: 0 auto; }
+  .routes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .route-card { padding: 36px; display: flex; flex-direction: column; gap: 24px; }
+  .route-body { font: var(--t-h3); color: var(--ink-1); letter-spacing: -0.02em; flex: 1; }
+
+  .general-grid { margin-top: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .g-h { font: var(--t-h2); letter-spacing: -0.02em; color: var(--ink-1); margin-bottom: 20px; }
+  .g-h3 { font: var(--t-h3); letter-spacing: -0.02em; color: var(--ink-1); margin-bottom: 20px; }
+  .g-p { font: var(--t-serif-body); color: var(--ink-2); }
+  .g-p a { color: var(--ctf-blue); text-decoration: underline; }
+
+  @media (max-width: 1000px) {
+    .ctf-card { padding: 72px 32px !important; }
+    .routes-grid, .general-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+</style>

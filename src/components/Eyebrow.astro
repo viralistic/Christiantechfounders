@@ -1,0 +1,11 @@
+---
+export interface Props {
+  class?: string;
+  align?: 'left' | 'center';
+}
+const { class: className = '', align = 'left' } = Astro.props;
+const style = align === 'center' ? 'justify-self:center;' : '';
+---
+<span class={`ctf-eyebrow-row ${className}`} style={style}>
+  <slot />
+</span>

@@ -1,0 +1,304 @@
+---
+import Base from '@/layouts/Base.astro';
+import Button from '@/components/Button.astro';
+import Mark from '@/components/Mark.astro';
+import Plus from '@/components/Plus.astro';
+import FlowLines from '@/components/FlowLines.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+
+const signals = [
+  { t: 'Je bouwt al jaren.', b: 'Je hebt verschillende dingen geprobeerd. Je weet dat de techniek het minst interessante onderdeel is.' },
+  { t: 'Je denkt sneller dan je omgeving.', b: 'Je hebt geleerd om je ritme aan te passen. Soms wil je dat niet meer.' },
+  { t: 'Je gelooft dat wat je bouwt ertoe doet.', b: 'Niet alleen functioneel. Ook ethisch, sociaal, soms spiritueel.' },
+  { t: 'Je wilt sparringspartners die meegaan.', b: 'Niet kibbelen over basics. Diep, snel, eerlijk.' },
+];
+
+const is = [
+  'Een kleine groep bouwers per project',
+  'Invite-by-project, op naam',
+  'Gericht op één concreet vraagstuk per dag',
+  'Gratis voor bouwers',
+  'Christelijk in fundament',
+];
+const isNot = [
+  'Een netwerk-event met 200 mensen',
+  'Open inschrijving voor elk event',
+  "Pitches, demo's, what-do-you-do rondes",
+  'Een betaald lidmaatschap',
+  'Kerkelijk in vorm',
+];
+
+const schedule = [
+  { time: '09:30', body: 'Aankomst en opzet vraagstuk' },
+  { time: '10:00', body: "Probleem ontleden, met z'n allen" },
+  { time: '11:30', body: 'Werkgroepen vormen op aanpak' },
+  { time: '13:00', body: 'Lunch' },
+  { time: '14:00', body: 'Bouwen' },
+  { time: '16:30', body: 'Demo en feedback' },
+  { time: '17:30', body: 'Borrel en doorpraten' },
+];
+
+const group = [
+  { name: 'Mark Visser',    init: 'MV', what: 'Bouwt infrastructuur voor mid-size SaaS.' },
+  { name: 'Sanne de Wit',   init: 'SW', what: 'Founder van een ML-tool voor onderzoek.' },
+  { name: 'Daan Pieters',   init: 'DP', what: 'Werkt aan ethische AI-evaluatie.' },
+  { name: 'Esther Vos',     init: 'EV', what: 'Platform voor lokale stichtingen.' },
+  { name: 'Bram de Jong',   init: 'BJ', what: 'Senior staff engineer, schaalbare systemen.' },
+  { name: 'Lotte Hendriks', init: 'LH', what: 'Vroege fase, productontwerp + dev.' },
+];
+
+const drempel = [
+  'We kijken naar wat je hebt gebouwd, niet naar je CV',
+  'We kijken naar diepte van denken, niet naar volgers',
+  'We kijken naar fit met de groep, niet naar diversiteit-quota',
+  'We kijken of je iets toevoegt aan een kleine kamer met scherpe mensen',
+];
+
+const faq = [
+  { q: 'Wat kost het?', a: 'Niets. Bouwers betalen geen lidmaatschap.' },
+  { q: 'Hoe vaak zijn er gatherings?', a: 'Ongeveer maandelijks, projectgedreven.' },
+  { q: 'Waar zijn de gatherings?', a: 'Wisselend. Meestal in Nederland, soms internationaal.' },
+  { q: 'Moet ik christelijk zijn?', a: 'Het fundament van CTF is christelijk. Je hoeft niet christen te zijn om welkom te zijn, wel om met deze waarden te resoneren.' },
+  { q: 'Wat als ik niet word toegelaten?', a: 'Dan laten we dat weten met een reden. Soms is het timing.' },
+  { q: 'Wat als ik aan een project wil bijdragen maar er niet bij kan zijn?', a: 'Mogelijk. We bespreken het.' },
+];
+---
+<Base title="Voor bouwers — Christian Tech Founders" current="founders">
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card ff-hero">
+      <FlowLines intensity={0.4} />
+      <div class="ff-hero-grid">
+        <div>
+          <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:24px;">Voor bouwers</span>
+          <h1 class="ff-hero-title fx-rise-lg">
+            Voor bouwers die meer willen dan een <Mark>netwerk</Mark>.
+          </h1>
+          <p class="ff-hero-lede fx-rise">
+            Je bent technisch. Je bouwt al een tijdje. Je hebt momenten waarin je de enige bent die het hele plaatje ziet, en je vindt dat een eenzaam soort talent.
+          </p>
+          <div class="ff-hero-cta fx-rise">
+            <Button variant="primary" href="/apply" magnet>Aanmelden</Button>
+            <Button variant="outline" href="/vision">Lees onze visie</Button>
+          </div>
+        </div>
+        <div class="ff-photo fx-scale-in" data-tilt="3">
+          <div class="ff-photo-frame">
+            <img src="/assets/marrallisa.png" alt="" />
+          </div>
+          <p class="ff-photo-caption">
+            <Plus letter="M"/>arrallisa, founder. Bouwt aan AI-tools die er werkelijk toe doen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Wie dit is voor" title="Vier signalen dat dit voor jou is." />
+        <div class="sig-grid">
+          {signals.map((c) => (
+            <div class="ctf-paper sig fx-card-hover" data-tilt="4" data-reveal>
+              <h3 class="sig-t">{c.t}</h3>
+              <p class="sig-b">{c.b}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="Definitie" title="Wat CTF is, en wat het niet is." />
+        <div class="isnot-grid">
+          <div class="ctf-paper isnot-box" data-reveal>
+            <span class="ctf-eyebrow-row" style="color: var(--ctf-blue); margin-bottom:24px;">Wat CTF is</span>
+            {is.map((t, i) => (
+              <div class="isnot-row" style={i === 0 ? 'border-top: none;' : ''}>
+                <Plus />{t}
+              </div>
+            ))}
+          </div>
+          <div class="isnot-box-out" data-reveal data-reveal-delay="120">
+            <span class="ctf-eyebrow-row" style="margin-bottom:24px;">Wat CTF niet is</span>
+            {isNot.map((t, i) => (
+              <div class="isnot-row mute" style={i === 0 ? 'border-top: none;' : ''}>
+                <span class="dash">—</span>{t}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap narrow">
+        <SectionHeader eyebrow="Een projectdag" title="Hoe een dag eruit ziet." />
+        <div class="timeline">
+          {schedule.map((r) => (
+            <div class="ctf-time" data-reveal>
+              <div class="ctf-time-num">{r.time}</div>
+              <div class="ctf-time-body">{r.body}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap">
+        <SectionHeader eyebrow="De groep" title="De groep tot nu toe." />
+        <div class="group-grid">
+          {group.map((p) => (
+            <div class="ctf-paper group-card" data-reveal>
+              <div class="ctf-avatar">{p.init}</div>
+              <div>
+                <div class="group-name">{p.name}</div>
+                <p class="group-what">{p.what}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap narrow">
+        <SectionHeader eyebrow="De drempel" title="Niet iedereen komt erin. Dat is het hele punt." />
+        <div class="drempel">
+          {drempel.map((t, i) => (
+            <div class="ctf-step" data-reveal>
+              <div class="ctf-step-num blue">{`0${i + 1}`}</div>
+              <div class="drempel-text">{t}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card sec-pad">
+      <div class="ctf-wrap narrow">
+        <SectionHeader eyebrow="FAQ" title="Wat mensen vragen voordat ze zich aanmelden." />
+        <div class="faq">
+          {faq.map((it, i) => (
+            <details class="ctf-faq-row" open={i === 0}>
+              <summary class="ctf-faq-q">
+                <span class="faq-q-text">{it.q}</span>
+                <span class="faq-q-mark">+</span>
+              </summary>
+              <p class="faq-a">{it.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing-dark-wrap">
+    <div class="ctf-card-dark closing-dark">
+      <h2 class="closing-dark-t" data-reveal>Klaar om aan te melden?</h2>
+      <p class="closing-dark-p" data-reveal data-reveal-delay="100">
+        Een paar regels over wie je bent en wat je bouwt. Dat is genoeg.
+      </p>
+      <div class="closing-dark-cta" data-reveal data-reveal-delay="200">
+        <Button variant="onDark" href="/apply" magnet>Aanmelden</Button>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ff-hero { padding: 160px 80px 96px; position: relative; overflow: hidden; }
+  .ff-hero-grid {
+    position: relative; max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: center;
+  }
+  .ff-hero-title { font: var(--t-display-lg); letter-spacing: -0.025em; line-height: 1.05; color: var(--ink-1); }
+  .ff-hero-lede { margin-top: 32px; font: var(--t-serif-body-lg); color: var(--ink-2); max-width: 560px; }
+  .ff-hero-cta { display: inline-flex; align-items: center; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+
+  .ff-photo {
+    position: relative; padding: 16px;
+    background: var(--bg-paper); border-radius: var(--r-lg);
+    box-shadow: var(--shadow-card); border: 1px solid var(--line-1);
+  }
+  .ff-photo-frame {
+    border-radius: calc(var(--r-lg) - 6px); overflow: hidden;
+    aspect-ratio: 4 / 5; background: var(--ink-5);
+  }
+  .ff-photo-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+  .ff-photo-caption { margin: 14px 4px 0; font: var(--t-serif-body-sm); color: var(--ink-2); line-height: 1.5; }
+
+  .sec-pad { padding: 96px 80px; }
+  .ctf-wrap.narrow { max-width: 1100px; margin: 0 auto; }
+
+  .sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+  .sig { padding: 36px; }
+  .sig-t { font: var(--t-h3); color: var(--ink-1); letter-spacing: -0.02em; margin-bottom: 16px; }
+  .sig-b { font: var(--t-serif-body); color: var(--ink-2); }
+
+  .isnot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+  .isnot-box { padding: 36px; }
+  .isnot-box-out {
+    padding: 36px; background: transparent;
+    border: 1px solid var(--line-1); border-radius: var(--r-lg);
+  }
+  .isnot-row { padding: 18px 0; border-top: 1px solid var(--line-1); color: var(--ink-1); font: var(--t-serif-body); }
+  .isnot-row.mute { color: var(--ink-3); }
+  .dash { color: var(--ink-4); margin-right: 8px; }
+
+  .timeline { margin-top: 56px; }
+  .ctf-time-body { font: var(--t-serif-body-lg); color: var(--ink-1); }
+
+  .group-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .group-card { padding: 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .group-name { font: var(--t-label); color: var(--ink-1); margin-bottom: 6px; }
+  .group-what { font: var(--t-serif-body-sm); color: var(--ink-3); }
+
+  .drempel { margin-top: 56px; }
+  .ctf-step-num.blue { color: var(--ctf-blue); }
+  .drempel-text { font: var(--t-display-sm); color: var(--ink-1); letter-spacing: -0.025em; line-height: 1.2; }
+
+  /* FAQ */
+  .faq { margin-top: 56px; }
+  .ctf-faq-row { list-style: none; }
+  .ctf-faq-row > summary { list-style: none; }
+  .ctf-faq-row > summary::-webkit-details-marker { display: none; }
+  .faq-q-text { font: var(--t-h3); color: var(--ink-1); letter-spacing: -0.02em; }
+  .faq-q-mark {
+    font-family: var(--font-display); font-size: 28px;
+    color: var(--ink-2); line-height: 1;
+    transition: transform 240ms var(--easing), color 240ms;
+  }
+  details[open] .faq-q-mark { transform: rotate(45deg); color: var(--ctf-blue); }
+  .faq-a {
+    margin-top: 16px; font: var(--t-serif-body-lg);
+    color: var(--ink-2); max-width: 760px;
+  }
+
+  .closing-dark-wrap { margin: 24px; }
+  .closing-dark { padding: 120px 64px; text-align: center; position: relative; }
+  .closing-dark-t { font: var(--t-display-lg); color: var(--ink-on-dark-1); letter-spacing: -0.025em; line-height: 1.05; max-width: 720px; margin: 0 auto; }
+  .closing-dark-p { margin-top: 24px; font: var(--t-serif-body-lg); color: var(--ink-on-dark-2); max-width: 460px; margin-left: auto; margin-right: auto; }
+  .closing-dark-cta { margin-top: 36px; display: inline-flex; gap: 14px; }
+
+  @media (max-width: 1000px) {
+    .ff-hero { padding: 120px 32px 64px; }
+    .ff-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .sec-pad { padding: 72px 32px; }
+    .sig-grid, .isnot-grid, .group-grid { grid-template-columns: 1fr; }
+    .closing-dark { padding: 80px 28px; }
+    .closing-dark-wrap { margin: 24px 12px; }
+  }
+</style>

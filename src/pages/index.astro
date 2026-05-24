@@ -1,0 +1,518 @@
+---
+import Base from '@/layouts/Base.astro';
+import Card from '@/components/Card.astro';
+import Button from '@/components/Button.astro';
+import Mark from '@/components/Mark.astro';
+import Plus from '@/components/Plus.astro';
+import Cursor from '@/components/Cursor.astro';
+import DatePill from '@/components/DatePill.astro';
+import FlowLines from '@/components/FlowLines.astro';
+
+const stats = [
+  { num: '30+',  lab: 'Founders & bouwers' },
+  { num: '12',   lab: 'Projectdagen per jaar' },
+  { num: '6–8',  lab: 'Bouwers per gathering' },
+  { num: '1',    lab: 'Vraagstuk per dag' },
+  { num: '100%', lab: 'Invite-only' },
+];
+
+const steps = [
+  { n: '01', t: 'Meld je aan.', b: 'Vertel ons wie je bent en wat je bouwt. Een paar regels is genoeg om te weten of er fit is.' },
+  { n: '02', t: 'Word toegelaten op basis van fit.', b: 'We kijken niet naar volgers of CV\'s. We kijken of jij in een kleine kamer met scherpe mensen iets toevoegt.' },
+  { n: '03', t: 'Bouw mee aan projecten die ertoe doen.', b: 'Je wordt op naam uitgenodigd voor projecten die bij je passen. Je hoeft niets te trekken, je hoeft alleen mee te bouwen.' },
+];
+
+const projects = [
+  { n: '01', t: 'Diaconaal platform voor lokale kerken',    meta: '5 bouwers · 1 dag' },
+  { n: '02', t: 'Ethisch raamwerk voor intern LLM-gebruik', meta: '4 bouwers · 1 dag' },
+  { n: '03', t: 'Researchtool voor academici, MVP',         meta: '6 bouwers · 1 dag' },
+];
+
+const fail = [
+  'Je blijft alleen denken.',
+  'Je talent blijft onbenut.',
+  'Je beste ideeën blijven in je hoofd.',
+  'Je bouwt langzamer en eenzamer.',
+];
+const win = [
+  'Je werkt met mensen die je bijhouden.',
+  'Je ideeën worden gebouwd, niet besproken.',
+  'Je groeit sneller dan in je eentje ooit kon.',
+  'Je vindt mensen die je hele plaatje begrijpen.',
+];
+---
+<Base title="Christian Tech Founders — Bouw met mensen die je bijhouden." current="home">
+  <!-- HERO -->
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card hero-card">
+      <FlowLines intensity={0.45} />
+      <div class="hero-inner">
+        <div class="hero-grid">
+          <div>
+            <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:28px;">
+              Voor christelijke bouwers en founders in Nederland
+            </span>
+            <h1 class="hero-title">
+              <span class="fx-rise-lg" style="display:block;">Bouw met de mensen</span>
+              <span class="fx-rise-lg" style="display:block;">
+                die je
+                <span class="hero-mark">
+                  <span
+                    data-morph
+                    data-morph-words="scherp,echt,diep,open"
+                    data-morph-interval="2600"
+                  >eindelijk</span></span>
+              </span>
+              <span class="fx-rise-lg" style="display:block;">bijhouden.</span>
+            </h1>
+            <p class="hero-lede fx-rise">
+              Connecting quick witted founders &amp; impactful talents all over the world, to change the world.
+            </p>
+            <div class="hero-cta fx-rise">
+              <Button variant="primary" href="/founders" magnet>Aanmelden</Button>
+              <span class="hero-or">of</span>
+              <Button variant="outline" href="/about">Meer info</Button>
+            </div>
+            <div class="hero-hint fx-fade">^ Als bedrijf of als bouwer</div>
+          </div>
+
+          <div class="hero-photo-col fx-scale-in">
+            <div class="hero-photo-card" data-tilt="9" data-spotlight>
+              <DatePill>25 Mrt 2026</DatePill>
+              <div class="hero-photo-frame">
+                <img src="/assets/group-photo.png" alt="Een gathering van CTF-leden" />
+              </div>
+              <p class="hero-photo-caption">
+                Volgende gathering: één vraagstuk, kleine groep. Ben jij er ook bij?
+              </p>
+              <div class="hero-photo-meta">
+                <span class="hero-photo-badge">
+                  <img src="/assets/icon-white.svg" alt="" />
+                  <span class="hero-photo-dot"></span>
+                </span>
+                <span class="hero-photo-handle">@ChristianTechFounders</span>
+              </div>
+            </div>
+            <Cursor name="Stijn" at="bottom:-28px;left:-36px;" delay={750} />
+          </div>
+        </div>
+        <Cursor name="You" color="var(--ctf-blue)" at="top:80px;left:60px;" delay={300} />
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND — velocity-reactive marquee -->
+  <section class="stats-band">
+    <div class="stats-wrap">
+      <span class="ctf-eyebrow-row stats-eyebrow" style="color: var(--ink-on-dark-3);">De cijfers</span>
+      <div class="stats-marquee">
+        <div class="stats-marquee-track">
+          {stats.map((s) => (
+            <div class="stat">
+              <span class="stat-num">{s.num}</span>
+              <span class="stat-lab">{s.lab}</span>
+            </div>
+          ))}
+        </div>
+        <div class="stats-fade stats-fade--l"></div>
+        <div class="stats-fade stats-fade--r"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card ctf-dots problem-card">
+      <div class="problem-grid">
+        <div data-reveal>
+          <span class="ctf-eyebrow-row" style="margin-bottom:32px;">Het probleem</span>
+          <h2 class="problem-title">
+            Je bent gewend<br/>
+            om de snelste in de<br/>
+            kamer te zijn.
+          </h2>
+          <div class="problem-text">
+            <p>
+              <Plus letter="A"/>ls je sneller denkt dan je omgeving, kun je technisch alles bouwen, alleen niemand vindt je.
+            </p>
+            <p style="color: var(--ink-3);">
+              <Plus letter="O"/>f je vindt mensen die wel bijhouden, maar geen idee hebben waarom dingen ertoe doen.
+            </p>
+          </div>
+        </div>
+
+        <div class="ctf-paper problem-side" data-reveal data-reveal-delay="120">
+          <p><Plus letter="E"/>r is geen plek in NL waar snelle bouwers elkaar op niveau ontmoeten.</p>
+          <p><Plus letter="I"/>ntellectueel alleen zijn. Niemand denkt zo snel mee. Niemand denkt zo diep mee.</p>
+          <div class="problem-side-foot">
+            <h4>Excellentie en betekenis horen samen</h4>
+            <p>Het kan niet kloppen dat jij de enige bent die zo denkt.</p>
+          </div>
+        </div>
+      </div>
+      <Cursor name="You" color="var(--ctf-blue)" at="top:52%;left:44%;" delay={400} />
+      <Cursor name="Marrallisa" at="bottom:80px;left:40%;" delay={650} />
+      <Cursor name="Stijn" at="top:55%;right:56px;" delay={900} />
+    </div>
+  </section>
+
+  <!-- GUIDE + PLAN -->
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card guide-card">
+      <div class="ctf-wrap">
+        <div class="guide-grid" data-reveal>
+          <div>
+            <span class="ctf-eyebrow-row" style="margin-bottom:24px;">Empathie en autoriteit</span>
+            <h2 class="guide-title">We weten hoe het is om overal maar half thuis te zijn.</h2>
+          </div>
+          <p class="guide-lede">
+            CTF is een gecureerde groep bouwers die elkaar daadwerkelijk kan bijhouden. Onze dagen zijn projectgedreven: één concreet vraagstuk, een kleine groep mensen die er echt iets aan toevoegen. Je gaat naar huis met iets dat is opgeschoten.
+          </p>
+        </div>
+
+        <div class="plan-wrap">
+          <span class="ctf-eyebrow-row" style="margin-bottom:32px;" data-reveal>Het plan</span>
+          <h3 class="plan-title" data-reveal>Drie stappen, geen omwegen.</h3>
+          {steps.map((s) => (
+            <div class="ctf-step" data-reveal>
+              <div class="ctf-step-num">{s.n}</div>
+              <div>
+                <h4 class="plan-step-t">{s.t}</h4>
+                <p class="plan-step-b">{s.b}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS TEASER -->
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card projects-card">
+      <div class="ctf-wrap">
+        <div class="projects-head" data-reveal>
+          <div>
+            <span class="ctf-eyebrow-row" style="margin-bottom:24px;">Projecten</span>
+            <h2 class="projects-title">Wat we tot nu toe samen bouwden.</h2>
+          </div>
+          <Button variant="outline" href="/projects">Alle projecten</Button>
+        </div>
+        <div class="projects-grid">
+          {projects.map((p) => (
+            <a href="/projects" class="ctf-proj fx-card-hover" data-tilt="5" data-reveal>
+              <span class="proj-eyebrow">Project {p.n}</span>
+              <div>
+                <h4 class="proj-title">{p.t}</h4>
+                <span class="proj-meta">{p.meta}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAKES -->
+  <section class="stakes-wrap">
+    <div class="ctf-card-dark stakes">
+      <div class="stakes-inner">
+        <span class="ctf-eyebrow-row" style="color: var(--ink-on-dark-3); margin-bottom:32px;" data-reveal>De inzet</span>
+        <h2 class="stakes-title" data-reveal>Je hoeft niet te kiezen tussen geloof en technische excellentie.</h2>
+        <div class="stakes-grid">
+          <div data-reveal>
+            <span class="ctf-eyebrow-row" style="color: var(--ink-on-dark-3); margin-bottom:20px;">Mislukking</span>
+            <h3 class="stakes-h3">Zonder de juiste mensen</h3>
+            <ul class="stakes-list">
+              {fail.map((t) => <li class="stakes-li-fail">{t}</li>)}
+            </ul>
+          </div>
+          <div data-reveal data-reveal-delay="120">
+            <span class="ctf-eyebrow-row" style="margin-bottom:20px; color: var(--ctf-blue);">Succes</span>
+            <h3 class="stakes-h3">Met CTF</h3>
+            <ul class="stakes-list">
+              {win.map((t) => (
+                <li class="stakes-li-win"><span class="stakes-li-plus">+</span>{t}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDENTITY -->
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card identity-card">
+      <div class="ctf-wrap">
+        <span class="ctf-eyebrow-row" style="margin-bottom:48px;" data-reveal>Identiteitstransformatie</span>
+        <div class="identity-grid" data-reveal>
+          <div>
+            <span class="ctf-eyebrow-row" style="margin-bottom:16px;">Van</span>
+            <h3 class="identity-from">Alleenstaande, onbegrepen denker</h3>
+          </div>
+          <div class="ctf-arrow"></div>
+          <div>
+            <span class="ctf-eyebrow-row" style="margin-bottom:16px; color: var(--ctf-blue);">Naar</span>
+            <h3 class="identity-to">Verbonden bouwer binnen gelijkwaardige denkkracht</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="ctf-shell" style="margin-top:24px;">
+    <div class="ctf-card closing-card">
+      <FlowLines intensity={0.3} />
+      <div class="closing-inner" data-reveal>
+        <h2 class="closing-title">
+          Klaar om niet meer<br/>
+          in je eentje te bouwen?
+        </h2>
+        <p class="closing-lede">Aanmelden duurt vijf minuten. We laten binnen een week weten of er fit is.</p>
+        <div class="closing-cta">
+          <Button variant="primary" href="/apply" magnet>Aanmelden</Button>
+          <span class="hero-or">of</span>
+          <Button variant="outline" href="/vision">Lees onze visie</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero */
+  .hero-card { padding: 0; position: relative; overflow: hidden; }
+  .hero-inner { padding: 144px 80px 96px; position: relative; }
+  .hero-grid {
+    position: relative; max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.55fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .hero-title {
+    font: var(--t-display-lg); letter-spacing: -0.025em; line-height: 1.02;
+    color: var(--ink-1);
+  }
+  /* Stable container for the morphing word — keeps the highlight
+     anchored in place while the inner text swaps out. */
+  .hero-mark {
+    position: relative;
+    display: inline-block;
+    padding: 0 8px;
+    background: rgba(0,0,255,0.08);
+    box-shadow: inset 2px 0 0 var(--ctf-blue), inset -2px 0 0 var(--ctf-blue);
+    border-radius: 2px;
+    overflow: hidden;
+    vertical-align: baseline;
+  }
+  .hero-mark > [data-morph] {
+    display: inline-block;
+    will-change: transform, opacity;
+  }
+  .hero-mark::after {
+    content: "";
+    position: absolute; right: -2px; top: -2px; bottom: -2px;
+    width: 2px; background: var(--ctf-blue);
+    animation: hero-caret 1.1s steps(1) infinite;
+  }
+  @keyframes hero-caret { 50% { opacity: 0; } }
+  .hero-lede {
+    margin-top: 32px; max-width: 520px;
+    font: var(--t-serif-body-lg); color: var(--ink-3); line-height: 1.55;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 16px;
+    margin-top: 36px; flex-wrap: wrap;
+  }
+  .hero-or { font: var(--t-serif-body); color: var(--ink-3); font-style: italic; }
+  .hero-hint {
+    margin-top: 14px; font: var(--t-caption); color: var(--ink-4);
+    letter-spacing: 0.04em;
+  }
+  .hero-photo-col { position: relative; justify-self: end; width: 100%; max-width: 320px; }
+  .hero-photo-card {
+    padding: 16px;
+    background: var(--bg-paper);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--line-1);
+    position: relative;
+  }
+  .hero-photo-frame {
+    border-radius: calc(var(--r-lg) - 6px); overflow: hidden;
+    aspect-ratio: 3 / 4; background: var(--ink-5);
+  }
+  .hero-photo-frame img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(1) contrast(1.05);
+  }
+  .hero-photo-caption {
+    margin: 14px 4px 0; font: var(--t-serif-body-sm); color: var(--ink-2); line-height: 1.5;
+  }
+  .hero-photo-meta {
+    display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 0 4px;
+  }
+  .hero-photo-badge {
+    position: relative;
+    width: 28px; height: 28px; border-radius: 999px; background: var(--ink-1);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .hero-photo-badge img { width: 14px; height: 14px; }
+  .hero-photo-dot {
+    position: absolute; top: -1px; right: -1px;
+    width: 8px; height: 8px; border-radius: 999px;
+    background: var(--ctf-blue);
+    box-shadow: 0 0 0 2px var(--bg-paper);
+  }
+  .hero-photo-handle { font: var(--t-label); color: var(--ink-1); }
+
+  /* Stats — velocity marquee */
+  .stats-band {
+    background: var(--bg-ink); color: var(--ink-on-dark-1);
+    padding: 96px 0;
+  }
+  .stats-wrap { max-width: 1280px; margin: 0 auto; }
+  .stats-eyebrow { padding: 0 64px; margin-bottom: 56px; }
+  .stats-marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  .stats-marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 96px;
+    padding: 0 32px;
+    will-change: transform;
+  }
+  .stat {
+    display: flex; flex-direction: column; gap: 10px;
+    flex-shrink: 0;
+    min-width: 240px;
+  }
+  .stat-num {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(56px, 6.5vw, 96px); line-height: 1;
+    letter-spacing: -0.03em; color: var(--ink-on-dark-1);
+  }
+  .stat-lab { font: var(--t-body-sm); color: var(--ink-on-dark-3); white-space: nowrap; }
+
+  /* Edge fade-outs so the marquee gracefully dissolves */
+  .stats-fade {
+    position: absolute; top: 0; bottom: 0;
+    width: 120px; pointer-events: none; z-index: 2;
+  }
+  .stats-fade--l {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-ink) 0%, rgba(30,30,30,0) 100%);
+  }
+  .stats-fade--r {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-ink) 0%, rgba(30,30,30,0) 100%);
+  }
+
+  /* Problem */
+  .problem-card { padding: 120px 80px; position: relative; }
+  .problem-grid {
+    position: relative; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 80px;
+    max-width: 1200px; margin: 0 auto; align-items: start;
+  }
+  .problem-title {
+    font: var(--t-display-lg); letter-spacing: -0.025em; line-height: 1.04;
+    color: var(--ink-1);
+  }
+  .problem-text { margin-top: 48px; display: grid; gap: 24px; max-width: 520px; }
+  .problem-text p { font: var(--t-serif-body-lg); color: var(--ink-2); line-height: 1.55; }
+  .problem-side { padding: 36px 40px; margin-top: 40px; display: grid; gap: 28px; }
+  .problem-side p { font: var(--t-serif-body-lg); color: var(--ink-2); line-height: 1.55; }
+  .problem-side-foot { padding-top: 20px; border-top: 1px solid var(--line-1); }
+  .problem-side-foot h4 { font: var(--t-h4); color: var(--ctf-blue); letter-spacing: -0.01em; }
+  .problem-side-foot p {
+    margin: 12px 0 0 18px; padding-left: 12px;
+    border-left: 1px solid var(--line-2);
+    font: var(--t-serif-body-sm); color: var(--ink-3); line-height: 1.55;
+  }
+
+  /* Guide / plan */
+  .guide-card { padding: 120px 80px; }
+  .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .guide-title { font: var(--t-display-md); color: var(--ink-1); letter-spacing: -0.025em; line-height: 1.05; }
+  .guide-lede { font: var(--t-serif-body-lg); color: var(--ink-2); line-height: 1.6; }
+  .plan-wrap { margin-top: 96px; }
+  .plan-title { font: var(--t-display-md); color: var(--ink-1); letter-spacing: -0.025em; margin-bottom: 48px; }
+  .plan-step-t { font: var(--t-h3); color: var(--ink-1); letter-spacing: -0.02em; margin-bottom: 12px; }
+  .plan-step-b { font: var(--t-serif-body); color: var(--ink-2); max-width: 640px; }
+
+  /* Projects */
+  .projects-card { padding: 96px 80px; }
+  .projects-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    flex-wrap: wrap; gap: 32px; margin-bottom: 56px;
+  }
+  .projects-title { font: var(--t-display-md); color: var(--ink-1); letter-spacing: -0.025em; max-width: 720px; }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .ctf-proj { text-decoration: none; }
+  .proj-eyebrow { font: var(--t-eyebrow); color: var(--ink-on-dark-3); text-transform: uppercase; letter-spacing: 0.08em; }
+  .proj-title { font: var(--t-h3); color: var(--ink-on-dark-1); letter-spacing: -0.02em; margin-bottom: 8px; }
+  .proj-meta { font: var(--t-body-sm); color: var(--ink-on-dark-3); }
+
+  /* Stakes */
+  .stakes-wrap { margin: 24px; }
+  .stakes { padding: 96px 64px; }
+  .stakes-inner { max-width: 1280px; margin: 0 auto; }
+  .stakes-title {
+    font: var(--t-display-lg); color: var(--ink-on-dark-1);
+    letter-spacing: -0.025em; max-width: 900px; margin-bottom: 64px;
+  }
+  .stakes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .stakes-h3 { font: var(--t-h2); color: var(--ink-on-dark-1); margin-bottom: 28px; }
+  .stakes-list { display: grid; gap: 0; }
+  .stakes-li-fail, .stakes-li-win {
+    padding: 16px 0; border-top: 1px solid var(--line-on-dark);
+    font: var(--t-serif-body);
+  }
+  .stakes-li-fail { color: var(--ink-on-dark-2); }
+  .stakes-li-win  { color: var(--ink-on-dark-1); }
+  .stakes-li-plus { color: var(--ctf-blue); margin-right: 8px; }
+
+  /* Identity */
+  .identity-card { padding: 96px 80px; }
+  .identity-grid {
+    display: grid; grid-template-columns: 1fr 120px 1fr;
+    gap: 48px; align-items: center;
+  }
+  .identity-from { font: var(--t-h2); color: var(--ink-3); letter-spacing: -0.02em; }
+  .identity-to   { font: var(--t-h2); color: var(--ink-1); letter-spacing: -0.02em; }
+
+  /* Closing */
+  .closing-card { padding: 120px 80px; position: relative; }
+  .closing-inner { position: relative; max-width: 720px; margin: 0 auto; text-align: center; }
+  .closing-title { font: var(--t-display-lg); letter-spacing: -0.025em; line-height: 1.05; color: var(--ink-1); }
+  .closing-lede {
+    margin-top: 28px; font: var(--t-serif-body-lg); color: var(--ink-3);
+    max-width: 520px; margin-left: auto; margin-right: auto;
+  }
+  .closing-cta {
+    margin-top: 40px; display: inline-flex; align-items: center;
+    gap: 16px; flex-wrap: wrap; justify-content: center;
+  }
+
+  @media (max-width: 1000px) {
+    .hero-inner { padding: 96px 32px 64px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+    .hero-photo-col { justify-self: start; }
+    .stats-band { padding: 64px 28px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .problem-card, .guide-card, .projects-card, .identity-card, .closing-card { padding: 72px 32px; }
+    .problem-grid, .guide-grid, .stakes-grid, .projects-head, .projects-grid, .identity-grid {
+      grid-template-columns: 1fr;
+    }
+    .projects-grid { gap: 16px; }
+    .identity-grid { gap: 32px; }
+    .ctf-arrow { display: none; }
+    .stakes { padding: 64px 28px; }
+    .stakes-wrap { margin: 24px 12px; }
+  }
+</style>

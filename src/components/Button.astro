@@ -1,0 +1,50 @@
+---
+export interface Props {
+  variant?: 'primary' | 'outline' | 'ghost' | 'blue' | 'onDark';
+  href?: string;
+  small?: boolean;
+  dot?: boolean;
+  magnet?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  href,
+  small = false,
+  dot = true,
+  magnet = false,
+  type = 'button',
+  class: className = '',
+} = Astro.props;
+
+const cls = [
+  'btn',
+  `btn-${variant}`,
+  small ? 'btn-sm' : '',
+  magnet ? 'fx-magnet' : '',
+  className,
+].filter(Boolean).join(' ');
+
+const showDot = dot && variant !== 'ghost';
+---
+{href ? (
+  <a
+    href={href}
+    class={cls}
+    data-magnet={magnet ? '18' : undefined}
+  >
+    {showDot && <span class="dot"></span>}
+    <span><slot /></span>
+  </a>
+) : (
+  <button
+    type={type}
+    class={cls}
+    data-magnet={magnet ? '18' : undefined}
+  >
+    {showDot && <span class="dot"></span>}
+    <span><slot /></span>
+  </button>
+)}

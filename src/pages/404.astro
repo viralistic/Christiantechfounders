@@ -1,0 +1,35 @@
+---
+import Base from '@/layouts/Base.astro';
+import Button from '@/components/Button.astro';
+---
+<Base title="404 — Christian Tech Founders">
+  <section class="ctf-shell" style="padding-top:24px;">
+    <div class="ctf-card nf-card">
+      <div class="nf-inner">
+        <span class="ctf-eyebrow-row fx-rise" style="justify-content:center; margin-bottom:32px;">404</span>
+        <h1 class="nf-title fx-rise-lg">Deze pagina hebben we niet gebouwd.</h1>
+        <p class="nf-lede fx-rise">
+          Het kan zijn dat de link verouderd is, of dat de pagina nog niet bestaat. We bouwen alleen wat we echt nodig hebben.
+        </p>
+        <div class="nf-cta fx-rise">
+          <Button variant="primary" href="/" magnet>Terug naar de homepage</Button>
+          <Button variant="outline" href="/contact">Stuur ons een bericht</Button>
+        </div>
+        <p class="nf-mono">// pagina niet gevonden, maar dat is geen ramp.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf-card { padding: 200px 80px; min-height: 70vh; display: flex; align-items: center; justify-content: center; }
+  .nf-inner { max-width: 760px; text-align: center; }
+  .nf-title { font: var(--t-display-lg); letter-spacing: -0.025em; line-height: 1.05; color: var(--ink-1); }
+  .nf-lede { margin: 28px auto 0; font: var(--t-serif-body-lg); color: var(--ink-3); max-width: 540px; }
+  .nf-cta { margin-top: 40px; display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .nf-mono { margin-top: 48px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--ink-4); }
+
+  @media (max-width: 1000px) {
+    .nf-card { padding: 120px 32px; }
+  }
+</style>
