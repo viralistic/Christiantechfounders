@@ -4,34 +4,40 @@ import Button from '@/components/Button.astro';
 import Mark from '@/components/Mark.astro';
 import FlowLines from '@/components/FlowLines.astro';
 
-const FOUNDER_SAMPLES = [
-  { id: 'f01', name: 'Mark Visser', builds: 'Infrastructuur voor mid-size SaaS', domain: 'Tooling', init: 'MV' },
-  { id: 'f02', name: 'Sanne de Wit', builds: 'ML-tool voor academisch onderzoek', domain: 'AI', init: 'SW' },
-  { id: 'f03', name: 'Daan Pieters', builds: 'Ethische AI-evaluatie raamwerken', domain: 'AI', init: 'DP' },
-  { id: 'f04', name: 'Esther Vos', builds: 'Platform voor lokale stichtingen', domain: 'Web', init: 'EV' },
-  { id: 'f05', name: 'Bram de Jong', builds: 'Schaalbare backend-systemen', domain: 'Tooling', init: 'BJ' },
-  { id: 'f06', name: 'Lotte Hendriks', builds: 'Productontwerp voor vroege fase', domain: 'Web', init: 'LH' },
-  { id: 'f07', name: 'Joris Maas', builds: 'Embedded systems voor IoT', domain: 'Hardware', init: 'JM' },
-  { id: 'f08', name: 'Marrallisa Kreijkes', builds: 'Digital agency en CTF', domain: 'Web', init: 'MK' },
-  { id: 'f09', name: 'Tijmen Bakker', builds: 'Betalingsplatform voor MKB', domain: 'Fintech', init: 'TB' },
-  { id: 'f10', name: 'Anouk de Vries', builds: 'Data-infrastructuur voor onderzoek', domain: 'Tooling', init: 'AV' },
-  { id: 'f11', name: 'Jasper Smits', builds: 'Privacy-vriendelijke analytics', domain: 'Tooling', init: 'JS' },
-  { id: 'f12', name: 'Femke Janssen', builds: 'Open-source signing voor stichtingen', domain: 'Web', init: 'FJ' },
+// Deliberately anonymous: we show what gets built here, not who built it.
+const WORK_SAMPLES = [
+  { id: 'w01', builds: 'Infrastructuur voor mid-size SaaS', domain: 'Tooling' },
+  { id: 'w02', builds: 'ML-tool voor academisch onderzoek', domain: 'AI' },
+  { id: 'w03', builds: 'Ethische AI-evaluatie raamwerken', domain: 'AI' },
+  { id: 'w04', builds: 'Platform voor lokale stichtingen', domain: 'Web' },
+  { id: 'w05', builds: 'Schaalbare backend-systemen', domain: 'Tooling' },
+  { id: 'w06', builds: 'Productontwerp voor vroege fase', domain: 'Web' },
+  { id: 'w07', builds: 'Embedded systems voor IoT', domain: 'Hardware' },
+  { id: 'w08', builds: 'Diaconaal platform voor kerken', domain: 'Web' },
+  { id: 'w09', builds: 'Betalingsplatform voor MKB', domain: 'Fintech' },
+  { id: 'w10', builds: 'Data-infrastructuur voor onderzoek', domain: 'Tooling' },
+  { id: 'w11', builds: 'Privacy-vriendelijke analytics', domain: 'Tooling' },
+  { id: 'w12', builds: 'Open-source signing voor stichtingen', domain: 'Web' },
 ];
 ---
-<Base title="Founders — Christian Tech Founders" current="founders">
+<Base
+  title="Wat er gebouwd wordt — Christian Tech Founders"
+  description="Een greep uit wat er binnen CTF gebouwd wordt. Zonder namen — het gaat om het werk."
+  current="founders"
+>
   <section class="ctf-shell" style="padding-top:24px;">
     <div class="ctf-card hero-founders">
       <FlowLines intensity={0.4} />
       <div class="hero-inner">
-        <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:28px;">Founders</span>
-        <h1 class="hero-title fx-rise-lg">Wie er <Mark>bouwt</Mark>.</h1>
+        <span class="ctf-eyebrow-row fx-rise" style="margin-bottom:28px;">Het werk</span>
+        <h1 class="hero-title fx-rise-lg">Wat er <Mark>gebouwd</Mark> wordt.</h1>
         <p class="hero-lede fx-rise">
-          Niet iedereen in CTF heeft een publiek profiel. Hier zie je de mensen die ervoor gekozen hebben zichtbaar te zijn.
+          We zetten hier geen mensen in de etalage. Wel het werk. Dit is een greep
+          uit wat er binnen CTF gebouwd wordt — en waar jouw idee tussen past.
         </p>
         <div class="count-pill fx-rise">
           <span class="dot"></span>
-          <span>{FOUNDER_SAMPLES.length} founders zichtbaar</span>
+          <span>{WORK_SAMPLES.length} lopende projecten</span>
         </div>
       </div>
     </div>
@@ -40,19 +46,21 @@ const FOUNDER_SAMPLES = [
   <section class="ctf-shell" style="margin-top:24px;">
     <div class="ctf-card" style="padding:64px 80px 96px;">
       <div class="ctf-wrap">
-        <div class="founders-grid" data-tilt="4">
-          {FOUNDER_SAMPLES.map((f) => (
-            <a class="founder-card fx-card-hover" href="/founders/example" data-reveal>
-              <div class="founder-avatar">{f.init}</div>
+        <div class="work-grid" data-tilt="4">
+          {WORK_SAMPLES.map((w) => (
+            <div class="work-card fx-card-hover" data-reveal>
+              <div class="work-glyph" aria-hidden="true">+</div>
               <div>
-                <h3 class="founder-name">{f.name}</h3>
-                <p class="founder-builds">{f.builds}</p>
+                <p class="work-builds">{w.builds}</p>
               </div>
-              <span class="founder-domain">{f.domain}</span>
-            </a>
+              <span class="work-domain">{w.domain}</span>
+            </div>
           ))}
         </div>
-        <p class="footnote">Sommige founders kiezen ervoor om niet zichtbaar op de site te staan. Dat is hun recht.</p>
+        <p class="footnote">
+          Leden blijven bewust anoniem op deze site. Wie er bouwt, hoor je pas als
+          je zelf in de kamer zit.
+        </p>
       </div>
     </div>
   </section>
@@ -60,7 +68,7 @@ const FOUNDER_SAMPLES = [
   <section class="ctf-shell" style="margin-top:24px; margin-bottom:24px;">
     <div class="ctf-card" style="padding:96px 80px;">
       <div class="cta-grid" data-reveal>
-        <p class="cta-text">Zelf zichtbaar worden? Meld je aan en kies of je profiel publiek mag.</p>
+        <p class="cta-text">Iets te bouwen? Meld je aan en zet het op de kaart.</p>
         <Button variant="primary" href="/apply" magnet>Aanmelden</Button>
       </div>
     </div>
@@ -77,12 +85,11 @@ const FOUNDER_SAMPLES = [
   .count-pill span:last-child { font: var(--t-body-sm); color: var(--ink-1); }
 
   .ctf-wrap { max-width: 1200px; margin: 0 auto; }
-  .founders-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-  .founder-card { background: var(--bg-paper); border: 1px solid var(--line-1); border-radius: var(--r-lg); padding: 24px; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 20px; transition: box-shadow 240ms ease, transform 240ms ease; }
-  .founder-avatar { aspect-ratio: 1/1; border-radius: var(--r-md); background: var(--ink-5); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 48px; letter-spacing: -0.02em; color: var(--ink-1); }
-  .founder-name { font: var(--t-h4); color: var(--ink-1); letter-spacing: -0.02em; margin-bottom: 8px; }
-  .founder-builds { font: var(--t-serif-body-sm); color: var(--ink-3); }
-  .founder-domain { align-self: flex-start; padding: 4px 10px; border: 1px solid var(--line-1); border-radius: var(--r-pill); font: var(--t-caption); color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.08em; }
+  .work-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .work-card { background: var(--bg-paper); border: 1px solid var(--line-1); border-radius: var(--r-lg); padding: 24px; display: flex; flex-direction: column; gap: 20px; transition: box-shadow 240ms ease, transform 240ms ease; }
+  .work-glyph { aspect-ratio: 1/1; border-radius: var(--r-md); background: var(--ink-5); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 48px; line-height: 1; color: var(--ctf-blue); }
+  .work-builds { font: var(--t-serif-body); color: var(--ink-1); line-height: 1.5; }
+  .work-domain { align-self: flex-start; padding: 4px 10px; border: 1px solid var(--line-1); border-radius: var(--r-pill); font: var(--t-caption); color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.08em; }
 
   .footnote { margin: 56px auto 0; font: var(--t-serif-body); color: var(--ink-3); max-width: 640px; text-align: center; }
 
@@ -91,7 +98,7 @@ const FOUNDER_SAMPLES = [
 
   @media (max-width: 1000px) {
     .hero-founders { padding: 96px 32px 48px; }
-    .founders-grid { grid-template-columns: 1fr 1fr; }
+    .work-grid { grid-template-columns: 1fr 1fr; }
     .cta-grid { grid-template-columns: 1fr; }
   }
 </style>
