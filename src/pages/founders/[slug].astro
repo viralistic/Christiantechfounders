@@ -7,7 +7,7 @@ export function getStaticPaths() {
   return [{ params: { slug: 'example' } }];
 }
 
-const tags = ['Tooling', 'Solo founder', 'B2B', 'Rotterdam'];
+const tags = ['Tooling', 'Solo founder', 'B2B', 'Infra'];
 const ctfProjects = [
   { num: '01', title: 'Schaal-analyse voor B2B-product', tag: 'Commercieel', year: '2025' },
   { num: '08', title: 'Architectuur-review voor scale-up', tag: 'Commercieel', year: '2025' },
@@ -18,30 +18,30 @@ const interests = [
   { h: 'Hoe je een ethisch product bouwt zonder daar het verkoopargument van te maken.', b: "Zodra je 'ethisch' in je marketing zet, voelt het al gekocht. De vraag is hoe je het in het ontwerp zelf bouwt." },
 ];
 const others = [
-  { id: 'f02', name: 'Sanne de Wit', builds: 'ML-tool voor academisch onderzoek', init: 'SW' },
-  { id: 'f03', name: 'Daan Pieters', builds: 'Ethische AI-evaluatie raamwerken', init: 'DP' },
-  { id: 'f04', name: 'Esther Vos', builds: 'Platform voor lokale stichtingen', init: 'EV' },
+  { id: 'f02', builds: 'ML-tool voor academisch onderzoek', domain: 'AI' },
+  { id: 'f03', builds: 'Ethische AI-evaluatie raamwerken', domain: 'AI-ethiek' },
+  { id: 'f04', builds: 'Platform voor lokale stichtingen', domain: 'Web' },
 ];
 ---
-<Base title="Founder — Christian Tech Founders" current="founders">
+<Base title="Het werk — Christian Tech Founders" current="founders">
   <section class="ctf-shell" style="padding-top:24px;">
     <div class="ctf-card" style="padding:120px 80px 80px;">
       <div class="hero-inner">
         <div class="crumb fx-rise">
-          <a href="/founders-index">Founders</a>
+          <a href="/founders-index">Het werk</a>
           <span style="margin:0 8px; color: var(--ink-5);">/</span>
-          <span>Mark Visser</span>
+          <span>Infrastructuur</span>
         </div>
         <div class="header-grid">
-          <div class="big-avatar fx-scale-in">MV</div>
+          <div class="big-avatar fx-scale-in" aria-hidden="true">+</div>
           <div>
-            <h1 class="hero-name fx-rise-lg">Mark Visser</h1>
-            <p class="hero-role fx-rise">Founder, Stratos Infra</p>
+            <h1 class="hero-name fx-rise-lg">Infrastructuur voor mid-size SaaS</h1>
+            <p class="hero-role fx-rise">Een van onze bouwers</p>
             <div class="tag-row fx-rise">
               {tags.map((t) => <span class="tag">{t}</span>)}
             </div>
             <p class="hero-bio fx-rise">
-              Mark bouwt infrastructuur-tooling voor mid-size SaaS. Tien jaar ervaring, twee bedrijven verkocht, één lopende. Schrijft soms.
+              Bouwt infrastructuur-tooling voor mid-size SaaS. Tien jaar ervaring, twee bedrijven verkocht, één lopende. Schrijft soms.
             </p>
             <div class="links fx-rise">
               <a href="#">LinkedIn</a>
@@ -62,7 +62,7 @@ const others = [
           <h2 class="t-display-md">Wat ik bouw.</h2>
         </div>
         <div class="ctf-prose">
-          <p>Stratos Infra maakt het makkelijk voor mid-size SaaS om hun database-laag betrouwbaar te beheren zonder een dedicated DBA. Backups, migraties, schema-versiebeheer, point-in-time recovery, allemaal opgezet als een dienst.</p>
+          <p>Dit product maakt het makkelijk voor mid-size SaaS om hun database-laag betrouwbaar te beheren zonder een dedicated DBA. Backups, migraties, schema-versiebeheer, point-in-time recovery, allemaal opgezet als een dienst.</p>
           <p>Het is een nichemarkt, maar de mensen die ons nodig hebben, hebben ons echt nodig. Acht klanten, acht keer hetzelfde probleem, acht keer dezelfde oplossing.</p>
         </div>
       </div>
@@ -131,13 +131,13 @@ const others = [
   <section class="ctf-shell" style="margin-top:24px; margin-bottom:24px;">
     <div class="ctf-card sec-pad">
       <div class="ctf-wrap">
-        <SectionHeader eyebrow="Andere founders" title="Andere founders." />
+        <SectionHeader eyebrow="Ander werk" title="Ander werk." />
         <div class="others-grid">
           {others.map((f) => (
             <a class="other-card" href="/founders/example" data-reveal>
-              <div class="other-avatar">{f.init}</div>
+              <div class="other-avatar" aria-hidden="true">+</div>
               <div>
-                <h3 class="other-name">{f.name}</h3>
+                <h3 class="other-name">{f.domain}</h3>
                 <p class="other-builds">{f.builds}</p>
               </div>
             </a>
@@ -153,7 +153,7 @@ const others = [
   .crumb { font: var(--t-body-sm); color: var(--ink-3); margin-bottom: 32px; }
   .crumb a { color: var(--ink-3); text-decoration: none; }
   .header-grid { display: grid; grid-template-columns: 320px 1fr; gap: 64px; align-items: start; }
-  .big-avatar { aspect-ratio: 1/1; border-radius: var(--r-lg); background: var(--ink-5); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 96px; color: var(--ink-1); letter-spacing: -0.02em; }
+  .big-avatar { aspect-ratio: 1/1; border-radius: var(--r-lg); background: var(--ink-5); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 96px; color: var(--ctf-blue); letter-spacing: -0.02em; }
   .hero-name { font: var(--t-display-md); letter-spacing: -0.025em; color: var(--ink-1); }
   .hero-role { margin-top: 12px; font: var(--t-serif-body-lg); color: var(--ctf-blue); font-style: italic; }
   .tag-row { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -180,7 +180,7 @@ const others = [
 
   .others-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
   .other-card { background: var(--bg-paper); border: 1px solid var(--line-1); border-radius: var(--r-lg); padding: 24px; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 20px; }
-  .other-avatar { aspect-ratio: 1/1; border-radius: var(--r-md); background: var(--ink-5); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 48px; color: var(--ink-1); }
+  .other-avatar { aspect-ratio: 1/1; border-radius: var(--r-md); background: var(--ink-5); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 48px; color: var(--ctf-blue); }
   .other-name { font: var(--t-h4); color: var(--ink-1); margin-bottom: 8px; }
   .other-builds { font: var(--t-serif-body-sm); color: var(--ink-3); }
 
