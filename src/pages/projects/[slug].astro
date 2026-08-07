@@ -17,12 +17,13 @@ const meta = [
   { k: 'Type', v: 'Projectdag' },
 ];
 
+// Anonymous by design: the roles carry the story, not the names.
 const team = [
-  { name: 'Mark Visser', role: 'Lead bouwer', init: 'MV' },
-  { name: 'Sanne de Wit', role: 'Product', init: 'SW' },
-  { name: 'Daan Pieters', role: 'Backend', init: 'DP' },
-  { name: 'Esther Vos', role: 'Frontend', init: 'EV' },
-  { name: 'Bram de Jong', role: 'Strategie', init: 'BJ' },
+  { role: 'Lead bouwer' },
+  { role: 'Product' },
+  { role: 'Backend' },
+  { role: 'Frontend' },
+  { role: 'Strategie' },
 ];
 
 const deliverables = [
@@ -107,9 +108,8 @@ const similar = [
         <div class="team-grid">
           {team.map((p) => (
             <div class="team-member" data-reveal>
-              <div class="ctf-avatar" style="margin:0 auto 16px; width:80px; height:80px; font-size:28px;">{p.init}</div>
-              <div class="team-name">{p.name}</div>
-              <div class="team-role">{p.role}</div>
+              <div class="ctf-avatar" style="margin:0 auto 16px; width:80px; height:80px; font-size:28px;" aria-hidden="true">+</div>
+              <div class="team-name">{p.role}</div>
             </div>
           ))}
         </div>
@@ -145,7 +145,7 @@ const similar = [
     <div class="ctf-card" style="padding:120px 80px;">
       <div class="quote-wrap" data-reveal>
         <p class="quote-text">"Dit was geen pitchclub of brainstorm. We gingen met een vraag de dag in en met iets werkends de dag uit."</p>
-        <div class="quote-attr">Janneke de Boer · Voorzitter · Stichting Jeugdwerk Fryslân</div>
+        <div class="quote-attr">Voorzitter · Stichting Jeugdwerk Fryslân</div>
       </div>
     </div>
   </section>
