@@ -38,13 +38,14 @@ const schedule = [
   { time: '17:30', body: 'Borrel en doorpraten' },
 ];
 
+// Anonymous by design: we show what people build, not who they are.
 const group = [
-  { name: 'Mark Visser',    init: 'MV', what: 'Bouwt infrastructuur voor mid-size SaaS.' },
-  { name: 'Sanne de Wit',   init: 'SW', what: 'Founder van een ML-tool voor onderzoek.' },
-  { name: 'Daan Pieters',   init: 'DP', what: 'Werkt aan ethische AI-evaluatie.' },
-  { name: 'Esther Vos',     init: 'EV', what: 'Platform voor lokale stichtingen.' },
-  { name: 'Bram de Jong',   init: 'BJ', what: 'Senior staff engineer, schaalbare systemen.' },
-  { name: 'Lotte Hendriks', init: 'LH', what: 'Vroege fase, productontwerp + dev.' },
+  { role: 'Infrastructuur', what: 'Bouwt infrastructuur voor mid-size SaaS.' },
+  { role: 'AI',             what: 'Founder van een ML-tool voor onderzoek.' },
+  { role: 'AI-ethiek',      what: 'Werkt aan ethische AI-evaluatie.' },
+  { role: 'Web',            what: 'Platform voor lokale stichtingen.' },
+  { role: 'Systemen',       what: 'Senior staff engineer, schaalbare systemen.' },
+  { role: 'Product',        what: 'Vroege fase, productontwerp + dev.' },
 ];
 
 const drempel = [
@@ -82,11 +83,9 @@ const faq = [
           </div>
         </div>
         <div class="ff-photo fx-scale-in" data-tilt="3">
-          <div class="ff-photo-frame">
-            <img src="/assets/marrallisa.png" alt="" />
-          </div>
+          <div class="ff-photo-frame ff-photo-frame--abstract" aria-hidden="true"></div>
           <p class="ff-photo-caption">
-            <Plus letter="M"/>arrallisa, founder. Bouwt aan AI-tools die er werkelijk toe doen.
+            <Plus letter="E"/>en van onze bouwers. Werkt aan AI-tools die er werkelijk toe doen.
           </p>
         </div>
       </div>
@@ -158,9 +157,9 @@ const faq = [
         <div class="group-grid">
           {group.map((p) => (
             <div class="ctf-paper group-card" data-reveal>
-              <div class="ctf-avatar">{p.init}</div>
+              <div class="ctf-avatar" aria-hidden="true">+</div>
               <div>
-                <div class="group-name">{p.name}</div>
+                <div class="group-name">{p.role}</div>
                 <p class="group-what">{p.what}</p>
               </div>
             </div>
@@ -238,6 +237,13 @@ const faq = [
     aspect-ratio: 4 / 5; background: var(--ink-5);
   }
   .ff-photo-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+  /* Abstract stand-in — keeps the composition without showing a real person. */
+  .ff-photo-frame--abstract {
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 25%, rgba(0,0,255,0.16) 0%, rgba(0,0,255,0) 65%),
+      radial-gradient(ellipse 70% 60% at 75% 80%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0) 60%),
+      var(--ink-5);
+  }
   .ff-photo-caption { margin: 14px 4px 0; font: var(--t-serif-body-sm); color: var(--ink-2); line-height: 1.5; }
 
   .sec-pad { padding: 96px 80px; }
