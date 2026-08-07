@@ -29,7 +29,7 @@ const selectie = [
           Een gecureerde groep <Mark>bouwers</Mark>, niet een netwerk.
         </h1>
         <p class="hero-about-lede fx-rise">
-          CTF werd in 2025 opgericht door Marrallisa Kreijkes om christelijke bouwers in Nederland samen te brengen op een manier die de kerk en de tech-sector niet doen.
+          CTF werd in 2025 opgericht om christelijke bouwers in Nederland samen te brengen op een manier die de kerk en de tech-sector niet doen.
         </p>
       </div>
     </div>
@@ -56,14 +56,12 @@ const selectie = [
       <div class="ctf-wrap">
         <SectionHeader eyebrow="Wie er achter zit" title="Wie er achter zit." />
         <div class="founder-card ctf-paper" data-reveal>
-          <div class="founder-photo">
-            <img src="/assets/marrallisa.png" alt="Marrallisa Kreijkes" />
-          </div>
+          <div class="founder-photo founder-photo--abstract" aria-hidden="true"></div>
           <div>
-            <h3 class="founder-name">Marrallisa Kreijkes</h3>
-            <div class="founder-role">Founder en curator</div>
+            <h3 class="founder-name">Een klein curatieteam</h3>
+            <div class="founder-role">Founders en curatoren</div>
             <p class="founder-bio">
-              Marrallisa runt Viralistic Digital Agency Amsterdam en bouwt aan de zijkant CTF op. Ze brengt mensen samen die ze gelooft dat elkaar verder helpen, en houdt het klein zodat het kan blijven werken.
+              CTF wordt gedragen door een handvol mensen die er naast hun eigen werk aan bouwen. We houden onszelf bewust op de achtergrond: het gaat om wat er gebouwd wordt en om de mensen die elkaar hier vinden, niet om ons.
             </p>
           </div>
         </div>
@@ -150,6 +148,13 @@ const selectie = [
   }
   .founder-photo { width: 160px; height: 160px; border-radius: var(--r-lg); overflow: hidden; background: var(--ink-5); }
   .founder-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+  /* Abstract stand-in — the team stays deliberately unnamed and unpictured. */
+  .founder-photo--abstract {
+    background:
+      radial-gradient(ellipse 80% 70% at 32% 28%, rgba(0,0,255,0.18) 0%, rgba(0,0,255,0) 68%),
+      radial-gradient(ellipse 70% 60% at 76% 78%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0) 62%),
+      var(--ink-5);
+  }
   .founder-name { font: var(--t-h2); color: var(--ink-1); letter-spacing: -0.025em; margin-bottom: 8px; }
   .founder-role { font: var(--t-label); color: var(--ctf-blue); margin-bottom: 20px; }
   .founder-bio  { font: var(--t-serif-body-lg); color: var(--ink-2); max-width: 640px; }
