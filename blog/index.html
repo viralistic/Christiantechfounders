@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Christian Tech Founders</title>
+  <meta name="description" content="Verhalen, events en gedachten over geloof en technologie van Christian Tech Founders.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-light: #D3D3D3;
+      --bg-dark: #1E1E1E;
+      --text-title: #302B2B;
+      --text-body: #525252;
+      --blue: #0000FF;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-title);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      background: var(--bg-dark);
+      border-radius: 50px;
+      padding: 10px 14px 10px 18px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      white-space: nowrap;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: white;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 22px;
+      height: 22px;
+      background: var(--blue);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 18px; }
+    .nav-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: white; }
+    .nav-sep { width: 1px; height: 14px; background: rgba(255,255,255,0.18); }
+
+    .nav-cta {
+      background: white;
+      color: var(--bg-dark);
+      padding: 9px 18px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot-blue { width: 7px; height: 7px; background: var(--blue); border-radius: 50%; flex-shrink: 0; }
+
+    .blog-header {
+      padding: 150px 80px 56px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .blog-header h1 {
+      font-size: clamp(40px, 4.8vw, 66px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+
+    .blog-header p { font-size: 18px; line-height: 1.7; color: var(--text-body); max-width: 560px; }
+
+    .posts {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 80px 100px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .post-card {
+      background: white;
+      border-radius: 18px;
+      padding: 40px 32px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .post-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+
+    .post-card-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .post-card h2 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .post-card p { font-size: 14px; color: var(--text-body); line-height: 1.7; margin-bottom: 24px; }
+
+    .post-card-more { margin-top: auto; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+    footer {
+      background: var(--bg-dark);
+      padding: 36px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-brand { color: white; font-weight: 700; font-size: 14px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 13px; }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    .footer-copy { color: rgba(255,255,255,0.25); font-size: 12px; }
+
+    @media (max-width: 900px) {
+      .blog-header { padding: 120px 32px 40px; }
+      .posts { padding: 0 32px 80px; grid-template-columns: 1fr; }
+      footer { padding: 32px; flex-direction: column; text-align: center; }
+      nav { gap: 12px; padding: 10px 12px; }
+    }
+
+    @media (max-width: 480px) {
+      .blog-header { padding: 110px 20px 32px; }
+      .posts { padding: 0 20px 60px; }
+      .post-card { padding: 32px 24px; }
+      footer { padding: 28px 20px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+        <rect x="1" y="1" width="5" height="5" fill="white" opacity="0.6"/>
+        <rect x="7" y="1" width="5" height="5" fill="white"/>
+        <rect x="1" y="7" width="5" height="5" fill="white"/>
+        <rect x="7" y="7" width="5" height="5" fill="white" opacity="0.4"/>
+      </svg>
+    </div>
+    CTF
+  </a>
+  <div class="nav-links">
+    <a href="../index.html#about">Over</a>
+    <a href="index.html" class="active">Blog</a>
+    <div class="nav-sep"></div>
+  </div>
+  <a href="https://luma.com/rnxcss9v" class="nav-cta" target="_blank" rel="noopener">
+    <span class="dot-blue"></span>
+    Aanmelden
+  </a>
+</nav>
+
+<header class="blog-header">
+  <h1>Blog</h1>
+  <p>Events, verhalen en gedachten over geloof en technologie.</p>
+</header>
+
+<section class="posts">
+  <a href="coffee-and-calling-amsterdam.html" class="post-card">
+    <div class="post-card-tag">Event &middot; 10 januari 2027 &middot; Amsterdam</div>
+    <h2>Je bedrijf afstemmen op God: Coffee &amp; Calling</h2>
+    <p>Een avond met diner, worship, een preek over technologie en AI, en ruimte voor gesprek. Voor christenen in tech en iedereen die zoekt.</p>
+    <span class="post-card-more"><span class="dot-blue"></span>Lees meer</span>
+  </a>
+</section>
+
+<footer>
+  <div class="footer-brand">Christian Tech Founders</div>
+  <div class="footer-links">
+    <a href="../index.html#about">Over</a>
+    <a href="index.html">Blog</a>
+  </div>
+  <div class="footer-copy">&#169; 2026 Christian Tech Founders</div>
+</footer>
+
+</body>
+</html>
