@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Christian Tech Founders</title>
+  <title>Christian Tech Founders | Community for Christian Entrepreneurs in Tech</title>
+  <meta name="description" content="Christian Tech Founders brings Christian entrepreneurs and builders in tech together through dinners, worship and honest conversation in Amsterdam. Join the next event.">
+  <meta property="og:title" content="Christian Tech Founders">
+  <meta property="og:description" content="A community for Christian founders building in tech. You do not have to build alone.">
+  <meta property="og:image" content="assets/coffee-and-calling-amsterdam.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet">
@@ -415,6 +419,40 @@
       #about, #values, #cta { padding: 60px 20px; }
       footer { padding: 28px 20px; }
     }
+
+    /* ─── STORYBRAND SECTIONS ─── */
+    #problem { background: var(--bg-dark); padding: 100px 80px; }
+    #guide { background: var(--white); padding: 100px 80px; }
+    #plan { background: var(--bg-light); padding: 100px 80px; }
+    #event { background: var(--white); padding: 100px 80px; }
+
+    .narrow { max-width: 800px; margin: 0 auto; }
+    .eyebrow { font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px; display: inline-flex; align-items: center; gap: 8px; }
+
+    #problem h2, #guide h2 { font-size: clamp(28px, 3.5vw, 48px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.12; margin-bottom: 28px; }
+    #problem h2 { color: white; }
+    #problem .eyebrow { color: #9A9AFF; }
+    #problem .eyebrow .dot-blue { background: #9A9AFF; }
+    #problem p { font-size: 18px; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 20px; }
+    #problem p strong { color: white; font-weight: 600; }
+    #guide p { font-size: 18px; color: var(--text-body); line-height: 1.8; margin-bottom: 20px; }
+
+    .event-card { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .event-card img { width: 100%; height: auto; display: block; border-radius: 18px; background: var(--bg-light); }
+    .event-card h2 { font-size: clamp(28px, 3.2vw, 44px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 18px; }
+    .event-card p { font-size: 16px; color: var(--text-body); line-height: 1.75; margin-bottom: 22px; }
+    .event-facts { list-style: none; margin-bottom: 28px; border-top: 1px solid rgba(48,43,43,0.12); }
+    .event-facts li { padding: 12px 0; border-bottom: 1px solid rgba(48,43,43,0.12); font-size: 15px; color: var(--text-body); display: flex; gap: 16px; }
+    .event-facts li span:first-child { font-weight: 700; color: var(--text-title); min-width: 72px; }
+
+    @media (max-width: 900px) {
+      #problem, #guide, #plan, #event { padding: 80px 32px; }
+      .event-card { grid-template-columns: 1fr; gap: 36px; }
+    }
+    @media (max-width: 480px) {
+      #problem, #guide, #plan, #event { padding: 60px 20px; }
+      .nav-links { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -433,14 +471,14 @@
     CTF
   </a>
   <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#values">Approach</a>
+    <a href="#problem">Why</a>
+    <a href="#plan">How it works</a>
     <a href="blog/index.html">Blog</a>
     <div class="nav-sep"></div>
   </div>
-  <a href="#cta" class="nav-cta">
+  <a href="https://luma.com/rnxcss9v" class="nav-cta" target="_blank" rel="noopener">
     <span class="dot-blue"></span>
-    Join
+    Join the next event
   </a>
 </nav>
 
@@ -448,7 +486,7 @@
 <section id="hero">
 
   <div class="hero-lines">
-    <svg viewBox="0 0 700 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 700 900" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M700 20 C500 120 300 200 100 180 C-60 165 -80 300 0 400" stroke="#0000FF" stroke-width="1" fill="none"/>
       <path d="M700 80 C500 180 300 260 100 240 C-60 225 -80 360 0 460" stroke="#0000FF" stroke-width="1" fill="none"/>
       <path d="M700 140 C500 240 300 320 100 300 C-60 285 -80 420 0 520" stroke="#0000FF" stroke-width="0.8" fill="none"/>
@@ -462,63 +500,101 @@
   </div>
 
   <div class="hero-content">
-    <h1>Empowering<br>Christian ideas<br>with technology<span class="hero-cursor"></span></h1>
-    <p class="sub">You are not alone in this. We bring Christian thinkers and technologists together to turn ideas into real impact.</p>
+    <h1>A community for Christian founders building in tech<span class="hero-cursor"></span></h1>
+    <p class="sub">Meet people who share your faith and your work. Get clear on your calling and build what God put on your heart, without doing it alone.</p>
     <div class="hero-buttons">
-      <a href="#cta" class="btn-dark">
+      <a href="https://luma.com/rnxcss9v" class="btn-dark" target="_blank" rel="noopener">
         <span class="dot-blue"></span>
-        Join us
+        Join the next event
       </a>
-      <a href="#about" class="btn-outline">
+      <a href="#plan" class="btn-outline">
         <span class="dot-blue"></span>
-        Learn more
+        How it works
       </a>
     </div>
   </div>
 
 </section>
 
-<!-- ─── ABOUT ─── -->
-<section id="about">
-  <div class="about-inner">
-    <h2>You don&#8217;t have to carry it alone.</h2>
-    <p>We know what it feels like to stand between two worlds: deep in faith and deep in technology. As if no one fully understands what you see.</p>
-    <p>Christian Tech Founders exists to bring Christian ideas to life with the technology they need, and to let you know: you are not the only one. There are others who feel the same tension, ask the same questions, and want to build the same things.</p>
+<!-- ─── PROBLEM ─── -->
+<section id="problem">
+  <div class="narrow">
+    <div class="eyebrow"><span class="dot-blue"></span>Sound familiar?</div>
+    <h2>Building alone is harder than it should be.</h2>
+    <p>You love God and you love building. But church friends do not always get startups, and tech peers do not always get your faith. So the big questions stay with you. <strong>Is my company part of my calling? Am I using my gifts where God wants them?</strong></p>
+    <p>Meanwhile a few giants shape the technology the whole world uses, and Christian builders stay scattered. The talents God gave us end up working in the wrong places, or not at all.</p>
   </div>
 </section>
 
-<!-- ─── VALUES ─── -->
-<section id="values">
+<!-- ─── GUIDE ─── -->
+<section id="guide">
+  <div class="narrow">
+    <div class="eyebrow"><span class="dot-blue"></span>Why we exist</div>
+    <h2>We know the tension. We live it too.</h2>
+    <p>We know what it feels like to stand between two worlds, deep in faith and deep in technology, as if no one fully understands what you see.</p>
+    <p>That is why we started Christian Tech Founders. We bring Christian founders, developers and designers together around dinner, worship and honest conversation, so you can find your people and take your next step. Our evenings, called Coffee &amp; Calling, start in Amsterdam.</p>
+  </div>
+</section>
+
+<!-- ─── PLAN ─── -->
+<section id="plan">
   <div class="values-header">
-    <h2>How we do it</h2>
-    <p>Three ways we bring Christian ideas and tech together.</p>
+    <h2>How it works</h2>
+    <p>Three simple steps from building alone to building together.</p>
   </div>
   <div class="values-grid">
     <div class="value-card">
-      <div class="value-number">01 / Connect</div>
-      <div class="value-title">Find like-minded people</div>
-      <p class="value-desc">Connect with others who take both faith and technology seriously. People who understand what you feel and see.</p>
+      <div class="value-number">Step 01</div>
+      <div class="value-title">Sign up for an evening</div>
+      <p class="value-desc">Pick the next Coffee &amp; Calling and reserve your seat on Luma. It takes a minute.</p>
     </div>
     <div class="value-card">
-      <div class="value-number">02 / Build</div>
-      <div class="value-title">Turn ideas into action</div>
-      <p class="value-desc">Work together on projects that reflect Christian values and make a real impact on society.</p>
+      <div class="value-number">Step 02</div>
+      <div class="value-title">Meet your people</div>
+      <p class="value-desc">Share dinner, worship together and talk with founders who understand both your faith and your work.</p>
     </div>
     <div class="value-card">
-      <div class="value-number">03 / Grow</div>
-      <div class="value-title">Learn from each other</div>
-      <p class="value-desc">Sharpen your thinking, your faith and your technical skills in a community that takes all three seriously.</p>
+      <div class="value-number">Step 03</div>
+      <div class="value-title">Take your next step</div>
+      <p class="value-desc">Leave with new friends, fresh perspective and a clearer sense of where your talents belong.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── NEXT EVENT ─── -->
+<section id="event">
+  <div class="event-card">
+    <img src="assets/coffee-and-calling-amsterdam.webp" width="1581" height="1263" alt="Coffee &amp; Calling Amsterdam poster by Christian Tech Founders">
+    <div>
+      <div class="eyebrow"><span class="dot-blue"></span>Next event</div>
+      <h2>Coffee &amp; Calling: Aligning Your Business With God</h2>
+      <p>An evening with dinner, open worship and a sermon on technology, AI and our role in the world. Open to everyone who feels drawn to it, including people still exploring faith.</p>
+      <ul class="event-facts">
+        <li><span>When</span><span>Sunday 10 January 2027, 18:00 to 22:00</span></li>
+        <li><span>Where</span><span>Amsterdam</span></li>
+        <li><span>Extra</span><span>Optional coworking from 13:00</span></li>
+      </ul>
+      <div class="hero-buttons">
+        <a href="https://luma.com/rnxcss9v" class="btn-dark" target="_blank" rel="noopener">
+          <span class="dot-blue"></span>
+          Sign up on Luma
+        </a>
+        <a href="blog/christian-entrepreneurs-coffee-and-calling-amsterdam.html" class="btn-outline">
+          <span class="dot-blue"></span>
+          Read more
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ─── CTA ─── -->
 <section id="cta">
-  <h2>You are not alone in this.</h2>
-  <p>Sign up and become part of a community of Christian technologists and founders.</p>
+  <h2>Don&#8217;t carry your calling alone.</h2>
+  <p>Picture a table of founders who pray for your company, challenge your ideas and celebrate your wins. It starts with one evening.</p>
   <div class="cta-buttons">
-    <a href="#cta" class="btn-white">Join</a>
-    <a href="#about" class="btn-outline-white">Learn more</a>
+    <a href="https://luma.com/rnxcss9v" class="btn-white" target="_blank" rel="noopener">Join the next event</a>
+    <a href="blog/index.html" class="btn-outline-white">Read the blog</a>
   </div>
 </section>
 
@@ -526,8 +602,8 @@
 <footer>
   <div class="footer-brand">Christian Tech Founders</div>
   <div class="footer-links">
-    <a href="#about">About</a>
-    <a href="#values">Approach</a>
+    <a href="#problem">Why</a>
+    <a href="#plan">How it works</a>
     <a href="blog/index.html">Blog</a>
   </div>
   <div class="footer-copy">&#169; 2026 Christian Tech Founders</div>
