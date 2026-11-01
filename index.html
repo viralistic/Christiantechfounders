@@ -4,10 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Christian Tech Founders | Community for Christian Entrepreneurs in Tech</title>
-  <meta name="description" content="Christian Tech Founders brings Christian entrepreneurs and builders in tech together through dinners, worship and honest conversation in Amsterdam. Join the next event.">
+  <meta name="description" content="A community for Christian entrepreneurs in tech who put God first. Sunday evenings with worship, sermons on AI, talent alignment and project support in Amsterdam.">
   <meta property="og:title" content="Christian Tech Founders">
   <meta property="og:description" content="A community for Christian founders building in tech. You do not have to build alone.">
-  <meta property="og:image" content="assets/coffee-and-calling-amsterdam.webp">
+  <meta property="og:image" content="https://www.christiantechfounders.com/assets/coffee-and-calling-amsterdam.webp">
+  <meta property="og:url" content="https://www.christiantechfounders.com/">
+  <link rel="canonical" href="https://www.christiantechfounders.com/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.christiantechfounders.com/#organization",
+        "name": "Christian Tech Founders",
+        "url": "https://www.christiantechfounders.com/",
+        "description": "A community for Christian entrepreneurs and builders in tech who put God first. Sunday evenings with worship and prayer, sermons on AI and technology, talent alignment sessions and project support."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.christiantechfounders.com/#website",
+        "url": "https://www.christiantechfounders.com/",
+        "name": "Christian Tech Founders",
+        "publisher": { "@id": "https://www.christiantechfounders.com/#organization" },
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet">
@@ -425,6 +449,10 @@
     #guide { background: var(--white); padding: 100px 80px; }
     #plan { background: var(--bg-light); padding: 100px 80px; }
     #event { background: var(--white); padding: 100px 80px; }
+    #offer { background: var(--white); padding: 0 80px 100px; }
+    .offer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1040px; margin: 0 auto; }
+    .offer-grid .value-card { background: var(--bg-light); }
+    #offer .values-header { padding-top: 0; }
 
     .narrow { max-width: 800px; margin: 0 auto; }
     .eyebrow { font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px; display: inline-flex; align-items: center; gap: 8px; }
@@ -447,10 +475,13 @@
 
     @media (max-width: 900px) {
       #problem, #guide, #plan, #event { padding: 80px 32px; }
+      #offer { padding: 0 32px 80px; }
+      .offer-grid { grid-template-columns: 1fr; }
       .event-card { grid-template-columns: 1fr; gap: 36px; }
     }
     @media (max-width: 480px) {
       #problem, #guide, #plan, #event { padding: 60px 20px; }
+      #offer { padding: 0 20px 60px; }
       .nav-links { display: none; }
     }
   </style>
@@ -472,7 +503,7 @@
   </a>
   <div class="nav-links">
     <a href="#problem">Why</a>
-    <a href="#plan">How it works</a>
+    <a href="#offer">What we do</a>
     <a href="blog/index.html">Blog</a>
     <div class="nav-sep"></div>
   </div>
@@ -501,7 +532,7 @@
 
   <div class="hero-content">
     <h1>A community for Christian founders building in tech<span class="hero-cursor"></span></h1>
-    <p class="sub">Meet people who share your faith and your work. Get clear on your calling and build what God put on your heart, without doing it alone.</p>
+    <p class="sub">For entrepreneurs who put God first and build with technology. Meet fresh, like-minded people, discover where your talents fit and do good things together with God.</p>
     <div class="hero-buttons">
       <a href="https://luma.com/rnxcss9v" class="btn-dark" target="_blank" rel="noopener">
         <span class="dot-blue"></span>
@@ -522,7 +553,7 @@
     <div class="eyebrow"><span class="dot-blue"></span>Sound familiar?</div>
     <h2>Building alone is harder than it should be.</h2>
     <p>You love God and you love building. But church friends do not always get startups, and tech peers do not always get your faith. So the big questions stay with you. <strong>Is my company part of my calling? Am I using my gifts where God wants them?</strong></p>
-    <p>Meanwhile a few giants shape the technology the whole world uses, and Christian builders stay scattered. The talents God gave us end up working in the wrong places, or not at all.</p>
+    <p>Deadlines, metrics and worries keep pulling your eyes to a lower place. Meanwhile a few giants shape the technology the whole world uses, and Christian builders stay scattered. The talents God gave us end up working in the wrong places, or not at all.</p>
   </div>
 </section>
 
@@ -532,7 +563,38 @@
     <div class="eyebrow"><span class="dot-blue"></span>Why we exist</div>
     <h2>We know the tension. We live it too.</h2>
     <p>We know what it feels like to stand between two worlds, deep in faith and deep in technology, as if no one fully understands what you see.</p>
+    <p>We believe a calling from God means standing in the place that lines up as closely as possible with your talents. There are thousands of things you could do. But when you stand where your gifts fit, you shine His light like a kaleidoscope, onto as many people as possible, as strongly as possible.</p>
     <p>That is why we started Christian Tech Founders. We bring Christian founders, developers and designers together around dinner, worship and honest conversation, so you can find your people and take your next step. Our evenings, called Coffee &amp; Calling, start in Amsterdam.</p>
+  </div>
+</section>
+
+<!-- ─── WHAT WE DO ─── -->
+<section id="offer">
+  <div class="values-header">
+    <h2>What we do</h2>
+    <p>Everything is built around one goal: aligning your business with God.</p>
+  </div>
+  <div class="offer-grid">
+    <div class="value-card">
+      <div class="value-number">Sunday evenings</div>
+      <div class="value-title">Worship and pray together</div>
+      <p class="value-desc">Worship lifts your eyes from the low things that steal your attention. It moves us to compassion, and from there to mission and serving. We explore that together, and pray for each other and our work.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-number">Sermons</div>
+      <div class="value-title">AI, technology and God&#8217;s real estate</div>
+      <p class="value-desc">Honest teaching on AI and technology, how they shape a world that is often dark, and how we can claim more space for God&#8217;s presence in it.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-number">Talent alignment</div>
+      <div class="value-title">Find where your gifts fit</div>
+      <p class="value-desc">In a talent alignment session you discover where your skills and passions have the most impact, so you can align your business with God instead of guessing.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-number">Projects</div>
+      <div class="value-title">Get help to build</div>
+      <p class="value-desc">Bring your project. We help you move it forward and publish it on our site, so you can find funding and people who want to build with you.</p>
+    </div>
   </div>
 </section>
 
@@ -572,6 +634,7 @@
       <ul class="event-facts">
         <li><span>When</span><span>Sunday 10 January 2027, 18:00 to 22:00</span></li>
         <li><span>Where</span><span>Amsterdam</span></li>
+        <li><span>Ticket</span><span>Pay what you want, from &euro;0.50</span></li>
         <li><span>Extra</span><span>Optional coworking from 13:00</span></li>
       </ul>
       <div class="hero-buttons">
@@ -603,6 +666,7 @@
   <div class="footer-brand">Christian Tech Founders</div>
   <div class="footer-links">
     <a href="#problem">Why</a>
+    <a href="#offer">What we do</a>
     <a href="#plan">How it works</a>
     <a href="blog/index.html">Blog</a>
   </div>
