@@ -3,7 +3,9 @@ title: "Christian Entrepreneurs in Tech: Coffee & Calling Amsterdam"
 description: "Christian entrepreneurs in tech, join Coffee & Calling in Amsterdam on 10 January 2027. Dinner, worship and a sermon on AI and calling. Sign up on Luma."
 slug: christian-entrepreneurs-coffee-and-calling-amsterdam
 date: 2026-11-01
-canonical: https://www.christiantechfounders.com/blog/christian-entrepreneurs-coffee-and-calling-amsterdam.html
+category: Event
+image: /assets/coffee-and-calling-amsterdam.webp
+image_alt: Coffee & Calling Amsterdam poster by Christian Tech Founders
 keyword: christian entrepreneurs
 ---
 
@@ -15,7 +17,7 @@ Many Christian founders live a split life. On Sunday you worship. On Monday you 
 
 We know that tension because we live it too. That is why Christian Tech Founders hosts Coffee & Calling, an evening in Amsterdam where Christian entrepreneurs in tech eat together, worship and talk honestly about calling. The next one is on Sunday 10 January 2027. [Sign up on Luma](https://luma.com/rnxcss9v).
 
-![Coffee & Calling Amsterdam poster by Christian Tech Founders: let's come together as the body of Christ to support each other and align our purpose](https://www.christiantechfounders.com/assets/coffee-and-calling-amsterdam.webp)
+![Coffee & Calling Amsterdam poster by Christian Tech Founders: let's come together as the body of Christ to support each other and align our purpose](/assets/coffee-and-calling-amsterdam.webp)
 
 ## What is a Christian entrepreneur?
 
@@ -149,4 +151,4 @@ You do not have to build alone. If you are a Christian entrepreneur in tech look
 
 [Sign up on Luma](https://luma.com/rnxcss9v)
 
-Not ready to sign up yet? [Read more about Christian Tech Founders](https://www.christiantechfounders.com/).
+Not ready to sign up yet? [Read more about Christian Tech Founders](/).

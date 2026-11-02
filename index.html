@@ -1,677 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Christian Tech Founders | Community for Christian Entrepreneurs in Tech</title>
-  <meta name="description" content="A community for Christian entrepreneurs in tech who put God first. Sunday evenings with worship, sermons on AI, talent alignment and project support in Amsterdam.">
-  <meta property="og:title" content="Christian Tech Founders">
-  <meta property="og:description" content="A community for Christian founders building in tech. You do not have to build alone.">
-  <meta property="og:image" content="https://www.christiantechfounders.com/assets/coffee-and-calling-amsterdam.webp">
-  <meta property="og:url" content="https://www.christiantechfounders.com/">
-  <link rel="canonical" href="https://www.christiantechfounders.com/">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://www.christiantechfounders.com/#organization",
-        "name": "Christian Tech Founders",
-        "url": "https://www.christiantechfounders.com/",
-        "description": "A community for Christian entrepreneurs and builders in tech who put God first. Sunday evenings with worship and prayer, sermons on AI and technology, talent alignment sessions and project support."
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://www.christiantechfounders.com/#website",
-        "url": "https://www.christiantechfounders.com/",
-        "name": "Christian Tech Founders",
-        "publisher": { "@id": "https://www.christiantechfounders.com/#organization" },
-        "inLanguage": "en"
-      }
-    ]
-  }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg-light: #D3D3D3;
-      --bg-dark: #1E1E1E;
-      --text-title: #302B2B;
-      --text-body: #525252;
-      --blue: #0000FF;
-      --white: #ffffff;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-light);
-      color: var(--text-title);
-      overflow-x: hidden;
-    }
-
-    /* ─── NAV ─── */
-    nav {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      background: var(--bg-dark);
-      border-radius: 50px;
-      padding: 10px 14px 10px 18px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-      white-space: nowrap;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      color: white;
-      font-weight: 700;
-      font-size: 13px;
-      text-decoration: none;
-      letter-spacing: -0.01em;
-    }
-
-    .nav-logo-icon {
-      width: 22px;
-      height: 22px;
-      background: var(--blue);
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .nav-links a {
-      color: rgba(255,255,255,0.65);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 400;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: white; }
-
-    .nav-sep {
-      width: 1px;
-      height: 14px;
-      background: rgba(255,255,255,0.18);
-    }
-
-    .nav-cta {
-      background: white;
-      color: var(--bg-dark);
-      padding: 9px 18px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      transition: opacity 0.2s;
-    }
-
-    .nav-cta:hover { opacity: 0.9; }
-
-    .dot-blue {
-      width: 7px;
-      height: 7px;
-      background: var(--blue);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    /* ─── HERO ─── */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 130px 80px 100px;
-      overflow: hidden;
-      background: var(--bg-light);
-    }
-
-    .hero-lines {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .hero-lines svg {
-      position: absolute;
-      top: -10%;
-      right: -5%;
-      width: 70%;
-      height: 120%;
-      opacity: 0.35;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 720px;
-    }
-
-    .hero-content h1 {
-      font-size: clamp(40px, 4.8vw, 66px);
-      font-weight: 800;
-      line-height: 1.08;
-      color: var(--text-title);
-      letter-spacing: -0.03em;
-      margin-bottom: 28px;
-    }
-
-    .hero-cursor {
-      display: inline-block;
-      width: 2px;
-      height: 0.82em;
-      background: var(--blue);
-      margin: 0 1px -1px;
-      vertical-align: baseline;
-      animation: blink 1.1s step-end infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    .hero-content p.sub {
-      font-size: 18px;
-      line-height: 1.7;
-      color: var(--text-body);
-      max-width: 560px;
-      margin-bottom: 40px;
-      font-weight: 400;
-    }
-
-    .hero-buttons {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .btn-dark {
-      background: var(--bg-dark);
-      color: white;
-      padding: 14px 26px;
-      border-radius: 50px;
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: opacity 0.2s;
-    }
-
-    .btn-dark:hover { opacity: 0.85; }
-
-    .btn-outline {
-      border: 1.5px solid rgba(48,43,43,0.35);
-      color: var(--text-title);
-      padding: 14px 26px;
-      border-radius: 50px;
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: border-color 0.2s;
-    }
-
-    .btn-outline:hover { border-color: var(--text-title); }
-
-    /* ─── ABOUT ─── */
-    #about {
-      background: var(--bg-dark);
-      padding: 100px 80px;
-    }
-
-    .about-inner {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    #about h2 {
-      font-size: clamp(28px, 3.5vw, 48px);
-      font-weight: 800;
-      color: white;
-      letter-spacing: -0.03em;
-      margin-bottom: 28px;
-      line-height: 1.12;
-    }
-
-    #about p {
-      font-size: 17px;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.8;
-      margin-bottom: 20px;
-    }
-
-    #about p:last-child { margin-bottom: 0; }
-
-    /* ─── VALUES ─── */
-    #values {
-      background: var(--bg-light);
-      padding: 100px 80px;
-    }
-
-    .values-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-
-    .values-header h2 {
-      font-size: clamp(28px, 3.5vw, 48px);
-      font-weight: 800;
-      color: var(--text-title);
-      letter-spacing: -0.03em;
-      margin-bottom: 14px;
-    }
-
-    .values-header p {
-      font-size: 16px;
-      color: var(--text-body);
-    }
-
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .value-card {
-      background: white;
-      border-radius: 18px;
-      padding: 40px 32px;
-    }
-
-    .value-number {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--blue);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .value-title {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--text-title);
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-
-    .value-desc {
-      font-size: 14px;
-      color: var(--text-body);
-      line-height: 1.7;
-    }
-
-    /* ─── CTA ─── */
-    #cta {
-      background: var(--bg-dark);
-      padding: 110px 80px;
-      text-align: center;
-    }
-
-    #cta h2 {
-      font-size: clamp(28px, 4vw, 52px);
-      font-weight: 800;
-      color: white;
-      letter-spacing: -0.03em;
-      margin-bottom: 18px;
-    }
-
-    #cta p {
-      font-size: 16px;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 40px;
-      max-width: 440px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.65;
-    }
-
-    .cta-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn-white {
-      background: white;
-      color: var(--bg-dark);
-      padding: 16px 32px;
-      border-radius: 50px;
-      font-size: 15px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    .btn-white:hover { opacity: 0.9; }
-
-    .btn-outline-white {
-      border: 1.5px solid rgba(255,255,255,0.25);
-      color: white;
-      padding: 16px 32px;
-      border-radius: 50px;
-      font-size: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: border-color 0.2s;
-    }
-
-    .btn-outline-white:hover { border-color: rgba(255,255,255,0.5); }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--bg-dark);
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding: 36px 80px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .footer-brand {
-      color: white;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: -0.01em;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-    }
-
-    .footer-links a {
-      color: rgba(255,255,255,0.35);
-      text-decoration: none;
-      font-size: 13px;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: rgba(255,255,255,0.7); }
-
-    .footer-copy {
-      color: rgba(255,255,255,0.25);
-      font-size: 12px;
-    }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      #hero { padding: 110px 32px 80px; }
-      #about, #values, #cta { padding: 80px 32px; }
-      footer { padding: 32px; flex-direction: column; text-align: center; }
-      .values-grid { grid-template-columns: 1fr; }
-      nav { gap: 12px; padding: 10px 12px; }
-    }
-
-    @media (max-width: 480px) {
-      #hero { padding: 100px 20px 60px; }
-      #about, #values, #cta { padding: 60px 20px; }
-      footer { padding: 28px 20px; }
-    }
-
-    /* ─── STORYBRAND SECTIONS ─── */
-    #problem { background: var(--bg-dark); padding: 100px 80px; }
-    #guide { background: var(--white); padding: 100px 80px; }
-    #plan { background: var(--bg-light); padding: 100px 80px; }
-    #event { background: var(--white); padding: 100px 80px; }
-    #offer { background: var(--white); padding: 0 80px 100px; }
-    .offer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1040px; margin: 0 auto; }
-    .offer-grid .value-card { background: var(--bg-light); }
-    #offer .values-header { padding-top: 0; }
-
-    .narrow { max-width: 800px; margin: 0 auto; }
-    .eyebrow { font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px; display: inline-flex; align-items: center; gap: 8px; }
-
-    #problem h2, #guide h2 { font-size: clamp(28px, 3.5vw, 48px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.12; margin-bottom: 28px; }
-    #problem h2 { color: white; }
-    #problem .eyebrow { color: #9A9AFF; }
-    #problem .eyebrow .dot-blue { background: #9A9AFF; }
-    #problem p { font-size: 18px; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 20px; }
-    #problem p strong { color: white; font-weight: 600; }
-    #guide p { font-size: 18px; color: var(--text-body); line-height: 1.8; margin-bottom: 20px; }
-
-    .event-card { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-    .event-card img { width: 100%; height: auto; display: block; border-radius: 18px; background: var(--bg-light); }
-    .event-card h2 { font-size: clamp(28px, 3.2vw, 44px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 18px; }
-    .event-card p { font-size: 16px; color: var(--text-body); line-height: 1.75; margin-bottom: 22px; }
-    .event-facts { list-style: none; margin-bottom: 28px; border-top: 1px solid rgba(48,43,43,0.12); }
-    .event-facts li { padding: 12px 0; border-bottom: 1px solid rgba(48,43,43,0.12); font-size: 15px; color: var(--text-body); display: flex; gap: 16px; }
-    .event-facts li span:first-child { font-weight: 700; color: var(--text-title); min-width: 72px; }
-
-    @media (max-width: 900px) {
-      #problem, #guide, #plan, #event { padding: 80px 32px; }
-      #offer { padding: 0 32px 80px; }
-      .offer-grid { grid-template-columns: 1fr; }
-      .event-card { grid-template-columns: 1fr; gap: 36px; }
-    }
-    @media (max-width: 480px) {
-      #problem, #guide, #plan, #event { padding: 60px 20px; }
-      #offer { padding: 0 20px 60px; }
-      .nav-links { display: none; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christian Tech Founders | Community for Christian Entrepreneurs in Tech</title>
+<meta name="description" content="A community for Christian entrepreneurs in tech who put God first. Sunday evenings with worship, sermons on AI, talent alignment and project support in Amsterdam.">
+<link rel="canonical" href="https://www.christiantechfounders.com/">
+<link rel="alternate" hreflang="en" href="https://www.christiantechfounders.com/"><link rel="alternate" hreflang="nl" href="https://www.christiantechfounders.com/nl/"><link rel="alternate" hreflang="x-default" href="https://www.christiantechfounders.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Christian Tech Founders | Community for Christian Entrepreneurs in Tech">
+<meta property="og:description" content="A community for Christian entrepreneurs in tech who put God first. Sunday evenings with worship, sermons on AI, talent alignment and project support in Amsterdam.">
+<meta property="og:url" content="https://www.christiantechfounders.com/">
+<meta property="og:image" content="https://www.christiantechfounders.com/assets/coffee-and-calling-amsterdam.webp">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#D3D3D3">
+<link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.christiantechfounders.com/#organization", "name": "Christian Tech Founders", "url": "https://www.christiantechfounders.com/", "logo": "https://www.christiantechfounders.com/assets/img/logo.svg", "description": "A community for Christian entrepreneurs and builders in tech who put God first. Sunday evenings with worship and prayer, sermons on AI and technology, talent alignment sessions and project support."}, {"@type": "WebSite", "@id": "https://www.christiantechfounders.com/#website", "url": "https://www.christiantechfounders.com/", "name": "Christian Tech Founders", "publisher": {"@id": "https://www.christiantechfounders.com/#organization"}, "inLanguage": ["en", "nl"]}]}</script>
 </head>
 <body>
-
-<!-- ─── NAV ─── -->
-<nav>
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-icon">
-      <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-        <rect x="1" y="1" width="5" height="5" fill="white" opacity="0.6"/>
-        <rect x="7" y="1" width="5" height="5" fill="white"/>
-        <rect x="1" y="7" width="5" height="5" fill="white"/>
-        <rect x="7" y="7" width="5" height="5" fill="white" opacity="0.4"/>
-      </svg>
-    </div>
-    CTF
-  </a>
-  <div class="nav-links">
-    <a href="#problem">Why</a>
-    <a href="#offer">What we do</a>
-    <a href="blog/index.html">Blog</a>
-    <div class="nav-sep"></div>
+<a class="skip" href="#main" style="position:absolute;left:-9999px">Skip to content</a>
+<header class="site-header">
+  <div class="wrap hdr">
+    <a class="hdr-brand" href="/" aria-label="Christian Tech Founders"><svg class="logo-mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="4" fill="#0B0B0B"/><path d="M6 6.5h9M6 6.5v13M6 12.5h6" stroke="#fff" stroke-width="2.6" fill="none"/><path d="M20.5 5.5 13.5 21" stroke="#fff" stroke-width="2.6"/></svg><span class="name">Christian Tech Founders</span></a>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+    <nav class="hdr-nav" id="nav">
+      <a href="/insights/">Insights</a><a href="/library/">Library</a><a href="/founders/">Founders</a><a href="/#event">Next event</a>
+      <span class="lang"><a href="/" class="on" hreflang="en" lang="en">EN</a><a href="/nl/" class="" hreflang="nl" lang="nl">NL</a></span>
+      <a class="btn" href="https://luma.com/rnxcss9v" target="_blank" rel="noopener">Join the next event</a>
+    </nav>
+    <svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg>
   </div>
-  <a href="https://luma.com/rnxcss9v" class="nav-cta" target="_blank" rel="noopener">
-    <span class="dot-blue"></span>
-    Join the next event
-  </a>
-</nav>
+</header>
+<main id="main">
 
-<!-- ─── HERO ─── -->
-<section id="hero">
-
-  <div class="hero-lines">
-    <svg viewBox="0 0 700 900" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M700 20 C500 120 300 200 100 180 C-60 165 -80 300 0 400" stroke="#0000FF" stroke-width="1" fill="none"/>
-      <path d="M700 80 C500 180 300 260 100 240 C-60 225 -80 360 0 460" stroke="#0000FF" stroke-width="1" fill="none"/>
-      <path d="M700 140 C500 240 300 320 100 300 C-60 285 -80 420 0 520" stroke="#0000FF" stroke-width="0.8" fill="none"/>
-      <path d="M700 200 C500 300 300 380 100 360 C-60 345 -80 480 0 580" stroke="#0000FF" stroke-width="0.8" fill="none"/>
-      <path d="M700 -40 C500 60 300 140 100 120 C-60 105 -80 240 0 340" stroke="#0000FF" stroke-width="0.6" fill="none"/>
-      <path d="M700 260 C500 360 300 440 100 420 C-60 405 -80 540 0 640" stroke="#0000FF" stroke-width="0.6" fill="none"/>
-      <path d="M700 320 C500 420 300 500 100 480 C-60 465 -80 600 0 700" stroke="#0000FF" stroke-width="0.5" fill="none"/>
-      <path d="M700 380 C500 480 300 560 100 540 C-60 525 -80 660 0 760" stroke="#0000FF" stroke-width="0.5" fill="none"/>
-      <path d="M700 440 C500 540 300 620 100 600 C-60 585 -80 720 0 820" stroke="#0000FF" stroke-width="0.4" fill="none"/>
-    </svg>
-  </div>
-
-  <div class="hero-content">
-    <h1>A community for Christian founders building in tech<span class="hero-cursor"></span></h1>
-    <p class="sub">For entrepreneurs who put God first and build with technology. Meet fresh, like-minded people, discover where your talents fit and do good things together with God.</p>
-    <div class="hero-buttons">
-      <a href="https://luma.com/rnxcss9v" class="btn-dark" target="_blank" rel="noopener">
-        <span class="dot-blue"></span>
-        Join the next event
-      </a>
-      <a href="#plan" class="btn-outline">
-        <span class="dot-blue"></span>
-        How it works
-      </a>
-    </div>
-  </div>
-
-</section>
-
-<!-- ─── PROBLEM ─── -->
-<section id="problem">
-  <div class="narrow">
-    <div class="eyebrow"><span class="dot-blue"></span>Sound familiar?</div>
-    <h2>Building alone is harder than it should be.</h2>
-    <p>You love God and you love building. But church friends do not always get startups, and tech peers do not always get your faith. So the big questions stay with you. <strong>Is my company part of my calling? Am I using my gifts where God wants them?</strong></p>
-    <p>Deadlines, metrics and worries keep pulling your eyes to a lower place. Meanwhile a few giants shape the technology the whole world uses, and Christian builders stay scattered. The talents God gave us end up working in the wrong places, or not at all.</p>
-  </div>
-</section>
-
-<!-- ─── GUIDE ─── -->
-<section id="guide">
-  <div class="narrow">
-    <div class="eyebrow"><span class="dot-blue"></span>Why we exist</div>
-    <h2>We know the tension. We live it too.</h2>
-    <p>We know what it feels like to stand between two worlds, deep in faith and deep in technology, as if no one fully understands what you see.</p>
-    <p>We believe a calling from God means standing in the place that lines up as closely as possible with your talents. There are thousands of things you could do. But when you stand where your gifts fit, you shine His light like a kaleidoscope, onto as many people as possible, as strongly as possible.</p>
-    <p>That is why we started Christian Tech Founders. We bring Christian founders, developers and designers together around dinner, worship and honest conversation, so you can find your people and take your next step. Our evenings, called Coffee &amp; Calling, start in Amsterdam.</p>
-  </div>
-</section>
-
-<!-- ─── WHAT WE DO ─── -->
-<section id="offer">
-  <div class="values-header">
-    <h2>What we do</h2>
-    <p>Everything is built around one goal: aligning your business with God.</p>
-  </div>
-  <div class="offer-grid">
-    <div class="value-card">
-      <div class="value-number">Sunday evenings</div>
-      <div class="value-title">Worship and pray together</div>
-      <p class="value-desc">Worship lifts your eyes from the low things that steal your attention. It moves us to compassion, and from there to mission and serving. We explore that together, and pray for each other and our work.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-number">Sermons</div>
-      <div class="value-title">AI, technology and God&#8217;s real estate</div>
-      <p class="value-desc">Honest teaching on AI and technology, how they shape a world that is often dark, and how we can claim more space for God&#8217;s presence in it.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-number">Talent alignment</div>
-      <div class="value-title">Find where your gifts fit</div>
-      <p class="value-desc">In a talent alignment session you discover where your skills and passions have the most impact, so you can align your business with God instead of guessing.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-number">Projects</div>
-      <div class="value-title">Get help to build</div>
-      <p class="value-desc">Bring your project. We help you move it forward and publish it on our site, so you can find funding and people who want to build with you.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ─── PLAN ─── -->
-<section id="plan">
-  <div class="values-header">
-    <h2>How it works</h2>
-    <p>Three simple steps from building alone to building together.</p>
-  </div>
-  <div class="values-grid">
-    <div class="value-card">
-      <div class="value-number">Step 01</div>
-      <div class="value-title">Sign up for an evening</div>
-      <p class="value-desc">Pick the next Coffee &amp; Calling and reserve your seat on Luma. It takes a minute.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-number">Step 02</div>
-      <div class="value-title">Meet your people</div>
-      <p class="value-desc">Share dinner, worship together and talk with founders who understand both your faith and your work.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-number">Step 03</div>
-      <div class="value-title">Take your next step</div>
-      <p class="value-desc">Leave with new friends, fresh perspective and a clearer sense of where your talents belong.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ─── NEXT EVENT ─── -->
-<section id="event">
-  <div class="event-card">
-    <img src="assets/coffee-and-calling-amsterdam.webp" width="1581" height="1263" alt="Coffee &amp; Calling Amsterdam poster by Christian Tech Founders">
-    <div>
-      <div class="eyebrow"><span class="dot-blue"></span>Next event</div>
-      <h2>Coffee &amp; Calling: Aligning Your Business With God</h2>
-      <p>An evening with dinner, open worship and a sermon on technology, AI and our role in the world. Open to everyone who feels drawn to it, including people still exploring faith.</p>
-      <ul class="event-facts">
-        <li><span>When</span><span>Sunday 10 January 2027, 18:00 to 22:00</span></li>
-        <li><span>Where</span><span>Amsterdam</span></li>
-        <li><span>Ticket</span><span>Pay what you want, from &euro;0.50</span></li>
-        <li><span>Extra</span><span>Optional coworking from 13:00</span></li>
-      </ul>
-      <div class="hero-buttons">
-        <a href="https://luma.com/rnxcss9v" class="btn-dark" target="_blank" rel="noopener">
-          <span class="dot-blue"></span>
-          Sign up on Luma
-        </a>
-        <a href="blog/christian-entrepreneurs-coffee-and-calling-amsterdam.html" class="btn-outline">
-          <span class="dot-blue"></span>
-          Read more
-        </a>
+<section class="hero">
+  <div class="wrap">
+    <div class="ticket">
+      <div class="ticket-head"><svg class="logo-mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="4" fill="#0B0B0B"/><path d="M6 6.5h9M6 6.5v13M6 12.5h6" stroke="#fff" stroke-width="2.6" fill="none"/><path d="M20.5 5.5 13.5 21" stroke="#fff" stroke-width="2.6"/></svg><span class="brand">Christian Tech Founders</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+      <div class="ticket-body hero-grid">
+        <div>
+          <span class="label">Coffee &amp; Calling / Amsterdam</span>
+          <h1 class="h1">A community for Christian founders building in tech</h1>
+          <p class="lead">For entrepreneurs who put God first and build with technology. Meet fresh, like-minded people, discover where your talents fit and do good things together with God.</p>
+          <div class="btn-row">
+            <a class="btn" href="https://luma.com/rnxcss9v" target="_blank" rel="noopener">Join the next event <span class="arrow">&rarr;</span></a>
+            <a class="btn alt" href="#how">How it works</a>
+          </div>
+        </div>
+        <div>
+          <div class="cosmos cosmos-panel"><span class="pixel">Amsterdam</span></div>
+          <div class="hero-meta"><span>Next: 10.01.2027</span><span>From €0.50</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── CTA ─── -->
-<section id="cta">
-  <h2>Don&#8217;t carry your calling alone.</h2>
-  <p>Picture a table of founders who pray for your company, challenge your ideas and celebrate your wins. It starts with one evening.</p>
-  <div class="cta-buttons">
-    <a href="https://luma.com/rnxcss9v" class="btn-white" target="_blank" rel="noopener">Join the next event</a>
-    <a href="blog/index.html" class="btn-outline-white">Read the blog</a>
+<section class="cosmos dim band on-dark" id="problem">
+  <div class="wrap narrow" style="margin:0 auto">
+    <div class="sec-head"><span class="label">[01] Sound familiar?</span><h2 class="h2">Building alone is harder than it should be.</h2></div>
+    <p class="lead" style="max-width:none;margin-bottom:18px">You love God and you love building. But church friends do not always get startups, and tech peers do not always get your faith. So the big questions stay with you. <strong>Is my company part of my calling? Am I using my gifts where God wants them?</strong></p>
+    <p class="lead" style="max-width:none">Deadlines, metrics and worries keep pulling your eyes to a lower place. Meanwhile a few giants shape the technology the whole world uses, and Christian builders stay scattered.</p>
   </div>
 </section>
 
-<!-- ─── FOOTER ─── -->
-<footer>
-  <div class="footer-brand">Christian Tech Founders</div>
-  <div class="footer-links">
-    <a href="#problem">Why</a>
-    <a href="#offer">What we do</a>
-    <a href="#plan">How it works</a>
-    <a href="blog/index.html">Blog</a>
+<section id="why">
+  <div class="wrap">
+    <div class="ticket">
+      <div class="ticket-head"><svg class="logo-mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="4" fill="#0B0B0B"/><path d="M6 6.5h9M6 6.5v13M6 12.5h6" stroke="#fff" stroke-width="2.6" fill="none"/><path d="M20.5 5.5 13.5 21" stroke="#fff" stroke-width="2.6"/></svg><span class="brand">Christian Tech Founders</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+      <div class="ticket-body" style="max-width:860px">
+        <div class="sec-head" style="margin-bottom:22px"><span class="label">[02] Why we exist</span><h2 class="h2">We know the tension. We live it too.</h2></div>
+        <p class="lead" style="max-width:none;margin-bottom:16px">We know what it feels like to stand between two worlds, deep in faith and deep in technology, as if no one fully understands what you see.</p>
+        <p class="lead" style="max-width:none;margin-bottom:16px">We believe a calling from God means standing in the place that lines up as closely as possible with your talents. There are thousands of things you could do. But when you stand where your gifts fit, you shine His light like a kaleidoscope, onto as many people as possible, as strongly as possible.</p>
+        <p class="lead" style="max-width:none">That is why we started Christian Tech Founders: to bring Christ-led founders, developers and designers together around dinner, worship and honest conversation.</p>
+      </div>
+    </div>
   </div>
-  <div class="footer-copy">&#169; 2026 Christian Tech Founders</div>
-</footer>
+</section>
 
+<section id="offer" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><span class="label">[03] What we do</span><h2 class="h2">Align your business with God</h2></div>
+    <div class="grid g4"><div class="ticket"><div class="card-head"><span>Sunday evenings</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+      <div class="card-body"><h3 class="h3">Worship and pray together</h3><p>Worship lifts your eyes from the low things that steal your attention. It moves us to compassion, and from there to mission and serving.</p></div></div><div class="ticket"><div class="card-head"><span>Sermons</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+      <div class="card-body"><h3 class="h3">AI, tech and God&#x27;s real estate</h3><p>Honest teaching on AI and technology, how they shape a world that is often dark, and how we claim more space for God&#x27;s presence in it.</p></div></div><div class="ticket"><div class="card-head"><span>Talent alignment</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+      <div class="card-body"><h3 class="h3">Find where your gifts fit</h3><p>In a talent alignment session you discover where your skills and passions have the most impact, so you stop guessing.</p></div></div><div class="ticket"><div class="card-head"><span>Projects</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+      <div class="card-body"><h3 class="h3">Get help to build</h3><p>Bring your project. We help you move it forward and publish it on our site, so you can find funding and people to build with.</p></div></div></div>
+  </div>
+</section>
+
+<section id="how" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><span class="label">[04] How it works</span><h2 class="h2">From building alone to building together</h2></div>
+    <div class="grid g3"><div class="ticket"><div class="card-head"><span>Step 01</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+      <div class="card-body"><span class="pixel ink step-num">01</span><h3 class="h3">Sign up for an evening</h3><p>Pick the next Coffee &amp; Calling and reserve your seat on Luma. You choose what you pay.</p></div></div><div class="ticket"><div class="card-head"><span>Step 02</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+      <div class="card-body"><span class="pixel ink step-num">02</span><h3 class="h3">Meet your people</h3><p>Share dinner, worship together and talk with founders who understand both your faith and your work.</p></div></div><div class="ticket"><div class="card-head"><span>Step 03</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+      <div class="card-body"><span class="pixel ink step-num">03</span><h3 class="h3">Take your next step</h3><p>Leave with new friends, fresh perspective and a clearer sense of where your talents belong.</p></div></div></div>
+  </div>
+</section>
+
+<section id="event" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><span class="label">[05] Next event</span></div>
+    <div class="ticket">
+      <div class="ticket-head"><svg class="logo-mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="4" fill="#0B0B0B"/><path d="M6 6.5h9M6 6.5v13M6 12.5h6" stroke="#fff" stroke-width="2.6" fill="none"/><path d="M20.5 5.5 13.5 21" stroke="#fff" stroke-width="2.6"/></svg><span class="brand">Coffee &amp; Calling</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+      <div class="event-grid">
+        <div class="poster"><img src="/assets/coffee-and-calling-amsterdam.webp" alt="Coffee &amp; Calling Amsterdam poster" width="1581" height="1263" loading="lazy"></div>
+        <div class="ticket-body">
+          <h2 class="h2">Coffee &amp; Calling</h2>
+          <p class="pixel ink" style="font-size:clamp(18px,2.2vw,26px);margin:14px 0 18px">Aligning Your Business With God</p>
+          <p class="muted">An evening with dinner, open worship and a sermon on technology, AI and our role in the world. Open to everyone who feels drawn to it, including people still exploring faith.</p>
+          <ul class="facts"><li><b>When</b><span>Sunday 10 January 2027, 18:00 to 22:00</span></li><li><b>Where</b><span>Amsterdam</span></li><li><b>Ticket</b><span>Pay what you want, from €0.50</span></li><li><b>Extra</b><span>Optional coworking from 13:00</span></li></ul>
+          <div class="btn-row">
+            <a class="btn" href="https://luma.com/rnxcss9v" target="_blank" rel="noopener">Sign up on Luma <span class="arrow">&rarr;</span></a>
+            <a class="btn alt" href="/insights/christian-entrepreneurs-coffee-and-calling-amsterdam/">Read more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head" style="grid-template-columns:1fr auto;align-items:end">
+      <div style="display:grid;gap:16px"><span class="label">[06] Insights</span><h2 class="h2">Read before you come</h2></div>
+      <a class="btn alt" href="/insights/">All insights <span class="arrow">&rarr;</span></a>
+    </div>
+    <div class="grid g3"><a class="ticket" href="/insights/faith-and-work-worship/">
+  <div class="card-head"><span>Worship</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+  
+  <div class="card-body">
+    <span class="muted" style="font-size:12px">2 Nov 2026 / 4 min read</span>
+    <h3 class="h3">Faith and Work: What Brings Your Eyes to a Lower Place?</h3>
+    <p>Faith and work connect through worship. How worship lifts your eyes, leads to compassion and mission, and changes the way founders build.</p>
+    <span class="more">Read more <span class="arrow">&rarr;</span></span>
+  </div>
+</a><a class="ticket" href="/insights/finding-your-purpose-in-god/">
+  <div class="card-head"><span>Purpose</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+  
+  <div class="card-body">
+    <span class="muted" style="font-size:12px">2 Nov 2026 / 5 min read</span>
+    <h3 class="h3">Finding Your Purpose in God: A Guide for People Who Build</h3>
+    <p>Finding your purpose in God starts with worship, your talents and the people around you. A practical guide for Christian founders and builders in tech.</p>
+    <span class="more">Read more <span class="arrow">&rarr;</span></span>
+  </div>
+</a><a class="ticket" href="/insights/god-given-talents-calling/">
+  <div class="card-head"><span>Calling</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+  
+  <div class="card-body">
+    <span class="muted" style="font-size:12px">2 Nov 2026 / 5 min read</span>
+    <h3 class="h3">God-Given Talents: How to Find Your Calling From God</h3>
+    <p>Your God-given talents point to your calling. Learn how to discover your talents, the kaleidoscope principle, and how to align your work with God.</p>
+    <span class="more">Read more <span class="arrow">&rarr;</span></span>
+  </div>
+</a></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="ticket">
+      <div class="ticket-head"><svg class="logo-mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="4" fill="#0B0B0B"/><path d="M6 6.5h9M6 6.5v13M6 12.5h6" stroke="#fff" stroke-width="2.6" fill="none"/><path d="M20.5 5.5 13.5 21" stroke="#fff" stroke-width="2.6"/></svg><span class="brand">Christian Tech Founders</span><svg class="barcode" viewBox="0 0 77 40" fill="#0B0B0B" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+      <div class="ticket-body hero-grid" style="grid-template-columns:1.4fr 1fr">
+        <div>
+          <span class="label">[07] Founders</span>
+          <h2 class="h2" style="margin:16px 0 18px">Meet Christ-led founders</h2>
+          <p class="lead" style="margin-bottom:26px">See what other founders are building and where they need help: funding, co-founders, testers or prayer.</p>
+          <a class="btn" href="/founders/">See the founders <span class="arrow">&rarr;</span></a>
+        </div>
+        <div class="grid g2" style="gap:14px">
+          <div class="cosmos" style="aspect-ratio:1;border:var(--line);display:flex;align-items:flex-end;padding:12px"><span class="pixel" style="font-size:34px">EA</span></div><div class="cosmos" style="aspect-ratio:1;border:var(--line);display:flex;align-items:flex-end;padding:12px"><span class="pixel" style="font-size:34px">EB</span></div><div class="cosmos" style="aspect-ratio:1;border:var(--line);display:flex;align-items:flex-end;padding:12px"><span class="pixel" style="font-size:34px">EC</span></div><div class="cosmos" style="aspect-ratio:1;border:var(--line);display:flex;align-items:flex-end;padding:12px"><span class="pixel" style="font-size:34px">+</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cosmos dim band on-dark cta-band">
+  <div class="wrap">
+    <span class="label">Coffee &amp; Calling</span>
+    <h2 class="h2">Don&#x27;t carry your calling alone.</h2>
+    <p class="lead">Picture a table of founders who pray for your company, challenge your ideas and celebrate your wins. It starts with one evening.</p>
+    <div class="btn-row">
+      <a class="btn light" href="https://luma.com/rnxcss9v" target="_blank" rel="noopener">Join the next event <span class="arrow">&rarr;</span></a>
+      <a class="btn" href="/insights/">Read the insights</a>
+    </div>
+  </div>
+</section>
+
+<section id="play" aria-label="Snake game: a snake of blocks moves across a black grid towards a cross. Press any key to play, use the arrow keys to steer.">
+  <canvas role="img" aria-label="Snake game: a snake of blocks moves across a black grid towards a cross. Press any key to play, use the arrow keys to steer."></canvas>
+  <div class="play-hud">
+    <span>[ CTF / Play ]</span>
+    <span class="score" aria-live="polite"><svg viewBox="0 0 14 18" aria-hidden="true"><path d="M5 0h4v5h5v4H9v9H5V9H0V5h5z" fill="#fff"/></svg><span>Score <span data-score>0</span></span><span style="opacity:.6">Best <span data-best>0</span></span></span>
+  </div>
+  <div class="play-hint">Press any key or tap to play</div>
+  <div class="play-over"><div><span class="pixel">Game over</span><p style="font-weight:700;text-transform:uppercase;letter-spacing:.08em">Score: <span data-over-score>0</span></p><p style="margin-top:10px;font-size:12px;opacity:.8">Press any key or tap to try again</p></div></div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ftr">
+      <div>
+        <div class="ftr-brand"><svg class="logo-mark" width="30" height="30" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="4" fill="#fff"/><path d="M6 6.5h9M6 6.5v13M6 12.5h6" stroke="#000" stroke-width="2.6" fill="none"/><path d="M20.5 5.5 13.5 21" stroke="#000" stroke-width="2.6"/></svg>Christian Tech Founders</div>
+        <p class="muted" style="color:rgba(255,255,255,.65);max-width:360px;font-size:14px">A community for Christ-led founders building in tech. Amsterdam.</p>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="/insights/">Insights</a></li><li><a href="/library/">Library</a></li><li><a href="/founders/">Founders</a></li><li><a href="/#event">Next event</a></li></ul></div>
+      <div><h4>Connect</h4><ul><li><a href="https://luma.com/rnxcss9v" target="_blank" rel="noopener">Sign up on Luma</a></li><li><a href="/nl/" hreflang="nl">Nederlands</a></li></ul></div>
+    </div>
+    <div class="ftr-bottom"><span>&copy; 2026 Christian Tech Founders</span><svg class="barcode" viewBox="0 0 77 40" fill="#fff" aria-hidden="true"><rect x="0" width="10" height="40"/><rect x="13" width="10" height="40"/><rect x="26" width="10" height="40"/><rect x="39" width="9" height="40"/><rect x="51" width="6" height="40"/><rect x="60" width="4" height="40"/><rect x="67" width="2" height="40"/><rect x="72" width="2" height="40"/><rect x="76" width="1" height="40"/></svg></div>
+  </div>
+</footer>
+<script>
+(function(){var b=document.querySelector('.menu-btn'),n=document.getElementById('nav');if(!b)return;b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)});})();
+</script>
+<script src="/assets/js/snake.js" defer></script>
 </body>
 </html>

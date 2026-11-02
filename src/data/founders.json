@@ -1,0 +1,83 @@
+[
+  {
+    "slug": "example-founder-a",
+    "example": true,
+    "name": "Example Founder A",
+    "initials": "EA",
+    "location": "Amsterdam",
+    "tags": ["AI", "Education"],
+    "role": { "en": "Founder, AI for Bible study", "nl": "Oprichter, AI voor Bijbelstudie" },
+    "bio": {
+      "en": "Example profile. A software engineer who left a big tech job to build tools that help people read Scripture with understanding. Loves late-night coding and early-morning prayer.",
+      "nl": "Voorbeeldprofiel. Een software engineer die een baan bij big tech verliet om tools te bouwen die mensen helpen de Bijbel met begrip te lezen. Houdt van 's avonds laat programmeren en 's ochtends vroeg bidden."
+    },
+    "projects": [
+      {
+        "name": "Bible study assistant (example)",
+        "stage": { "en": "Prototype", "nl": "Prototype" },
+        "summary": {
+          "en": "An AI assistant that helps small groups prepare Bible studies, with sources and context instead of quick answers.",
+          "nl": "Een AI-assistent die kleine groepen helpt Bijbelstudies voor te bereiden, met bronnen en context in plaats van snelle antwoorden."
+        },
+        "looking_for": { "en": ["Beta testers", "Theology advisors", "Prayer"], "nl": ["Betatesters", "Theologische adviseurs", "Gebed"] }
+      }
+    ]
+  },
+  {
+    "slug": "example-founder-b",
+    "example": true,
+    "name": "Example Founder B",
+    "initials": "EB",
+    "location": "Utrecht",
+    "tags": ["Marketplace", "Creatives"],
+    "role": { "en": "Founder, creative marketplace", "nl": "Oprichter, creatieve marktplaats" },
+    "bio": {
+      "en": "Example profile. A designer turned founder who wants Christian creatives to earn a living with their talents, and churches to look as good as the message they carry.",
+      "nl": "Voorbeeldprofiel. Een designer die oprichter werd en wil dat christelijke creatieven kunnen leven van hun talent, en dat kerken er net zo goed uitzien als de boodschap die ze brengen."
+    },
+    "projects": [
+      {
+        "name": "Creatives for churches (example)",
+        "stage": { "en": "Building MVP", "nl": "MVP in aanbouw" },
+        "summary": {
+          "en": "A marketplace that connects churches and ministries with Christian designers, filmmakers and musicians.",
+          "nl": "Een marktplaats die kerken en bedieningen verbindt met christelijke designers, filmmakers en muzikanten."
+        },
+        "looking_for": { "en": ["Technical co-founder", "Pre-seed funding"], "nl": ["Technische medeoprichter", "Pre-seed financiering"] }
+      },
+      {
+        "name": "Worship visuals pack (example)",
+        "stage": { "en": "Live", "nl": "Live" },
+        "summary": {
+          "en": "Free motion backgrounds and slides for worship teams with small budgets.",
+          "nl": "Gratis bewegende achtergronden en slides voor worshipteams met een klein budget."
+        },
+        "looking_for": { "en": ["Feedback from churches"], "nl": ["Feedback van kerken"] }
+      }
+    ]
+  },
+  {
+    "slug": "example-founder-c",
+    "example": true,
+    "name": "Example Founder C",
+    "initials": "EC",
+    "location": "Rotterdam",
+    "tags": ["Open source", "Church tech"],
+    "role": { "en": "Developer, church tech", "nl": "Developer, kerktechnologie" },
+    "bio": {
+      "en": "Example profile. A full-stack developer who builds open-source tools for churches in the evenings and believes good software can be an act of love.",
+      "nl": "Voorbeeldprofiel. Een full-stack developer die 's avonds open-source tools voor kerken bouwt en gelooft dat goede software een daad van liefde kan zijn."
+    },
+    "projects": [
+      {
+        "name": "Accessible sermons (example)",
+        "stage": { "en": "Open source", "nl": "Open source" },
+        "summary": {
+          "en": "A tool that turns sermon recordings into readable transcripts and translations, so more people can follow along.",
+          "nl": "Een tool die preekopnames omzet in leesbare transcripties en vertalingen, zodat meer mensen mee kunnen doen."
+        },
+        "looking_for": { "en": ["Contributors", "Churches to pilot"], "nl": ["Bijdragers", "Kerken voor een pilot"] }
+      }
+    ]
+  }
+]

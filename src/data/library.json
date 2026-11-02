@@ -1,0 +1,73 @@
+{
+  "findings": [
+    {
+      "date": "2026-11-02",
+      "title": { "en": "Worship lifts your eyes", "nl": "Aanbidding tilt je ogen op" },
+      "body": {
+        "en": "What brings your eyes to a lower place? The goal of worship is to lift your eyes and stop your attention from being stolen by low things. Fix your eyes on what is faithful and loyal.",
+        "nl": "Wat brengt jouw ogen naar een lagere plek? Het doel van aanbidding is je ogen op te tillen, zodat je aandacht niet meer gestolen wordt door lage dingen. Richt je ogen op wat trouw en betrouwbaar is."
+      },
+      "link": "/insights/faith-and-work-worship/"
+    },
+    {
+      "date": "2026-11-02",
+      "title": { "en": "Worship leads to mission", "nl": "Aanbidding leidt tot missie" },
+      "body": {
+        "en": "Worship feels good, but it is not just about feeling good. In worship we let God change us. That brings compassion, and compassion leads to mission and serving.",
+        "nl": "Aanbidding voelt goed, maar het gaat niet alleen om een goed gevoel. In aanbidding laten we God toe om ons te veranderen. Dat brengt compassie, en compassie leidt tot missie en dienen."
+      },
+      "link": "/insights/faith-and-work-worship/"
+    },
+    {
+      "date": "2026-11-02",
+      "title": { "en": "Calling is a place", "nl": "Roeping is een plek" },
+      "body": {
+        "en": "A calling from God means standing in the place that lines up as closely as possible with your talents. There are thousands of things you could do. In your strengths you shine His light like a kaleidoscope.",
+        "nl": "Een roeping van God betekent dat je gaat staan op de plek die zo goed mogelijk in lijn is met je talenten. Er zijn duizenden dingen die je kunt doen. In je kracht laat je Zijn licht schijnen als een caleidoscoop."
+      },
+      "link": "/insights/god-given-talents-calling/"
+    }
+  ],
+  "listen": [
+    {
+      "type": { "en": "Podcast", "nl": "Podcast" },
+      "title": "BibleProject Podcast",
+      "by": "Tim Mackie & Jon Collins",
+      "url": "https://bibleproject.com/podcasts/shows/the-bible-project-podcast/",
+      "desc": {
+        "en": "In-depth conversations about the Bible and theology. Helps you see Scripture as one story that leads to Jesus.",
+        "nl": "Diepgaande gesprekken over de Bijbel en theologie. Helpt je de Bijbel te zien als één verhaal dat naar Jezus leidt."
+      }
+    },
+    {
+      "type": { "en": "Podcast", "nl": "Podcast" },
+      "title": "Making It Work",
+      "by": "Theology of Work Project",
+      "url": "https://www.theologyofwork.org/makingitwork/",
+      "desc": {
+        "en": "A podcast from the Theology of Work Project with a biblical perspective on faith and work.",
+        "nl": "Een podcast van het Theology of Work Project met een Bijbels perspectief op geloof en werk."
+      }
+    },
+    {
+      "type": { "en": "Community", "nl": "Community" },
+      "title": "Faith Driven Entrepreneur",
+      "by": "Global movement",
+      "url": "https://faithdrivenentrepreneur.org/",
+      "desc": {
+        "en": "A global movement with groups, courses and a podcast for Christ-following entrepreneurs.",
+        "nl": "Een wereldwijde beweging met groepen, cursussen en een podcast voor ondernemers die Christus volgen."
+      }
+    },
+    {
+      "type": { "en": "Podcast", "nl": "Podcast" },
+      "title": "The Christian Entrepreneur",
+      "by": "Cody & Esther Cottle",
+      "url": "https://open.spotify.com/show/7FcRIv5bq8FzUmCNelgIaK",
+      "desc": {
+        "en": "A podcast about doing business God's way, with a biblical framework for entrepreneurs.",
+        "nl": "Een podcast over ondernemen op Gods manier, met een Bijbels kader voor ondernemers."
+      }
+    }
+  ]
+}
