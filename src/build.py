@@ -463,7 +463,10 @@ def build_home(lang, posts, founders):
           </div>
         </div>
         <div>
-          <div class="cosmos cosmos-panel"><span class="pixel">Amsterdam</span></div>
+          <div class="cosmos cosmos-panel">
+            <div class="flyers" data-flyers aria-hidden="true">{"".join(f'<div class="flyer">{pixel_avatar(f["avatar"], f["name"])}</div>' for f in founders if f.get("avatar"))}</div>
+            <span class="pixel">Amsterdam</span>
+          </div>
           <div class="hero-meta"><span>{esc(h['meta_l'])}</span><span>{esc(h['meta_r'])}</span></div>
         </div>
       </div>
@@ -581,7 +584,7 @@ def build_home(lang, posts, founders):
 """
     schema = [ORG, SITE]
     write(lang, "/", page(lang, "/", h["title"], h["desc"], main, schema=schema,
-                          scripts='<script src="/assets/js/snake.js" defer></script>'))
+                          scripts='<script src="/assets/js/snake.js" defer></script><script src="/assets/js/flyers.js" defer></script>'))
 
 
 def build_insights(lang, posts):

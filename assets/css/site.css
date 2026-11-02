@@ -202,15 +202,25 @@ section { padding: clamp(56px, 9vw, 112px) 0; }
 .logo-mark { display: block; }
 
 /* ─── About / partners ─── */
-.avatar.px { padding: 0; align-items: flex-end; justify-content: center; overflow: hidden; }
-.px-avatar { width: 92%; height: auto; display: block; image-rendering: pixelated; }
+a.ticket > .avatar { aspect-ratio: auto; height: 150px; }
+a.ticket > .avatar .pixel { font-size: 48px; }
+.avatar.px { padding: 0; aspect-ratio: auto; height: 150px; align-items: flex-end; justify-content: center; overflow: hidden; }
+.px-avatar { width: 112px; height: auto; display: block; image-rendering: pixelated; }
 .px-avatar .lids { opacity: 0; animation: px-blink 5s infinite; }
 @keyframes px-blink { 0%, 93%, 97%, 100% { opacity: 0; } 94%, 96% { opacity: 1; } }
-.founder-top:has(.avatar.px) { grid-template-columns: 320px 1fr; }
-.founder-top .avatar.px { aspect-ratio: 1 / 1; height: auto; align-self: start; }
+.founder-top:has(.avatar.px) { grid-template-columns: 200px 1fr; }
+.founder-top .avatar.px { height: 200px; align-self: start; border-bottom: var(--line); }
+.founder-top .avatar.px .px-avatar { width: 150px; }
+/* flying avatars in the hero panel */
+.flyers { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.flyer { position: absolute; left: 0; top: 0; width: clamp(54px, 7vw, 76px); opacity: 0; transition: opacity 0.6s; will-change: transform; filter: drop-shadow(0 0 10px rgba(124,120,255,0.55)); }
+.flyers.ready .flyer { opacity: 1; }
+.flyer .px-avatar { width: 100%; }
+.cosmos-panel .pixel { position: relative; z-index: 2; }
 .teaser-tile { display: block; border: var(--line); text-decoration: none; transition: transform 0.15s; }
 .teaser-tile:hover { transform: translate(-2px, -2px); }
-.teaser-tile .avatar { border-bottom: 0; aspect-ratio: 1 / 1; }
+.teaser-tile .avatar { border-bottom: 0; aspect-ratio: 1 / 1; height: auto; }
+.teaser-tile .avatar.px .px-avatar { width: 62%; }
 .teaser-tile .avatar .pixel { font-size: 40px; }
 @media (prefers-reduced-motion: reduce) { .px-avatar .lids { animation: none; } }
 .belief-list { list-style: none; border-top: 2px solid #fff; }
