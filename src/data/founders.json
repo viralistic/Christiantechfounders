@@ -4,7 +4,6 @@
     "name": "Marrallisa Kreijkes",
     "initials": "MK",
     "location": "Amsterdam",
-    "photo": "/assets/brand/marrallisa.webp",
     "tags": [
       "Design",
       "Apps",
@@ -75,6 +74,73 @@
         "summary": {
           "en": "Digital agency in Amsterdam.",
           "nl": "Digitaal bureau in Amsterdam."
+        },
+        "looking_for": {
+          "en": [],
+          "nl": []
+        }
+      }
+    ],
+    "linkedin": "https://www.linkedin.com/in/marral/",
+    "avatar": {
+      "style": "curly",
+      "skin": "#F4D5C2",
+      "skin_shadow": "#E3B69D",
+      "hair": "#A8784C",
+      "hair_light": "#D9AE76",
+      "hair_dark": "#76502F",
+      "eyes": "#7D6B2F",
+      "shirt": "#141414",
+      "lips": "#C8706B"
+    }
+  },
+  {
+    "slug": "fride-sveindal",
+    "name": "Fride Sveindal",
+    "initials": "FS",
+    "location": "Oslo",
+    "linkedin": null,
+    "avatar": {
+      "style": "long",
+      "glasses": true,
+      "skin": "#F6DBC9",
+      "skin_shadow": "#E6BBA3",
+      "hair": "#E8C878",
+      "hair_light": "#F7E4A8",
+      "hair_dark": "#C49B4A",
+      "eyes": "#3F4656",
+      "shirt": "#0000FF",
+      "lips": "#CF7F78"
+    },
+    "tags": [
+      "Social enterprise",
+      "Inclusion"
+    ],
+    "role": {
+      "en": "Co-founder, Common Grounds",
+      "nl": "Medeoprichter, Common Grounds"
+    },
+    "bio": {
+      "en": "Fride is co-founder of Common Grounds, a social enterprise that works for more inclusion in working life, together with Sabine Heiberg. With Common Grounds the team won third place and the People's Favourite title in the idea competition of NMBU, the Norwegian University of Life Sciences.",
+      "nl": "Fride is medeoprichter van Common Grounds, een sociale onderneming die zich inzet voor meer inclusie op de werkvloer, samen met Sabine Heiberg. Met Common Grounds won het team de derde plaats en de titel Publieksfavoriet in de ideeënwedstrijd van NMBU, de Noorse universiteit voor levenswetenschappen."
+    },
+    "links": [
+      {
+        "label": "mosaikkutvikling.no",
+        "url": "https://www.mosaikkutvikling.no"
+      }
+    ],
+    "projects": [
+      {
+        "name": "Common Grounds",
+        "url": "https://www.mosaikkutvikling.no",
+        "stage": {
+          "en": "Social enterprise",
+          "nl": "Sociale onderneming"
+        },
+        "summary": {
+          "en": "A social enterprise that creates job opportunities and more inclusion in working life.",
+          "nl": "Een sociale onderneming die werkgelegenheid en meer inclusie op de werkvloer creëert."
         },
         "looking_for": {
           "en": [],

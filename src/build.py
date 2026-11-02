@@ -341,6 +341,7 @@ def page(lang, path, title, desc, main, active=None, schema=None, og_image=POSTE
 <script>
 (function(){{var b=document.querySelector('.menu-btn'),n=document.getElementById('nav');if(!b)return;b.addEventListener('click',function(){{var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)}});}})();
 </script>
+<script src="/assets/js/eyes.js" defer></script>
 {scripts}
 </body>
 </html>
@@ -436,7 +437,7 @@ def page_hero(lang, kicker, h1, lead_text, pixel_word):
 
 # ─────────────────────────── Pages ───────────────────────────
 
-def build_home(lang, posts):
+def build_home(lang, posts, founders):
     h, t = HOME[lang], T[lang]
     offer = "".join(f"""<div class="ticket"><div class="card-head"><span>{esc(a)}</span>{barcode()}</div>
       <div class="card-body"><h3 class="h3">{esc(b)}</h3><p>{esc(c)}</p></div></div>""" for a, b, c in h["offer"])
@@ -557,7 +558,8 @@ def build_home(lang, posts):
           <a class="btn" href="{url(lang, '/founders/')}">{h['f_btn']} <span class="arrow">&rarr;</span></a>
         </div>
         <div class="grid g2" style="gap:14px">
-          {"".join(f'<div class="cosmos" style="aspect-ratio:1;border:var(--line);display:flex;align-items:flex-end;padding:12px"><span class="pixel" style="font-size:34px">{x}</span></div>' for x in ["EA", "EB", "EC", "+"])}
+          {"".join(f'<a class="teaser-tile" href="{url(lang, "/founders/" + f["slug"] + "/")}" aria-label="{esc(f["name"])}">{avatar(f)}</a>' for f in founders[:3])}
+          <a class="teaser-tile" href="{url(lang, '/founders/')}" aria-label="{h['f_btn']}"><div class="cosmos avatar"><span class="pixel">+</span></div></a>
         </div>
       </div>
     </div>
@@ -700,11 +702,131 @@ def build_library(lang, lib):
     write(lang, "/library/", page(lang, "/library/", title, desc, main, active="library", schema=schema))
 
 
-def avatar(initials, photo=None, name=""):
-    if photo:
-        return (f'<div class="cosmos avatar photo"><img src="{photo}" alt="{esc(name)}" width="616" height="876" loading="lazy">'
-                f'</div>')
-    return f'<div class="cosmos avatar"><span class="pixel">{esc(initials)}</span></div>'
+def pixel_avatar(spec, name=""):
+    """24x24 pixel-art portrait as inline SVG. Pupils sit in <g class="pupils"> so eyes.js can move them."""
+    px = {}
+
+    def put(x, y, c):
+        if 0 <= x < 24 and 0 <= y < 24:
+            px[(x, y)] = c
+
+    def span(y, x0, x1, c):
+        for x in range(x0, x1 + 1):
+            put(x, y, c)
+
+    skin, shade = spec["skin"], spec["skin_shadow"]
+    hb, hl, hd = spec["hair"], spec["hair_light"], spec["hair_dark"]
+    curly = spec.get("style") == "curly"
+
+    def hair_c(x, y):
+        if curly:
+            if (x + 2 * y) % 5 == 0:
+                return hl
+            if (2 * x + y) % 4 == 0:
+                return hd
+            return hb
+        if x % 4 == 0:
+            return hd
+        if x % 4 == 2 and y % 3:
+            return hl
+        return hb
+
+    # torso
+    span(19, 6, 17, spec["shirt"])
+    span(20, 4, 19, spec["shirt"])
+    for y in (21, 22, 23):
+        span(y, 3, 20, spec["shirt"])
+    # hair (back layer)
+    if curly:
+        rows = {1: [(7, 16)], 2: [(5, 18)], 3: [(4, 19)], 17: [(3, 9), (14, 20)], 18: [(4, 8), (15, 19)], 19: [(4, 6), (17, 19)]}
+        for y in range(4, 17):
+            rows[y] = [(3, 20)]
+    else:
+        rows = {2: [(8, 15)], 3: [(6, 17)]}
+        for y in range(4, 17):
+            rows[y] = [(5, 18)]
+        for y in range(17, 21):
+            rows[y] = [(5, 8), (15, 18)]
+    for y, spans in rows.items():
+        for x0, x1 in spans:
+            for x in range(x0, x1 + 1):
+                put(x, y, hair_c(x, y))
+    # neck and face
+    for y in (16, 17, 18):
+        span(y, 10, 13, skin)
+    span(16, 10, 13, shade)
+    span(19, 10, 13, skin)
+    span(20, 11, 12, skin)
+    span(5, 8, 15, skin)
+    for y in range(6, 14):
+        span(y, 7, 16, skin)
+    span(14, 8, 15, skin)
+    span(15, 9, 14, skin)
+    # front hair
+    if curly:
+        span(5, 7, 16, hb)
+        for x in (7, 8, 10, 13, 15, 16):
+            put(x, 6, hair_c(x, 6))
+        for y in (7, 8, 9, 10, 11, 12):
+            put(7, y, hair_c(7, y)); put(16, y, hair_c(16, y))
+    else:
+        span(5, 8, 15, hb)
+        for x in range(7, 12):
+            put(x, 6, hair_c(x, 6) if x != 7 else hd)
+        for y in range(6, 15):
+            put(7, y, hair_c(7, y)); put(16, y, hair_c(16, y))
+    # brows, eyes, nose, mouth, cheeks
+    span(8, 8, 10, hd)
+    span(8, 13, 15, hd)
+    for y in (9, 10, 11):
+        span(y, 8, 10, "#FFFFFF")
+        span(y, 13, 15, "#FFFFFF")
+    put(11, 12, shade); put(12, 12, shade); put(12, 13, shade)
+    span(14, 10, 13, spec["lips"])
+    put(8, 13, "#EFA99B"); put(15, 13, "#EFA99B")
+    if spec.get("glasses"):
+        frame = spec.get("glasses_color", "#7A5434")
+        for x0 in (7, 12):
+            for x in range(x0, x0 + 5):
+                put(x, 8, frame); put(x, 12, frame)
+            for y in range(8, 13):
+                put(x0, y, frame); put(x0 + 4, y, frame)
+        put(6, 9, frame); put(17, 9, frame)
+        put(11, 11, skin); put(12, 11, skin); put(11, 12, skin); put(12, 12, skin)
+
+    rects = []
+    for y in range(24):
+        x = 0
+        while x < 24:
+            c = px.get((x, y))
+            if not c:
+                x += 1
+                continue
+            x2 = x
+            while px.get((x2 + 1, y)) == c:
+                x2 += 1
+            rects.append(f'<rect x="{x}" y="{y}" width="{x2 - x + 1}" height="1" fill="{c}"/>')
+            x = x2 + 1
+    eye = spec["eyes"]
+    pupils = f'<g class="pupils"><rect x="9" y="10" width="1" height="1" fill="{eye}"/><rect x="14" y="10" width="1" height="1" fill="{eye}"/></g>'
+    lids = (f'<g class="lids"><rect x="8" y="9" width="3" height="3" fill="{skin}"/><rect x="13" y="9" width="3" height="3" fill="{skin}"/>'
+            f'<rect x="8" y="11" width="3" height="1" fill="{hd}"/><rect x="13" y="11" width="3" height="1" fill="{hd}"/></g>')
+    return (f'<svg class="px-avatar" data-eyes viewBox="0 0 24 24" shape-rendering="crispEdges" role="img" aria-label="Pixel art avatar of {esc(name)}">'
+            + "".join(rects) + pupils + lids + "</svg>")
+
+
+def avatar(f):
+    if f.get("avatar"):
+        return f'<div class="cosmos avatar px">{pixel_avatar(f["avatar"], f["name"])}</div>'
+    return f'<div class="cosmos avatar"><span class="pixel">{esc(f["initials"])}</span></div>'
+
+
+def person_links(f, extra_cls="btn alt"):
+    out = ""
+    if f.get("linkedin"):
+        out += f'<a class="btn" href="{esc(f["linkedin"])}" target="_blank" rel="noopener">LinkedIn <span class="arrow">&nearr;</span></a>'
+    out += "".join(f'<a class="{extra_cls}" href="{esc(l["url"])}" target="_blank" rel="noopener">{esc(l["label"])} <span class="arrow">&nearr;</span></a>' for l in f.get("links", []))
+    return out
 
 
 def build_founders(lang, founders):
@@ -717,7 +839,7 @@ def build_founders(lang, founders):
         badge = f'<span class="badge">{t["example"]}</span>' if f.get("example") else ""
         cards += f"""<a class="ticket" href="{url(lang, '/founders/' + f['slug'] + '/')}">
   <div class="card-head"><span>{esc(f['location'])}</span>{badge}</div>
-  {avatar(f['initials'], f.get('photo'), f['name'])}
+  {avatar(f)}
   <div class="card-body"><h3 class="h3">{esc(f['name'])}</h3><span class="muted" style="font-size:13px">{esc(f['role'][lang])}</span>
   <div class="chips">{"".join(f'<span class="chip">{esc(x)}</span>' for x in f['tags'])}</div>
   <span class="more">{count} <span class="arrow">&rarr;</span></span></div>
@@ -746,14 +868,14 @@ def build_founders(lang, founders):
     <div class="ticket" style="margin-top:18px">
       {ticket_head()}
       <div class="founder-top">
-        {avatar(f['initials'], f.get('photo'), f['name'])}
+        {avatar(f)}
         <div class="ticket-body">
           <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">{label(f['location'])}{badge}</div>
           <h1 class="h1" style="font-size:clamp(32px,5vw,60px);margin:16px 0 10px">{esc(f['name'])}</h1>
           <p style="font-weight:700;margin-bottom:14px">{esc(f['role'][lang])}</p>
           <p class="lead">{esc(f['bio'][lang])}</p>
           <div class="chips" style="margin-top:18px">{"".join(f'<span class="chip">{esc(x)}</span>' for x in f['tags'])}</div>
-          {('<div class="btn-row" style="margin-top:22px">' + "".join(f'<a class="btn alt" href="{esc(l["url"])}" target="_blank" rel="noopener">{esc(l["label"])} <span class="arrow">&nearr;</span></a>' for l in f["links"]) + '</div>') if f.get("links") else ""}
+          {('<div class="btn-row" style="margin-top:22px">' + person_links(f) + '</div>') if (f.get("links") or f.get("linkedin")) else ""}
         </div>
       </div>
     </div>
@@ -876,7 +998,7 @@ def build_about(lang, me):
     a, t = ABOUT[lang], T[lang]
     story = "".join(f'<p class="lead" style="max-width:none;margin-bottom:16px">{esc(x)}</p>' for x in a["story"])
     beliefs = "".join(f'<li><span class="pixel ink">0{i + 1}</span><span>{esc(x)}</span></li>' for i, x in enumerate(a["beliefs"]))
-    links = "".join(f'<a class="btn alt" href="{esc(l["url"])}" target="_blank" rel="noopener">{esc(l["label"])} <span class="arrow">&nearr;</span></a>' for l in me["links"])
+    links = person_links(me)
     main = page_hero(lang, "Christian Tech Founders / " + t["nav_about"], a["h1"], a["lead"], "2025") + f"""
 <section style="padding-top:0">
   <div class="wrap">
@@ -902,7 +1024,7 @@ def build_about(lang, me):
     <div class="ticket">
       {ticket_head()}
       <div class="founder-top">
-        {avatar(me['initials'], me.get('photo'), me['name'])}
+        {avatar(me)}
         <div class="ticket-body">
           {label(me['location'])}
           <h2 class="h1" style="font-size:clamp(32px,5vw,60px);margin:16px 0 10px">{esc(me['name'])}</h2>
@@ -927,8 +1049,8 @@ def build_about(lang, me):
 </section>"""
     page_url = abs_url(lang, "/about/")
     person = {"@type": "Person", "@id": DOMAIN + "/#founder", "name": me["name"], "jobTitle": "Founder",
-              "image": DOMAIN + me["photo"], "worksFor": {"@id": DOMAIN + "/#organization"},
-              "sameAs": [l["url"] for l in me["links"] if "viralistic" in l["url"]]}
+              "worksFor": {"@id": DOMAIN + "/#organization"},
+              "sameAs": [x for x in [me.get("linkedin")] if x] + [l["url"] for l in me["links"] if "viralistic" in l["url"]]}
     org = dict(ORG, founder={"@id": DOMAIN + "/#founder"})
     schema = [org, person, {"@type": "AboutPage", "@id": page_url + "#page", "url": page_url, "name": a["title"], "inLanguage": lang,
                             "about": {"@id": DOMAIN + "/#organization"}},
@@ -1094,7 +1216,7 @@ def main():
     paths = ["/", "/about/", "/partners/", "/insights/", "/library/", "/founders/"]
     for lang in LANGS:
         posts = load_posts(lang)
-        build_home(lang, posts)
+        build_home(lang, posts, founders)
         build_insights(lang, posts)
         for p in posts:
             build_post(lang, p, posts)
