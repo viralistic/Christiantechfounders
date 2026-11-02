@@ -56,8 +56,8 @@
           "nl": "Design"
         },
         "summary": {
-          "en": "Marrallisa designed the website for Baptize the Netherlands.",
-          "nl": "Marrallisa ontwierp de website van Baptize the Netherlands."
+          "en": "Marrallisa designed the website for Baptize the Netherlands. Benjamin built it.",
+          "nl": "Marrallisa ontwierp de website van Baptize the Netherlands. Benjamin bouwde hem."
         },
         "looking_for": {
           "en": [],
@@ -141,6 +141,61 @@
         "summary": {
           "en": "A social enterprise that creates job opportunities and more inclusion in working life.",
           "nl": "Een sociale onderneming die werkgelegenheid en meer inclusie op de werkvloer creëert."
+        },
+        "looking_for": {
+          "en": [],
+          "nl": []
+        }
+      }
+    ]
+  },
+  {
+    "slug": "benjamin",
+    "name": "Benjamin",
+    "initials": "B",
+    "location": "Baptize the Netherlands",
+    "linkedin": null,
+    "avatar": {
+      "style": "short",
+      "chin_dimple": true,
+      "skin": "#F2D2BE",
+      "skin_shadow": "#DDB298",
+      "hair": "#7A5235",
+      "hair_light": "#9C7049",
+      "hair_dark": "#553823",
+      "eyes": "#3A3A48",
+      "shirt": "#1F3B5C",
+      "lips": "#C27467"
+    },
+    "tags": [
+      "Development",
+      "Web"
+    ],
+    "role": {
+      "en": "Developer of baptizethenetherlands.com",
+      "nl": "Developer van baptizethenetherlands.com"
+    },
+    "bio": {
+      "en": "Benjamin built the website for Baptize the Netherlands, baptizethenetherlands.com. The design was made by Marrallisa Kreijkes.",
+      "nl": "Benjamin bouwde de website van Baptize the Netherlands, baptizethenetherlands.com. Het ontwerp is gemaakt door Marrallisa Kreijkes."
+    },
+    "links": [
+      {
+        "label": "baptizethenetherlands.com",
+        "url": "https://baptizethenetherlands.com"
+      }
+    ],
+    "projects": [
+      {
+        "name": "Baptize the Netherlands",
+        "url": "https://baptizethenetherlands.com",
+        "stage": {
+          "en": "Website",
+          "nl": "Website"
+        },
+        "summary": {
+          "en": "Benjamin built the website for Baptize the Netherlands, designed by Marrallisa Kreijkes.",
+          "nl": "Benjamin bouwde de website van Baptize the Netherlands, ontworpen door Marrallisa Kreijkes."
         },
         "looking_for": {
           "en": [],

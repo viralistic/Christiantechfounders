@@ -744,6 +744,8 @@ def pixel_avatar(spec, name=""):
         rows = {1: [(7, 16)], 2: [(5, 18)], 3: [(4, 19)], 17: [(3, 9), (14, 20)], 18: [(4, 8), (15, 19)], 19: [(4, 6), (17, 19)]}
         for y in range(4, 17):
             rows[y] = [(3, 20)]
+    elif spec.get("style") == "short":
+        rows = {2: [(8, 15)], 3: [(6, 17)], 4: [(6, 17)], 5: [(6, 17)], 6: [(6, 17)], 7: [(6, 7), (16, 17)], 8: [(6, 7), (16, 17)]}
     else:
         rows = {2: [(8, 15)], 3: [(6, 17)]}
         for y in range(4, 17):
@@ -772,6 +774,14 @@ def pixel_avatar(spec, name=""):
             put(x, 6, hair_c(x, 6))
         for y in (7, 8, 9, 10, 11, 12):
             put(7, y, hair_c(7, y)); put(16, y, hair_c(16, y))
+    elif spec.get("style") == "short":
+        span(5, 7, 16, hb)
+        for x in range(10, 17):
+            put(x, 6, hair_c(x, 6))
+        put(7, 7, hd); put(16, 7, hd)
+        for y in (9, 10, 11):
+            put(6, y, skin); put(17, y, skin)
+        put(6, 10, shade); put(17, 10, shade)
     else:
         span(5, 8, 15, hb)
         for x in range(7, 12):
@@ -787,6 +797,8 @@ def pixel_avatar(spec, name=""):
     put(11, 12, shade); put(12, 12, shade); put(12, 13, shade)
     span(14, 10, 13, spec["lips"])
     put(8, 13, "#EFA99B"); put(15, 13, "#EFA99B")
+    if spec.get("chin_dimple"):
+        put(11, 15, shade); put(12, 15, shade)
     if spec.get("glasses"):
         frame = spec.get("glasses_color", "#7A5434")
         for x0 in (7, 12):
@@ -841,7 +853,7 @@ def build_founders(lang, founders):
         count = (t["project_count"] if n == 1 else t["project_count_pl"]).format(n=n)
         badge = f'<span class="badge">{t["example"]}</span>' if f.get("example") else ""
         cards += f"""<a class="ticket" href="{url(lang, '/founders/' + f['slug'] + '/')}">
-  <div class="card-head"><span>{esc(f['location'])}</span>{badge}</div>
+  <div class="card-head"><span>{esc(f.get('location', ''))}</span>{badge}</div>
   {avatar(f)}
   <div class="card-body"><h3 class="h3">{esc(f['name'])}</h3><span class="muted" style="font-size:13px">{esc(f['role'][lang])}</span>
   <div class="chips">{"".join(f'<span class="chip">{esc(x)}</span>' for x in f['tags'])}</div>
@@ -873,7 +885,7 @@ def build_founders(lang, founders):
       <div class="founder-top">
         {avatar(f)}
         <div class="ticket-body">
-          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">{label(f['location'])}{badge}</div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">{label(f['location']) if f.get('location') else ''}{badge}</div>
           <h1 class="h1" style="font-size:clamp(32px,5vw,60px);margin:16px 0 10px">{esc(f['name'])}</h1>
           <p style="font-weight:700;margin-bottom:14px">{esc(f['role'][lang])}</p>
           <p class="lead">{esc(f['bio'][lang])}</p>
