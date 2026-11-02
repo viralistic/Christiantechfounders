@@ -195,6 +195,13 @@ section { padding: clamp(56px, 9vw, 112px) 0; }
 .play-over .pixel { font-size: clamp(36px, 7vw, 76px); display: block; margin-bottom: 12px; }
 @keyframes blink { to { visibility: hidden; } }
 
+/* ─── Typewriter headings ─── */
+.tw .tw-c { visibility: hidden; }
+.tw .tw-c.on, .tw.tw-done .tw-c { visibility: visible; }
+.tw-cursor { display: inline-block; width: 0.5em; height: 0.82em; margin-left: 0.04em; vertical-align: -0.04em; background: var(--brand-blue); animation: tw-blink 0.9s steps(2, start) infinite; }
+.on-dark .tw-cursor, .snake-sec .tw-cursor { background: var(--violet); }
+@keyframes tw-blink { to { visibility: hidden; } }
+
 /* ─── Brand logo ─── */
 .wordmark { height: 30px; width: auto; display: block; }
 .ticket-head .wordmark { height: 30px; }

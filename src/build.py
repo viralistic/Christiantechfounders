@@ -341,6 +341,7 @@ def page(lang, path, title, desc, main, active=None, schema=None, og_image=POSTE
 <script>
 (function(){{var b=document.querySelector('.menu-btn'),n=document.getElementById('nav');if(!b)return;b.addEventListener('click',function(){{var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)}});}})();
 </script>
+<script src="/assets/js/type.js" defer></script>
 <script src="/assets/js/eyes.js" defer></script>
 {scripts}
 </body>
