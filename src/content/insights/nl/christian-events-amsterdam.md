@@ -1,5 +1,5 @@
 ---
-title: "Christelijke events in Amsterdam: waar gelovigen elkaar ontmoeten"
+title: "Christelijke events in Amsterdam: waar gelovigen samenkomen"
 description: "Op zoek naar christelijke events in Amsterdam? Worshipavonden, Engelstalige kerken, founder-avonden en hoe je ze vindt. Plus Coffee & Calling in 2027."
 slug: christian-events-amsterdam
 date: 2026-11-02

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.christiantechfounders.com/sitemap.xml
+Sitemap: https://christiantechfounders.com/sitemap.xml

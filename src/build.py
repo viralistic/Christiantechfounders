@@ -18,7 +18,7 @@ import markdown
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
-DOMAIN = "https://www.christiantechfounders.com"
+DOMAIN = "https://christiantechfounders.com"  # primary domain on Netlify (www redirects here)
 LUMA = "https://luma.com/rnxcss9v"
 LANGS = ["en", "nl"]
 PREFIX = {"en": "", "nl": "/nl"}
@@ -68,8 +68,8 @@ T = {
 
 HOME = {
     "en": {
-        "title": "Christian Tech Founders | Community for Christian Entrepreneurs in Tech",
-        "desc": "A community for Christian entrepreneurs in tech who put God first. Sunday evenings with worship, sermons on AI, talent alignment and project support in Amsterdam.",
+        "title": "Christian Tech Founders | Christian Entrepreneurs in Tech",
+        "desc": "A community for Christian entrepreneurs in tech who put God first. Worship, sermons on AI, talent alignment and project support in Amsterdam.",
         "hero_label": "Coffee & Calling / Amsterdam",
         "h1": "A community for Christian founders building in tech",
         "lead": "For entrepreneurs who put God first and build with technology. Meet fresh, like-minded people, discover where your talents fit and do good things together with God.",
@@ -115,7 +115,7 @@ HOME = {
         "play_aria": "Snake game: a snake of blocks moves across a black grid towards a cross. Press any key to play, use the arrow keys to steer.",
     },
     "nl": {
-        "title": "Christian Tech Founders | Community voor christelijke ondernemers in tech",
+        "title": "Christian Tech Founders | Christelijke ondernemers in tech",
         "desc": "Een community voor christelijke ondernemers in tech die God op de eerste plek zetten. Zondagavonden met aanbidding, preken over AI en talent alignment.",
         "hero_label": "Coffee & Calling / Amsterdam",
         "h1": "Een community voor christelijke founders die bouwen in tech",
@@ -167,7 +167,7 @@ PAGES = {
     "insights": {
         "en": ("Insights for Christian Founders | Christian Tech Founders", "Thinking on faith, calling, worship and technology for Christ-led founders and builders in tech. Plus invitations to meet in person in Amsterdam.",
                "Insights", "Thinking on faith, calling and technology for Christ-led founders. Plus invitations to meet in person."),
-        "nl": ("Insights voor christelijke founders | Christian Tech Founders", "Gedachten over geloof, roeping, aanbidding en technologie voor founders die Christus volgen. Plus uitnodigingen om elkaar te ontmoeten in Amsterdam.",
+        "nl": ("Insights voor christelijke founders | CTF", "Gedachten over geloof, roeping, aanbidding en technologie voor founders die Christus volgen. Plus uitnodigingen om elkaar te ontmoeten in Amsterdam.",
                "Insights", "Gedachten over geloof, roeping en technologie voor founders die Christus volgen. Plus uitnodigingen om elkaar te ontmoeten."),
     },
     "library": {
@@ -196,8 +196,8 @@ LIB = {
 }
 
 FOUNDERS_NOTICE = {
-    "en": "Profiles marked Example show how this page works. More founder profiles appear here soon. Want your profile and projects here? Come to a Coffee & Calling evening and tell us what you are building.",
-    "nl": "Profielen met het label Voorbeeld laten zien hoe deze pagina werkt. Binnenkort verschijnen hier meer founders. Wil je jouw profiel en projecten hier? Kom naar een Coffee & Calling avond en vertel ons wat je bouwt.",
+    "en": "Want your profile and projects here? Come to a Coffee & Calling evening and tell us what you are building.",
+    "nl": "Wil je jouw profiel en projecten hier? Kom naar een Coffee & Calling avond en vertel ons wat je bouwt.",
 }
 
 
@@ -349,7 +349,16 @@ def page(lang, path, title, desc, main, active=None, schema=None, og_image=POSTE
 """
 
 
+SEO_WARNINGS = []
+
+
 def write(lang, path, doc):
+    m = re.search(r"<title>(.*?)</title>", doc)
+    d = re.search(r'<meta name="description" content="(.*?)">', doc)
+    if m and len(html.unescape(m.group(1))) > 60 and 'name="robots" content="noindex"' not in doc:
+        SEO_WARNINGS.append(f"title {len(html.unescape(m.group(1)))} chars: {url(lang, path)}")
+    if d and len(html.unescape(d.group(1))) > 160 and 'name="robots" content="noindex"' not in doc:
+        SEO_WARNINGS.append(f"description {len(html.unescape(d.group(1)))} chars: {url(lang, path)}")
     p = out_path(lang, path)
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(doc, encoding="utf-8")
@@ -1177,6 +1186,8 @@ def build_404():
 </div></div></section>"""
     doc = page("en", "/404/", "Page not found | Christian Tech Founders", "Page not found.", main)
     doc = doc.replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n<meta name="robots" content="noindex">', 1)
+    doc = re.sub(r'<link rel="(canonical|alternate)"[^>]*>\n?', "", doc)
+    doc = doc.replace('href="/nl/404/"', 'href="/nl/"').replace('href="/404/"', 'href="/"')
     (ROOT / "404.html").write_text(doc, encoding="utf-8")
 
 
@@ -1243,9 +1254,12 @@ def main():
         build_thanks(lang)
     build_404()
     paths += ["/insights/" + p["slug"] + "/" for p in load_posts("en")]
+    paths += ["/founders/" + f["slug"] + "/" for f in founders if not f.get("example")]
     build_redirects()
     build_sitemap(paths)
     print("Built", len(paths) * len(LANGS), "pages + founder profiles")
+    for w in SEO_WARNINGS:
+        print("SEO warning:", w)
 
 
 if __name__ == "__main__":
