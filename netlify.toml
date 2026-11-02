@@ -1,0 +1,16 @@
+# Prebuilt static site: HTML is generated locally with `python3 src/build.py` and committed.
+[build]
+  publish = "."
+  command = "echo 'Prebuilt static site, nothing to build'"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "interest-cohort=()"

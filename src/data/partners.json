@@ -1,0 +1,40 @@
+{
+  "partners": [
+    {
+      "name": "Moralfuel",
+      "domain": "moralfuel.com",
+      "url": "https://moralfuel.com",
+      "desc": {
+        "en": "An app in development by CTF founder Marrallisa Kreijkes.",
+        "nl": "Een app in ontwikkeling van CTF-oprichter Marrallisa Kreijkes."
+      }
+    },
+    {
+      "name": "Baptize the Netherlands",
+      "domain": "baptizethenetherlands.com",
+      "url": "https://baptizethenetherlands.com",
+      "desc": {
+        "en": "Website designed by CTF founder Marrallisa Kreijkes.",
+        "nl": "Website ontworpen door CTF-oprichter Marrallisa Kreijkes."
+      }
+    },
+    {
+      "name": "Shoopshoop",
+      "domain": "shoopshoop.nl",
+      "url": "https://shoopshoop.nl",
+      "desc": {
+        "en": "Partner of Christian Tech Founders.",
+        "nl": "Partner van Christian Tech Founders."
+      }
+    },
+    {
+      "name": "Viralistic",
+      "domain": "viralistic.nl",
+      "url": "https://viralistic.nl",
+      "desc": {
+        "en": "Digital agency in Amsterdam, run by CTF founder Marrallisa Kreijkes.",
+        "nl": "Digitaal bureau in Amsterdam, gerund door CTF-oprichter Marrallisa Kreijkes."
+      }
+    }
+  ]
+}

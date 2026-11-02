@@ -1,6 +1,7 @@
-/* Snake section: demo snake when scrolled into view, real game on any key press. */
+/* Snake in the problem section: demo snake when scrolled into view, real game on any key press.
+   Text hides while playing; at a score of 20 the background turns brand blue. */
 (() => {
-  const sec = document.getElementById('play');
+  const sec = document.querySelector('[data-snake]');
   if (!sec) return;
   const cv = sec.querySelector('canvas');
   const ctx = cv.getContext('2d');
@@ -14,6 +15,8 @@
   // Latin cross, relative to its centre cell
   const CROSS = [[0, -1], [-1, 0], [0, 0], [1, 0], [0, 1], [0, 2]];
   const SAFE_TOP = 3, SAFE_BOTTOM = 3;
+  const BLUE_AT = 20;
+  const BLUE = '#0000FF';
 
   let W = 0, H = 0, cell = 24, cols = 0, rows = 0, offX = 0, offY = 0;
   let mode = 'idle'; // idle | demo | play | over
@@ -54,12 +57,12 @@
   }
 
   function setupDemo() {
-    const y = Math.max(SAFE_TOP, Math.floor(rows * 0.58));
+    const y = Math.max(SAFE_TOP, rows - SAFE_BOTTOM - 1);
     const len = Math.min(12, Math.max(6, Math.floor(cols / 5)));
     snake = [];
     for (let i = 0; i < len; i++) snake.push({ x: len - 1 - i, y });
     dir = { x: 1, y: 0 };
-    cross = { x: Math.max(2, Math.floor(cols * 0.74)), y: Math.max(SAFE_TOP + 1, Math.floor(rows * 0.26)) };
+    cross = { x: Math.max(2, cols - Math.max(3, Math.floor(cols * 0.1))), y: SAFE_TOP + 1 };
   }
 
   function start() {
@@ -71,7 +74,7 @@
     }
     mode = 'play';
     sec.classList.add('playing');
-    sec.classList.remove('over');
+    sec.classList.remove('over', 'blue');
     const y = Math.floor(rows / 2);
     snake = [];
     for (let i = 0; i < 5; i++) snake.push({ x: 6 - i, y });
@@ -97,7 +100,7 @@
 
   function exitGame() {
     mode = 'demo';
-    sec.classList.remove('playing', 'over');
+    sec.classList.remove('playing', 'over', 'blue');
     setupDemo();
   }
 
@@ -122,6 +125,7 @@
       grow += 3;
       step = Math.max(65, step - 3);
       if (scoreEl) scoreEl.textContent = score;
+      if (score >= BLUE_AT) sec.classList.add('blue');
       placeCross();
     }
   }
@@ -131,9 +135,10 @@
   }
 
   function draw() {
-    ctx.fillStyle = '#000';
+    const blue = sec.classList.contains('blue');
+    ctx.fillStyle = blue ? BLUE : '#000';
     ctx.fillRect(0, 0, W, H);
-    ctx.strokeStyle = 'rgba(255,255,255,0.09)';
+    ctx.strokeStyle = blue ? 'rgba(255,255,255,0.16)' : 'rgba(255,255,255,0.09)';
     ctx.lineWidth = 1;
     ctx.beginPath();
     for (let i = 0; i <= cols; i++) { const x = offX + i * cell + 0.5; ctx.moveTo(x, offY); ctx.lineTo(x, offY + rows * cell); }
@@ -226,7 +231,7 @@
       inView = en.isIntersecting;
       if (inView && mode === 'idle') { mode = reduce ? 'idle' : 'demo'; setupDemo(); draw(); }
     });
-  }, { threshold: 0.35 }).observe(sec);
+  }, { threshold: 0.5 }).observe(sec);
 
   window.addEventListener('resize', resize);
   resize();

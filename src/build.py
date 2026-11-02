@@ -33,7 +33,7 @@ esc = html.escape
 
 T = {
     "en": {
-        "nav_insights": "Insights", "nav_library": "Library", "nav_founders": "Founders", "nav_event": "Next event",
+        "nav_insights": "Insights", "nav_library": "Library", "nav_founders": "Founders", "nav_event": "Next event", "nav_about": "About", "nav_partners": "Partners",
         "join": "Join the next event", "menu": "Menu",
         "footer_tag": "A community for Christ-led founders building in tech. Amsterdam.",
         "explore": "Explore", "connect": "Connect", "signup": "Sign up on Luma", "switch": "Nederlands",
@@ -49,7 +49,7 @@ T = {
         "skip": "Skip to content",
     },
     "nl": {
-        "nav_insights": "Insights", "nav_library": "Bibliotheek", "nav_founders": "Founders", "nav_event": "Volgende event",
+        "nav_insights": "Insights", "nav_library": "Bibliotheek", "nav_founders": "Founders", "nav_event": "Volgende event", "nav_about": "Over ons", "nav_partners": "Partners",
         "join": "Kom naar het volgende event", "menu": "Menu",
         "footer_tag": "Een community voor founders die Christus volgen en bouwen in tech. Amsterdam.",
         "explore": "Ontdek", "connect": "Contact", "signup": "Aanmelden op Luma", "switch": "English",
@@ -196,8 +196,8 @@ LIB = {
 }
 
 FOUNDERS_NOTICE = {
-    "en": "These are example profiles that show how this page works. Real founder profiles appear here soon. Want your profile and projects here? Come to a Coffee & Calling evening and tell us what you are building.",
-    "nl": "Dit zijn voorbeeldprofielen die laten zien hoe deze pagina werkt. Echte founderprofielen verschijnen hier binnenkort. Wil je jouw profiel en projecten hier? Kom naar een Coffee & Calling avond en vertel ons wat je bouwt.",
+    "en": "Profiles marked Example show how this page works. More founder profiles appear here soon. Want your profile and projects here? Come to a Coffee & Calling evening and tell us what you are building.",
+    "nl": "Profielen met het label Voorbeeld laten zien hoe deze pagina werkt. Binnenkort verschijnen hier meer founders. Wil je jouw profiel en projecten hier? Kom naar een Coffee & Calling avond en vertel ons wat je bouwt.",
 }
 
 
@@ -221,11 +221,15 @@ def fmt_date(lang, iso):
     return f"{d.day} {T[lang]['months'][d.month - 1]} {d.year}"
 
 
-def logo(size=26, bg="#0B0B0B", fg="#fff"):
-    return (f'<svg class="logo-mark" width="{size}" height="{size}" viewBox="0 0 26 26" aria-hidden="true">'
-            f'<rect width="26" height="26" rx="4" fill="{bg}"/>'
-            f'<path d="M6 6.5h9M6 6.5v13M6 12.5h6" stroke="{fg}" stroke-width="2.6" fill="none"/>'
-            f'<path d="M20.5 5.5 13.5 21" stroke="{fg}" stroke-width="2.6"/></svg>')
+def logo(size=26, white=False):
+    return (f'<img class="logo-mark" src="/assets/brand/icon-{"white" if white else "black"}.svg" '
+            f'width="{size}" height="{size}" alt="">')
+
+
+def wordmark(white=False, h=24, cls="wordmark"):
+    w = round(h * (643 / 101 if white else 318 / 48))
+    return (f'<img class="{cls}" src="/assets/brand/logo-full-{"white" if white else "black"}.svg" '
+            f'width="{w}" height="{h}" alt="Christian Tech Founders">')
 
 
 def barcode(color="#0B0B0B", cls="barcode"):
@@ -247,8 +251,8 @@ def label(text):
 
 
 def ticket_head(title="Christian Tech Founders", bar=True):
-    return (f'<div class="ticket-head">{logo()}<span class="brand">{esc(title)}</span>'
-            f'{barcode() if bar else ""}</div>')
+    mark = wordmark(h=26) if title == "Christian Tech Founders" else f'{logo()}<span class="brand">{esc(title)}</span>'
+    return f'<div class="ticket-head">{mark}{barcode() if bar else ""}</div>'
 
 
 def ld(graph):
@@ -256,7 +260,7 @@ def ld(graph):
 
 
 ORG = {"@type": "Organization", "@id": DOMAIN + "/#organization", "name": "Christian Tech Founders", "url": DOMAIN + "/",
-       "logo": DOMAIN + "/assets/img/logo.svg",
+       "logo": DOMAIN + "/assets/brand/logo-full-black.svg",
        "description": "A community for Christian entrepreneurs and builders in tech who put God first. Sunday evenings with worship and prayer, sermons on AI and technology, talent alignment sessions and project support."}
 SITE = {"@type": "WebSite", "@id": DOMAIN + "/#website", "url": DOMAIN + "/", "name": "Christian Tech Founders",
         "publisher": {"@id": DOMAIN + "/#organization"}, "inLanguage": ["en", "nl"]}
@@ -272,10 +276,9 @@ def breadcrumb(lang, items):
 def page(lang, path, title, desc, main, active=None, schema=None, og_image=POSTER, og_type="website", scripts=""):
     t = T[lang]
     other = "nl" if lang == "en" else "en"
-    nav = [("insights", "/insights/"), ("library", "/library/"), ("founders", "/founders/")]
+    nav = [("about", "/about/"), ("founders", "/founders/"), ("partners", "/partners/"), ("insights", "/insights/"), ("library", "/library/")]
     links = "".join(
         f'<a href="{url(lang, p)}"{" aria-current=\"page\"" if active == k else ""}>{t["nav_" + k]}</a>' for k, p in nav)
-    links += f'<a href="{url(lang, "/")}#event">{t["nav_event"]}</a>'
     lang_sw = (f'<span class="lang"><a href="{url("en", path)}" class="{"on" if lang == "en" else ""}" hreflang="en" lang="en">EN</a>'
                f'<a href="{url("nl", path)}" class="{"on" if lang == "nl" else ""}" hreflang="nl" lang="nl">NL</a></span>')
     alt = "".join(f'<link rel="alternate" hreflang="{l}" href="{abs_url(l, path)}">' for l in LANGS)
@@ -298,7 +301,7 @@ def page(lang, path, title, desc, main, active=None, schema=None, og_image=POSTE
 <meta property="og:locale" content="{'en_US' if lang == 'en' else 'nl_NL'}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#D3D3D3">
-<link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/icon-black.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
@@ -309,7 +312,7 @@ def page(lang, path, title, desc, main, active=None, schema=None, og_image=POSTE
 <a class="skip" href="#main" style="position:absolute;left:-9999px">{t["skip"]}</a>
 <header class="site-header">
   <div class="wrap hdr">
-    <a class="hdr-brand" href="{url(lang, '/')}" aria-label="Christian Tech Founders">{logo()}<span class="name">Christian Tech Founders</span></a>
+    <a class="hdr-brand" href="{url(lang, '/')}" aria-label="Christian Tech Founders">{wordmark(h=24)}</a>
     <button class="menu-btn" aria-label="{t['menu']}" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
     <nav class="hdr-nav" id="nav">
       {links}
@@ -326,7 +329,7 @@ def page(lang, path, title, desc, main, active=None, schema=None, og_image=POSTE
   <div class="wrap">
     <div class="ftr">
       <div>
-        <div class="ftr-brand">{logo(30, "#fff", "#000")}Christian Tech Founders</div>
+        <div class="ftr-brand">{wordmark(white=True, h=30)}</div>
         <p class="muted" style="color:rgba(255,255,255,.65);max-width:360px;font-size:14px">{t["footer_tag"]}</p>
       </div>
       <div><h4>{t["explore"]}</h4><ul>{footer_links}<li><a href="{url(lang, '/')}#event">{t["nav_event"]}</a></li></ul></div>
@@ -467,12 +470,19 @@ def build_home(lang, posts):
   </div>
 </section>
 
-<section class="cosmos dim band on-dark" id="problem">
-  <div class="wrap narrow" style="margin:0 auto">
+<section class="band on-dark snake-sec" id="problem" data-snake aria-label="{esc(h['play_aria'])}">
+  <canvas role="img" aria-label="{esc(h['play_aria'])}"></canvas>
+  <div class="play-hud">
+    <span>{esc(h['play_label'])}</span>
+    <span class="score" aria-live="polite">{cross_icon()}<span>{h['score']} <span data-score>0</span></span><span style="opacity:.6">{h['best']} <span data-best>0</span></span></span>
+  </div>
+  <div class="wrap narrow snake-copy" style="margin:0 auto">
     <div class="sec-head">{label(h['p_label'])}<h2 class="h2">{esc(h['p_h2'])}</h2></div>
     <p class="lead" style="max-width:none;margin-bottom:18px">{h['p1']}</p>
     <p class="lead" style="max-width:none">{esc(h['p2'])}</p>
   </div>
+  <div class="play-hint">{esc(h['play_hint'])}</div>
+  <div class="play-over"><div><span class="pixel">{esc(h['over'])}</span><p style="font-weight:700;text-transform:uppercase;letter-spacing:.08em">{h['score']}: <span data-over-score>0</span></p><p style="margin-top:10px;font-size:12px;opacity:.8">{esc(h['over_again'])}</p></div></div>
 </section>
 
 <section id="why">
@@ -566,15 +576,6 @@ def build_home(lang, posts):
   </div>
 </section>
 
-<section id="play" aria-label="{esc(h['play_aria'])}">
-  <canvas role="img" aria-label="{esc(h['play_aria'])}"></canvas>
-  <div class="play-hud">
-    <span>{esc(h['play_label'])}</span>
-    <span class="score" aria-live="polite">{cross_icon()}<span>{h['score']} <span data-score>0</span></span><span style="opacity:.6">{h['best']} <span data-best>0</span></span></span>
-  </div>
-  <div class="play-hint">{esc(h['play_hint'])}</div>
-  <div class="play-over"><div><span class="pixel">{esc(h['over'])}</span><p style="font-weight:700;text-transform:uppercase;letter-spacing:.08em">{h['score']}: <span data-over-score>0</span></p><p style="margin-top:10px;font-size:12px;opacity:.8">{esc(h['over_again'])}</p></div></div>
-</section>
 """
     schema = [ORG, SITE]
     write(lang, "/", page(lang, "/", h["title"], h["desc"], main, schema=schema,
@@ -699,7 +700,10 @@ def build_library(lang, lib):
     write(lang, "/library/", page(lang, "/library/", title, desc, main, active="library", schema=schema))
 
 
-def avatar(initials, big=False):
+def avatar(initials, photo=None, name=""):
+    if photo:
+        return (f'<div class="cosmos avatar photo"><img src="{photo}" alt="{esc(name)}" width="616" height="876" loading="lazy">'
+                f'</div>')
     return f'<div class="cosmos avatar"><span class="pixel">{esc(initials)}</span></div>'
 
 
@@ -713,7 +717,7 @@ def build_founders(lang, founders):
         badge = f'<span class="badge">{t["example"]}</span>' if f.get("example") else ""
         cards += f"""<a class="ticket" href="{url(lang, '/founders/' + f['slug'] + '/')}">
   <div class="card-head"><span>{esc(f['location'])}</span>{badge}</div>
-  {avatar(f['initials'])}
+  {avatar(f['initials'], f.get('photo'), f['name'])}
   <div class="card-body"><h3 class="h3">{esc(f['name'])}</h3><span class="muted" style="font-size:13px">{esc(f['role'][lang])}</span>
   <div class="chips">{"".join(f'<span class="chip">{esc(x)}</span>' for x in f['tags'])}</div>
   <span class="more">{count} <span class="arrow">&rarr;</span></span></div>
@@ -733,8 +737,8 @@ def build_founders(lang, founders):
         badge = f'<span class="badge">{t["example"]}</span>' if f.get("example") else ""
         projects = "".join(f"""<div class="ticket"><div class="card-head"><span>{t['stage']}: {esc(p['stage'][lang])}</span>{barcode()}</div>
   <div class="card-body"><h3 class="h3">{esc(p['name'])}</h3><p>{esc(p['summary'][lang])}</p>
-  <span class="label" style="margin-top:4px">{t['looking_for']}</span>
-  <div class="chips">{"".join(f'<span class="chip grad">{esc(x)}</span>' for x in p['looking_for'][lang])}</div></div></div>""" for p in f["projects"])
+  {(f'<span class="label" style="margin-top:4px">{t["looking_for"]}</span><div class="chips">' + "".join(f'<span class="chip grad">{esc(x)}</span>' for x in p['looking_for'][lang]) + '</div>') if p['looking_for'][lang] else ""}
+  {f'<a class="more" href="{esc(p["url"])}" target="_blank" rel="noopener">{esc(p["url"].split("//")[1])} <span class="arrow">&nearr;</span></a>' if p.get("url") else ""}</div></div>""" for p in f["projects"])
         main = f"""
 <section class="post-hero" style="padding-bottom:0">
   <div class="wrap">
@@ -742,13 +746,14 @@ def build_founders(lang, founders):
     <div class="ticket" style="margin-top:18px">
       {ticket_head()}
       <div class="founder-top">
-        {avatar(f['initials'])}
+        {avatar(f['initials'], f.get('photo'), f['name'])}
         <div class="ticket-body">
           <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">{label(f['location'])}{badge}</div>
           <h1 class="h1" style="font-size:clamp(32px,5vw,60px);margin:16px 0 10px">{esc(f['name'])}</h1>
           <p style="font-weight:700;margin-bottom:14px">{esc(f['role'][lang])}</p>
           <p class="lead">{esc(f['bio'][lang])}</p>
           <div class="chips" style="margin-top:18px">{"".join(f'<span class="chip">{esc(x)}</span>' for x in f['tags'])}</div>
+          {('<div class="btn-row" style="margin-top:22px">' + "".join(f'<a class="btn alt" href="{esc(l["url"])}" target="_blank" rel="noopener">{esc(l["label"])} <span class="arrow">&nearr;</span></a>' for l in f["links"]) + '</div>') if f.get("links") else ""}
         </div>
       </div>
     </div>
@@ -777,6 +782,266 @@ def build_founders(lang, founders):
         write(lang, path, doc)
 
 
+# ─────────────────────────── About, Partners, Thanks ───────────────────────────
+
+ABOUT = {
+    "en": {
+        "title": "About Christian Tech Founders | Builders Who Put God First",
+        "desc": "Christian Tech Founders brings Christ-led founders and builders in tech together in Amsterdam. Read our story, what we believe and who is behind it.",
+        "h1": "Builders who put God first",
+        "lead": "Christian Tech Founders brings Christ-led founders and builders in tech together, so nobody has to carry their calling alone.",
+        "s_label": "[01] How it started", "s_h2": "Two worlds that did not understand each other.",
+        "story": [
+            "The idea for CTF came from a simple observation. In church, the entrepreneurial and technical side of people was not really understood. In the tech world, deeper meaning was not valued.",
+            "The first gathering in 2025 drew around forty people. Too many, too mixed in level and too shallow to go deep. That was the lesson learned.",
+            "Since April 2026 we work in smaller groups around real projects, next to evenings like Coffee & Calling that are open to everyone who feels drawn to them.",
+        ],
+        "b_label": "[02] What we believe", "b_h2": "What drives us",
+        "beliefs": ["Excellence and meaning belong together", "What we build shapes people and culture", "Responsibility comes with power", "The right people in one place speed each other up"],
+        "b_text": "We believe a calling from God means standing where your talents fit best. There, like a kaleidoscope, you shine His light onto as many people as possible, as strongly as possible.",
+        "f_label": "[03] Who is behind it", "f_profile": "View founder profile",
+        "c_h2": "Sound like your people?",
+    },
+    "nl": {
+        "title": "Over Christian Tech Founders | Bouwers die God op één zetten",
+        "desc": "Christian Tech Founders brengt founders en bouwers in tech die Christus volgen samen in Amsterdam. Lees ons verhaal, wat we geloven en wie erachter zit.",
+        "h1": "Bouwers die God op één zetten",
+        "lead": "Christian Tech Founders brengt founders en bouwers in tech die Christus volgen samen, zodat niemand zijn roeping alleen hoeft te dragen.",
+        "s_label": "[01] Hoe het begon", "s_h2": "Twee werelden die elkaar niet begrepen.",
+        "story": [
+            "Het idee voor CTF ontstond uit een eenvoudige observatie. In de kerk werden de ondernemende en technische kanten van mensen niet begrepen. In de tech-wereld werd diepere zingeving niet gewaardeerd.",
+            "De eerste gathering in 2025 trok zo'n veertig mensen. Te veel, te divers in niveau en te oppervlakkig om diep te kunnen gaan. Dat was de lesson learned.",
+            "Sinds april 2026 werken we in kleinere groepen rond echte projecten, naast avonden zoals Coffee & Calling die open zijn voor iedereen die zich aangetrokken voelt.",
+        ],
+        "b_label": "[02] Wat we geloven", "b_h2": "Wat ons drijft",
+        "beliefs": ["Excellentie en betekenis horen samen", "Wat we bouwen vormt mensen en cultuur", "Verantwoordelijkheid hoort bij macht", "De juiste mensen op één plek versnellen elkaar"],
+        "b_text": "Wij geloven dat een roeping van God betekent dat je staat waar je talenten het beste passen. Daar laat je, als een caleidoscoop, Zijn licht schijnen op zoveel mogelijk mensen en zo sterk mogelijk.",
+        "f_label": "[03] Wie erachter zit", "f_profile": "Bekijk founderprofiel",
+        "c_h2": "Klinkt dit als jouw mensen?",
+    },
+}
+
+PARTNERS = {
+    "en": {
+        "title": "Partners | Christian Tech Founders",
+        "desc": "Partners of Christian Tech Founders. Join as a partner, or submit your project if your Christian company needs developers, designers or other technical people.",
+        "h1": "Partners",
+        "lead": "Companies and initiatives that help Christ-led founders build. Want to partner with us, or does your Christian company need technical people? Let us know.",
+        "p_label": "[01] Our partners", "visit": "Visit",
+        "j_label": "[02] Become a partner", "j_h2": "Partner with us",
+        "j_lead": "Do you want to support Christ-led founders with space, services, sponsoring or expertise? Tell us about your company.",
+        "s_label": "[03] Submit a project", "s_h2": "Need technical people?",
+        "s_lead": "Are you a Christian company, church or ministry looking for developers, designers or other technical people? Submit your project. With or without a budget, we look for the right fit in our community.",
+        "company": "Company", "org": "Organisation", "website": "Website", "contact": "Your name", "email": "Email", "message": "Message",
+        "ptype": "How would you like to partner?", "ptypes": ["Sponsor events", "Host a space", "Offer services or expertise", "Other"],
+        "ptitle": "Project title", "pdesc": "What do you need help with?", "skills": "Which skills are you looking for?",
+        "skill_opts": ["Development", "Design", "AI & data", "Product", "Marketing", "Other"],
+        "budget": "Budget", "budget_opts": ["No budget (volunteers or pro bono)", "Budget available", "Not sure yet"],
+        "range": "Budget range", "range_opts": ["Under €1,000", "€1,000 to €5,000", "€5,000 to €20,000", "More than €20,000"],
+        "timeline": "Timeline", "timeline_opts": ["As soon as possible", "Within 3 months", "Later this year", "Flexible"],
+        "consent": "I agree that Christian Tech Founders shares this project with suitable people in the community.",
+        "choose": "Choose...", "send_partner": "Send partner request", "send_project": "Submit project",
+        "note": "We read every submission and get back to you.", "required": "required",
+    },
+    "nl": {
+        "title": "Partners | Christian Tech Founders",
+        "desc": "Partners van Christian Tech Founders. Word partner, of dien je project in als je christelijke bedrijf developers, designers of andere technische mensen zoekt.",
+        "h1": "Partners",
+        "lead": "Bedrijven en initiatieven die founders die Christus volgen helpen bouwen. Wil je partner worden, of zoekt je christelijke bedrijf technische mensen? Laat het ons weten.",
+        "p_label": "[01] Onze partners", "visit": "Bekijk",
+        "j_label": "[02] Word partner", "j_h2": "Word partner",
+        "j_lead": "Wil je founders die Christus volgen steunen met ruimte, diensten, sponsoring of expertise? Vertel ons over je bedrijf.",
+        "s_label": "[03] Dien een project in", "s_h2": "Technische mensen nodig?",
+        "s_lead": "Ben je een christelijk bedrijf, kerk of bediening en zoek je developers, designers of andere technische mensen? Dien je project in. Met of zonder budget, wij zoeken de juiste match in onze community.",
+        "company": "Bedrijf", "org": "Organisatie", "website": "Website", "contact": "Je naam", "email": "E-mail", "message": "Bericht",
+        "ptype": "Hoe wil je partner zijn?", "ptypes": ["Events sponsoren", "Een ruimte aanbieden", "Diensten of expertise aanbieden", "Anders"],
+        "ptitle": "Projectnaam", "pdesc": "Waar heb je hulp bij nodig?", "skills": "Welke skills zoek je?",
+        "skill_opts": ["Development", "Design", "AI & data", "Product", "Marketing", "Anders"],
+        "budget": "Budget", "budget_opts": ["Geen budget (vrijwilligers of pro bono)", "Budget beschikbaar", "Weet ik nog niet"],
+        "range": "Indicatie budget", "range_opts": ["Minder dan €1.000", "€1.000 tot €5.000", "€5.000 tot €20.000", "Meer dan €20.000"],
+        "timeline": "Planning", "timeline_opts": ["Zo snel mogelijk", "Binnen 3 maanden", "Later dit jaar", "Flexibel"],
+        "consent": "Ik ga ermee akkoord dat Christian Tech Founders dit project deelt met geschikte mensen in de community.",
+        "choose": "Kies...", "send_partner": "Verstuur partneraanvraag", "send_project": "Project indienen",
+        "note": "We lezen elke inzending en nemen contact met je op.", "required": "verplicht",
+    },
+}
+
+THANKS = {
+    "en": ("Thank you | Christian Tech Founders", "Thank you", "We received your message and will get back to you soon. In the meantime, read our insights or join the next Coffee & Calling.", "Back to home", "Read the insights"),
+    "nl": ("Bedankt | Christian Tech Founders", "Bedankt", "We hebben je bericht ontvangen en nemen snel contact met je op. Lees in de tussentijd onze insights of kom naar de volgende Coffee & Calling.", "Terug naar home", "Lees de insights"),
+}
+
+
+def build_about(lang, me):
+    a, t = ABOUT[lang], T[lang]
+    story = "".join(f'<p class="lead" style="max-width:none;margin-bottom:16px">{esc(x)}</p>' for x in a["story"])
+    beliefs = "".join(f'<li><span class="pixel ink">0{i + 1}</span><span>{esc(x)}</span></li>' for i, x in enumerate(a["beliefs"]))
+    links = "".join(f'<a class="btn alt" href="{esc(l["url"])}" target="_blank" rel="noopener">{esc(l["label"])} <span class="arrow">&nearr;</span></a>' for l in me["links"])
+    main = page_hero(lang, "Christian Tech Founders / " + t["nav_about"], a["h1"], a["lead"], "2025") + f"""
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="ticket">
+      {ticket_head()}
+      <div class="ticket-body" style="max-width:860px">
+        <div class="sec-head" style="margin-bottom:22px">{label(a['s_label'])}<h2 class="h2">{esc(a['s_h2'])}</h2></div>
+        {story}
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cosmos dim band on-dark">
+  <div class="wrap narrow" style="margin:0 auto">
+    <div class="sec-head">{label(a['b_label'])}<h2 class="h2">{esc(a['b_h2'])}</h2></div>
+    <ul class="belief-list">{beliefs}</ul>
+    <p class="lead" style="max-width:none;margin-top:28px">{esc(a['b_text'])}</p>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="sec-head">{label(a['f_label'])}</div>
+    <div class="ticket">
+      {ticket_head()}
+      <div class="founder-top">
+        {avatar(me['initials'], me.get('photo'), me['name'])}
+        <div class="ticket-body">
+          {label(me['location'])}
+          <h2 class="h1" style="font-size:clamp(32px,5vw,60px);margin:16px 0 10px">{esc(me['name'])}</h2>
+          <p style="font-weight:700;margin-bottom:14px">{esc(me['role'][lang])}</p>
+          <p class="lead">{esc(me['bio'][lang])}</p>
+          <div class="btn-row" style="margin-top:24px">{links}</div>
+          <a class="more" style="display:inline-block;margin-top:22px" href="{url(lang, '/founders/' + me['slug'] + '/')}">{a['f_profile']} <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cosmos dim band on-dark cta-band">
+  <div class="wrap">
+    {label("Coffee & Calling")}
+    <h2 class="h2">{esc(a['c_h2'])}</h2>
+    <div class="btn-row" style="margin-top:28px">
+      <a class="btn light" href="{LUMA}" target="_blank" rel="noopener">{t['join']} <span class="arrow">&rarr;</span></a>
+      <a class="btn" href="{url(lang, '/partners/')}">{t['nav_partners']}</a>
+    </div>
+  </div>
+</section>"""
+    page_url = abs_url(lang, "/about/")
+    person = {"@type": "Person", "@id": DOMAIN + "/#founder", "name": me["name"], "jobTitle": "Founder",
+              "image": DOMAIN + me["photo"], "worksFor": {"@id": DOMAIN + "/#organization"},
+              "sameAs": [l["url"] for l in me["links"] if "viralistic" in l["url"]]}
+    org = dict(ORG, founder={"@id": DOMAIN + "/#founder"})
+    schema = [org, person, {"@type": "AboutPage", "@id": page_url + "#page", "url": page_url, "name": a["title"], "inLanguage": lang,
+                            "about": {"@id": DOMAIN + "/#organization"}},
+              breadcrumb(lang, [(t["home"], "/"), (t["nav_about"], "/about/")])]
+    write(lang, "/about/", page(lang, "/about/", a["title"], a["desc"], main, active="about", schema=schema))
+
+
+def field(label_text, inner, full=False, req=False, rq=""):
+    star = f' <abbr title="{rq}">*</abbr>' if req else ""
+    return f'<label class="field{" full" if full else ""}"><span>{esc(label_text)}{star}</span>{inner}</label>'
+
+
+def build_partners(lang, partners):
+    P, t = PARTNERS[lang], T[lang]
+    thanks = url(lang, "/thanks/")
+    rq = P["required"]
+    cards = "".join(f"""<a class="ticket" href="{esc(p['url'])}" target="_blank" rel="noopener">
+  <div class="card-head"><span>{esc(p['domain'])}</span>{barcode()}</div>
+  <div class="cosmos partner-mark"><span class="pixel">{esc(p['name'])}</span></div>
+  <div class="card-body"><h3 class="h3">{esc(p['name'])}</h3><p>{esc(p['desc'][lang])}</p>
+  <span class="more">{P['visit']} {esc(p['domain'])} <span class="arrow">&nearr;</span></span></div></a>""" for p in partners)
+
+    def opts(items):
+        return f'<option value="">{P["choose"]}</option>' + "".join(f'<option>{esc(x)}</option>' for x in items)
+
+    hp = '<p class="hp" aria-hidden="true"><label>Leave empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>'
+    partner_form = f"""<form class="form" name="partner" method="POST" action="{thanks}" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="partner"><input type="hidden" name="language" value="{lang}">{hp}
+  {field(P['company'], '<input name="company" required autocomplete="organization">', req=True, rq=rq)}
+  {field(P['website'], '<input name="website" type="url" placeholder="https://" autocomplete="url">')}
+  {field(P['contact'], '<input name="name" required autocomplete="name">', req=True, rq=rq)}
+  {field(P['email'], '<input name="email" type="email" required autocomplete="email">', req=True, rq=rq)}
+  {field(P['ptype'], f'<select name="partner_type" required>{opts(P["ptypes"])}</select>', full=True, req=True, rq=rq)}
+  {field(P['message'], '<textarea name="message" rows="4"></textarea>', full=True)}
+  <div class="full form-foot"><button class="btn" type="submit">{P['send_partner']} <span class="arrow">&rarr;</span></button><span class="muted">{P['note']}</span></div>
+</form>"""
+    skills = "".join(f'<label class="check"><input type="checkbox" name="skills" value="{esc(x)}"><span>{esc(x)}</span></label>' for x in P["skill_opts"])
+    budgets = "".join(f'<label class="check"><input type="radio" name="budget" value="{esc(x)}" required{" data-has-budget" if i == 1 else ""}><span>{esc(x)}</span></label>' for i, x in enumerate(P["budget_opts"]))
+    project_form = f"""<form class="form" name="project" method="POST" action="{thanks}" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="project"><input type="hidden" name="language" value="{lang}">{hp}
+  {field(P['org'], '<input name="organisation" required autocomplete="organization">', req=True, rq=rq)}
+  {field(P['website'], '<input name="website" type="url" placeholder="https://" autocomplete="url">')}
+  {field(P['contact'], '<input name="name" required autocomplete="name">', req=True, rq=rq)}
+  {field(P['email'], '<input name="email" type="email" required autocomplete="email">', req=True, rq=rq)}
+  {field(P['ptitle'], '<input name="project_title" required>', full=True, req=True, rq=rq)}
+  {field(P['pdesc'], '<textarea name="project_description" rows="5" required></textarea>', full=True, req=True, rq=rq)}
+  <fieldset class="field full"><legend>{esc(P['skills'])}</legend><div class="checks">{skills}</div></fieldset>
+  <fieldset class="field full"><legend>{esc(P['budget'])} <abbr title="{rq}">*</abbr></legend><div class="checks">{budgets}</div></fieldset>
+  <div class="field budget-range" hidden>{field(P['range'], f'<select name="budget_range">{opts(P["range_opts"])}</select>')}</div>
+  {field(P['timeline'], f'<select name="timeline">{opts(P["timeline_opts"])}</select>')}
+  <label class="check full"><input type="checkbox" name="consent" value="yes" required><span>{esc(P['consent'])}</span></label>
+  <div class="full form-foot"><button class="btn" type="submit">{P['send_project']} <span class="arrow">&rarr;</span></button><span class="muted">{P['note']}</span></div>
+</form>"""
+    main = page_hero(lang, "Christian Tech Founders / " + P["h1"], P["h1"], P["lead"], "Together") + f"""
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">{label(P['p_label'])}</div>
+    <div class="grid g4">{cards}</div>
+  </div>
+</section>
+<section style="padding-top:0" id="join">
+  <div class="wrap">
+    <div class="ticket">
+      {ticket_head("Partners / Join")}
+      <div class="ticket-body form-grid">
+        <div>{label(P['j_label'])}<h2 class="h2" style="margin:16px 0 18px">{esc(P['j_h2'])}</h2><p class="lead">{esc(P['j_lead'])}</p></div>
+        {partner_form}
+      </div>
+    </div>
+  </div>
+</section>
+<section style="padding-top:0" id="project">
+  <div class="wrap">
+    <div class="ticket">
+      {ticket_head("Projects / Submit")}
+      <div class="ticket-body form-grid">
+        <div>{label(P['s_label'])}<h2 class="h2" style="margin:16px 0 18px">{esc(P['s_h2'])}</h2><p class="lead">{esc(P['s_lead'])}</p></div>
+        {project_form}
+      </div>
+    </div>
+  </div>
+</section>"""
+    js = """<script>
+document.querySelectorAll('form[name="project"]').forEach(function(f){
+  var box=f.querySelector('.budget-range');
+  f.querySelectorAll('input[name="budget"]').forEach(function(r){r.addEventListener('change',function(){box.hidden=!f.querySelector('input[data-has-budget]').checked;});});
+});
+</script>"""
+    schema = [ORG, breadcrumb(lang, [(t["home"], "/"), ("Partners", "/partners/")])]
+    write(lang, "/partners/", page(lang, "/partners/", P["title"], P["desc"], main, active="partners", schema=schema, scripts=js))
+
+
+def build_thanks(lang):
+    title, h1, text, b1, b2 = THANKS[lang]
+    main = page_hero(lang, "Christian Tech Founders", h1, text, "Amen") + f"""
+<section style="padding-top:0"><div class="wrap"><div class="btn-row">
+  <a class="btn" href="{url(lang, '/')}">{b1}</a><a class="btn alt" href="{url(lang, '/insights/')}">{b2}</a>
+</div></div></section>"""
+    doc = page(lang, "/thanks/", title, text, main)
+    doc = doc.replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n<meta name="robots" content="noindex">', 1)
+    write(lang, "/thanks/", doc)
+
+
+def build_404():
+    main = page_hero("en", "Error 404", "Page not found", "This page does not exist (anymore). Go back home or read our insights.", "404") + """
+<section style="padding-top:0"><div class="wrap"><div class="btn-row">
+  <a class="btn" href="/">Home</a><a class="btn alt" href="/insights/">Insights</a><a class="btn alt" href="/nl/">Nederlands</a>
+</div></div></section>"""
+    doc = page("en", "/404/", "Page not found | Christian Tech Founders", "Page not found.", main)
+    doc = doc.replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n<meta name="robots" content="noindex">', 1)
+    (ROOT / "404.html").write_text(doc, encoding="utf-8")
+
+
 # ─────────────────────────── Assets ───────────────────────────
 
 def build_cosmos():
@@ -796,10 +1061,6 @@ def build_cosmos():
 <g fill="none" stroke="#fff" stroke-opacity="0.62" stroke-width="1.6">{rings}{spokes}</g>
 </svg>"""
     (ROOT / "assets" / "img" / "cosmos.svg").write_text(svg, encoding="utf-8")
-    logo_svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26"><rect width="26" height="26" rx="4" fill="#0B0B0B"/>'
-                '<path d="M6 6.5h9M6 6.5v13M6 12.5h6" stroke="#fff" stroke-width="2.6" fill="none"/>'
-                '<path d="M20.5 5.5 13.5 21" stroke="#fff" stroke-width="2.6"/></svg>')
-    (ROOT / "assets" / "img" / "logo.svg").write_text(logo_svg, encoding="utf-8")
 
 
 def build_redirects():
@@ -829,7 +1090,8 @@ def main():
     build_cosmos()
     founders = json.loads((SRC / "data" / "founders.json").read_text(encoding="utf-8"))
     lib = json.loads((SRC / "data" / "library.json").read_text(encoding="utf-8"))
-    paths = ["/", "/insights/", "/library/", "/founders/"]
+    partners = json.loads((SRC / "data" / "partners.json").read_text(encoding="utf-8"))["partners"]
+    paths = ["/", "/about/", "/partners/", "/insights/", "/library/", "/founders/"]
     for lang in LANGS:
         posts = load_posts(lang)
         build_home(lang, posts)
@@ -838,6 +1100,10 @@ def main():
             build_post(lang, p, posts)
         build_library(lang, lib)
         build_founders(lang, founders)
+        build_about(lang, founders[0])
+        build_partners(lang, partners)
+        build_thanks(lang)
+    build_404()
     paths += ["/insights/" + p["slug"] + "/" for p in load_posts("en")]
     build_redirects()
     build_sitemap(paths)
